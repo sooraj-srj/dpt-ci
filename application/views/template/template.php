@@ -51,14 +51,18 @@
                 <div id="head-mobile"></div>
                 <div class="button"></div>
                 <ul class="menu-ul-style">
-                    <li class='active'><a href=''>HOME</a></li>
+                    <li class='active'><a href='<?php echo base_url(); ?>'>HOME</a></li>
                     <li><a href='#'>Tours & Safaries</a>
                         <ul>
-                            <li><a href='list.html'>City Tours</a></li>
-                            <li><a href='list.html'>Desert Safari</a></li>
-                            <li><a href='list.html'>Luxuary Tours</a></li>
-                            <li><a href='list.html'>Ferrari World</a></li>
-                            <li><a href='list.html'>Dinner Cruise</a></li>
+                            <?php $categories = get_categories(); ?>
+                            <?php 
+                                foreach ($categories as $cats){
+                            ?>  
+                                <li><a href='<?php echo $cats['slug']; ?>'><?php echo $cats['title']; ?></a></li>
+                            <?php
+                                }
+                            ?>
+                            
                         </ul>
                     </li>
                     <li><a href='#'>Transfer Services</a>
@@ -109,7 +113,6 @@
             <br>
             <div class="widget-last-posts__item">
                 <!-- Tripadviser -->
-
                 <div id="TA_excellent59" class="TA_excellent"><div id="CDSWIDEXC" class="widEXC"> <div class="bravoBox"> <div class="bravoWrapper"> <div class="bravoText"> Bravo! </div> </div> <img src="https://www.tripadvisor.com/img/cdsi/partner/transparent_pixel-11863-2.gif" height="1" width="1"> </div> <br> <div id="CDSWIDEXCLINK" class="widEXCLINK"> <a target="_blank" href="https://www.tripadvisor.com/Attraction_Review-g295424-d2510773-Reviews-Dubai_Private_Tour-Dubai_Emirate_of_Dubai.html" onclick="ta.cds.handleTALink(11863,this);return true;" rel="nofollow">Dubai Private Tour rated "excellent" by 1,231 travelers</a><br> </div> <div class="widEXCTALOGO"> <a target="_blank" href="https://www.tripadvisor.com/"><img src="https://static.tacdn.com/img2/widget/tripadvisor_logo_115x18.gif" alt="TripAdvisor" class="widEXCIMG" id="CDSWIDEXCLOGO"></a> </div> </div><!--/ cdsEXCBadge--> </div>
                 <script src="http://www.jscache.com/wejs?wtype=excellent&amp;uniq=59&amp;locationId=2510773&amp;lang=en_US&amp;display_version=2"></script>
                 <script src="https://www.tripadvisor.com/WidgetEmbed-excellent?lang=en_US&amp;locationId=2510773&amp;display_version=2&amp;uniq=59"></script>
@@ -130,9 +133,7 @@
                 </div>
                 <div class="footer-contact-text">
                     <ul class="footer-contact-ul-style">
-                        <li>sdvfdsfdsfdsfsdf</li>
-                        <li>sdfdsfdsfdsf</li>
-                        <li>sdfdsfsdfsdfsdfdsf</li>
+                        <?php echo get_settings('contact_address'); ?>
                     </ul>
                 </div>
 
@@ -143,7 +144,8 @@
                 </div>
                 <div class="footer-contact-text">
                     <ul class="footer-contact-ul-style">
-                        <li>sdvfdsfdsfdsfsdf</li>
+                        <?php $contact_no = get_settings('contact_no'); ?>
+                        <li><a href="tel:<?php echo $contact_no; ?>" style="color: #fff;">Tel: <?php echo $contact_no; ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -153,7 +155,8 @@
                 </div>
                 <div class="footer-contact-text">
                     <ul class="footer-contact-ul-style">
-                        <li>sdvfdsfdsfdsfsdf</li>
+                        <?php $cell_no = get_settings('contact_cell_no'); ?>
+                        <li><a href="tel:<?php echo $cell_no; ?>" style="color: #fff;">Cell: <?php echo $cell_no; ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -164,7 +167,7 @@
                 </div>
                 <div class="footer-contact-text">
                     <ul class="footer-contact-ul-style">
-                        <li>sdvfdsfdsfdsfsdf</li>
+                        <li><?php echo get_settings('contact_email_addr'); ?></li>
                     </ul>
                 </div>
             </div>
@@ -193,6 +196,7 @@
 <script src="<?php echo c('js_path_url'); ?>menumaker.js"></script>
 <script src="<?php echo c('js_path_url'); ?>owl.carousel.min.js"></script>
 <script src="<?php echo c('js_path_url'); ?>owl.custom.js"></script>
+<script src="<?php echo c('js_path_url'); ?>photo-gallery.js"></script>
 <script src="<?php echo c('js_path_url'); ?>calen.js"></script>
 <script src="<?php echo c('js_path_url'); ?>jssor.slider-22.0.7.min.js"></script>
 <script src="<?php echo c('js_path_url'); ?>jssor.custom.js"></script>
@@ -203,5 +207,5 @@
 <script src="<?php echo c('js_path_url'); ?>web.custom.js"></script>
 </body>
 </html>
-<?php  $this->load->view("common/modals"); ?>
+<?php  $this->load->view("common/modals"); 
 
