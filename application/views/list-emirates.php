@@ -11,21 +11,19 @@
                 <div class="clearfix"></div>
                 <div class="left-package-list">
                     <ul id="mainNav" class="list-product-ul">
-                        <li class="mainNavItem">
-                            <div id="navItem1">City Tours</div>
+                        <?php 
+                        $i = 1;
+                        foreach ($categories as $cats){
+                        ?>
+                        <li class="mainNavItem <?php if($current == $cats['slug']){ echo 'active'; } ?>">
+                            <div id="navItem<?php echo $i; ?>" data-url="<?php echo base_url().'tours/'.$cats['slug']; ?>" class="cat-nav">
+                                <?php echo $cats['title'] ?>
+                            </div>
                         </li>
-                        <li class="mainNavItem">
-                            <div id="navItem2">Desert Safari</div>
-                        </li>
-                        <li class="mainNavItem">
-                            <div id="navItem3">Luxuary Tours</div>
-                        </li>
-                        <li class="mainNavItem">
-                            <div id="navItem4">Ferrari World</div>
-                        </li>
-                        <li class="mainNavItem">
-                            <div id="navItem5">Dinner Cruise</div>
-                        </li>
+                        <?php
+                        $i++;
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -44,7 +42,6 @@
                             <h3 class="title__primary">Select Your Emirates </h3>
                         </div>
 
-
                         <div class="col-md-4">
                             <div class="grid">
                                 <figure class="effect-marley">
@@ -52,7 +49,7 @@
                                     <figcaption>
                                         <h2><span>Dubai</span></h2>
                                         <p>View More</p>
-                                        <a href="<?php echo base_url(); ?>plan">View more</a>
+                                        <a href="<?php echo base_url(); ?>plan/<?php echo $current; ?>/1">View more</a>
                                     </figcaption>
                                 </figure>
                             </div>

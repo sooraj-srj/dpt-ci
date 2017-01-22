@@ -145,7 +145,21 @@ $(document).ready(function () {
     });
 });
 //------------- Lightbox ------------
-//
+
+//list page
+$(document).ready(function () {
+    //left category navigation
+    $('.cat-nav').on('click',function(){
+       var url = $(this).data('url');
+       window.location = url;
+    });
+    //left tour navigation
+    $('.tour-nav').on('click',function(){
+       var url = $(this).data('url');
+       window.location = url;
+    });
+});
+
 //------------ dropzone ---------------
 
 //------------ dropzone ---------------

@@ -566,16 +566,6 @@ function remove_temp_captcha() {
     }
 }
 
-function format_array_for_mobile($array = array()) {
-    if (empty($array))
-        return array();
-    $formated = array();
-    foreach ($array as $k => $v) {
-        $formated[] = array('id' => $k, 'name' => $v);
-    }
-    return $formated;
-}
-
 function set_null($val, $default = '') {
 
     return empty($val) ? $default : $val;
@@ -584,28 +574,6 @@ function set_null($val, $default = '') {
 function validateDate($date, $format = 'Y-m-d H:i:s') {
     $d = DateTime::createFromFormat($format, $date);
     return $d && $d->format($format) == $date;
-}
-
-function extract_sms($sms, $type) {
-    for ($i = 0; $i < count($sms); $i++) {
-        if ($type == 'lead_type') {
-            if (strtolower($sms[$i]) == 'seller') {
-                unset($sms[$i]);
-                return array('value' => 'seller', 'sms' => array_values($sms));
-            } else if (strtolower($sms[$i]) == 'buyer') {
-                unset($sms[$i]);
-                return array('value' => 'buyer', 'sms' => array_values($sms));
-            }
-        } else if ($type == 'email') {
-            if (check_email_format($sms[$i])) {
-                $mail = $sms[$i];
-                unset($sms[$i]);
-                return array('value' => $mail, 'sms' => array_values($sms));
-            }
-        }
-    }
-
-    return array('value' => '', 'sms' => $sms);
 }
 
 function check_email_format($email) {
@@ -666,128 +634,6 @@ if (!function_exists('random_string')) {
     }
 
 }
-
-function getSuburb($suburb_id = '') {
-    if ($suburb_id == '') {
-        $where = array('active_status' => 1, 'status' => 1);
-    } else {
-        $where = array('postal_id' => $suburb_id, 'active_status' => 1, 'status' => 1);
-    }
-    $ci = &get_instance();
-
-    if (!empty($where)) {
-        $ci->db->where($where);
-    }
-    $streets = $ci->db->get('postal_code');
-
-    if ($streets->num_rows() > 0) {
-        return $streets->result_array();
-    }
-    return array();
-}
-
-function getAgent($agent_id = '', $select = "*") {
-    if ($agent_id == '') {
-        $where = array('active_status' => 1, 'status' => 1);
-    } else {
-        $where = array('agent_id' => $agent_id, 'active_status' => 1, 'status' => 1);
-    }
-    $ci = &get_instance();
-    $ci->db->select($select);
-
-    if (!empty($where)) {
-        $ci->db->where($where);
-    }
-
-    $ci->db->order_by('agency_nm');
-    $ci->db->from('agent_details');
-    $agents = $ci->db->get();
-
-    if ($agents->num_rows() > 0) {
-        return $agents->result_array();
-    }
-    return array();
-}
-
-function getStreetType($street_id = '', $select = "*") {
-    if ($street_id == '') {
-        $where = array('active_status' => 1, 'status' => 1);
-    } else {
-        $where = array('street_type_id' => $street_id, 'active_status' => 1, 'status' => 1);
-    }
-    $ci = &get_instance();
-    $ci->db->select($select);
-
-    if (!empty($where)) {
-        $ci->db->where($where);
-    }
-
-    $ci->db->order_by('street_type');
-    $ci->db->from('street_type');
-    $streets = $ci->db->get();
-
-    if ($streets->num_rows() > 0) {
-        return $streets->result_array();
-    }
-    return array();
-}
-
-function getPropertyFeatures($feature_id = '', $type = '', $select = "*") {
-    if ($feature_id != '') {
-        $where = array('property_features_id' => $feature_id);
-    }
-    if ($type != '') {
-        if (!empty($where)) {
-            $where = array_merge($where, array('type' => $type));
-        } else {
-            $where = array('type' => $type);
-        }
-    }
-    if (!empty($where)) {
-        $where = array_merge($where, array('active_status' => 1, 'status' => 1));
-    } else {
-        $where = array('active_status' => 1, 'status' => 1);
-    }
-
-    $ci = &get_instance();
-    $ci->db->select($select);
-
-    if (!empty($where)) {
-        $ci->db->where($where);
-    }
-    $ci->db->order_by('property_feature');
-    $ci->db->from('property_features');
-    $streets = $ci->db->get();
-
-    if ($streets->num_rows() > 0) {
-        return $streets->result_array();
-    }
-    return array();
-}
-
-function getPropertyType($property_type_id = '', $select = "*") {
-    if ($property_type_id == '') {
-        $where = array('active_status' => 1, 'status' => 1);
-    } else {
-        $where = array('property_type_id' => $property_type_id, 'active_status' => 1, 'status' => 1);
-    }
-    $ci = &get_instance();
-    $ci->db->select($select);
-
-    if (!empty($where)) {
-        $ci->db->where($where);
-    }
-
-    $ci->db->order_by('property_type');
-    $ci->db->from('property_type');
-    $streets = $ci->db->get();
-
-    if ($streets->num_rows() > 0) {
-        return $streets->result_array();
-    }
-    return array();
-}
-
 /**
  * get encript password
  *
@@ -799,102 +645,16 @@ function get_encr_password($password) {
     return substr(md5($pass . 'renter_ratings'), 0, 50);
 }
 
-function getFilters($filter_id = '', $select = "*") {
-
-    if ($filter_id == '') {
-        $where = array('active_status' => 1, 'status' => 1);
-    } else {
-        $where = array('$ilter_id' => $filter_id, 'active_status' => 1, 'status' => 1);
+function echo_image($image){
+    if(file_exists('assets/'.$image)){
+        echo assets_url().$image;;
     }
-    $ci = &get_instance();
-    $ci->db->select($select);
-
-    if (!empty($where)) {
-        $ci->db->where($where);
+    else{
+        echo assets_url().'images/no-image.jpg';
     }
-    $ci->db->from('filter');
-    $filters = $ci->db->get();
-
-    if ($filters->num_rows() > 0) {
-        return $filters->result_array();
-    }
-    return array();
+     
 }
 
-function load_notification_count($type = '') {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    if($type == 'suppler')
-       $tbl_name = 'cc_suppliers';
-    else if($type == 'enquiries_ls')
-       $tbl_name = 'ls_enquiries';
-    else 
-        $tbl_name = 'cc_enquiries';
-    return $CI->admin_model->get_notification_count($tbl_name);
-}
-
-function loadweeklytotalreviewdata() {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->loadweeklytotalreviewdata();
-}
-
-function loadreviewbysuburb() {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->loadreviewbysuburb();
-}
-
-function getclientcount() {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->getclientcount();
-}
-
-function getallads() {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->loadallactiveads();
-}
-
-function loadtopratedproperty() {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->loadtopratedproperty();
-}
-
-function loadlatestagents() {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->loadallagents(0, 5, "list");
-}
-
-function loadblogposts($blog_id = "") {
-    $CI = &get_instance();
-    $CI->load->model('common_model');
-    return $CI->common_model->loadblogposts($blog_id);
-}
-
-function get_leadprice_question ($qustion_id = 0) {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->get_qustion_byid($qustion_id);
-}
-
-function get_leadprice_answer ($ansid = 0) {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->get_answer_byid($ansid);
-}
-
-function check_preference_status ($userid = 0) {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->check_preference_status($userid);
-}
-
-function get_sellcopier_details_feedback_report ($sellcopier_id = 0) {
-    $CI = &get_instance();
-    $CI->load->model('admin/admin_model');
-    return $CI->admin_model->get_sellcopier_details_feedback_report($sellcopier_id);
+function url($url){
+    echo base_url().$url;
 }

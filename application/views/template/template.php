@@ -14,6 +14,10 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo c('css_path_url'); ?>owl.carousel.css" rel="stylesheet">
     <link href="<?php echo c('css_path_url'); ?>owl.theme.css" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>demo.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>set1.css">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,7 +62,7 @@
                             <?php 
                                 foreach ($categories as $cats){
                             ?>  
-                                <li><a href='<?php echo $cats['slug']; ?>'><?php echo $cats['title']; ?></a></li>
+                                <li><a href='<?php echo base_url().'tours/'.$cats['slug']; ?>'><?php echo $cats['title']; ?></a></li>
                             <?php
                                 }
                             ?>

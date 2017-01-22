@@ -10,6 +10,10 @@ class Web extends CI_Controller {
     var $gen_contents = array(
         
     );
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('web_model');
+    }
 
     //default index page
     public function index() {
@@ -68,18 +72,39 @@ class Web extends CI_Controller {
     }
 
     //listing page
-    public function listing()
-    {        
-        $this->gen_contents = array();
-        $this->template->write_view('content', 'list', $this->gen_contents);
+//    public function listing()
+//    {        
+//        $this->gen_contents = array();
+//        $this->template->write_view('content', 'list_emirates', $this->gen_contents);
+//        $this->template->render();
+//    }
+    
+    //select tours 
+    public function select_tours($category)
+    {     
+        $this->load->model('web_model');
+        $this->gen_contents['categories'] = $this->web_model->get_categories();
+        $this->gen_contents['current'] = $category;              
+        //p($this->gen_contents['categories']);exit;
+        $this->template->write_view('content', 'list-emirates', $this->gen_contents);
         $this->template->render();
     }
 
     //plan page
-    public function plan()
+    public function select_plan($category,$emirates)
     {
-        $this->gen_contents = array();
-        $this->template->write_view('content', 'plan', $this->gen_contents);
+        $tour_id = $this->input->get('plan', TRUE);
+        $this->load->model('web_model');
+        $this->gen_contents['current'] = $category;
+        $this->gen_contents['tours'] = $this->web_model->get_tours($category);
+        if(empty($tour_id)){
+            $tour_id = $this->web_model->get_default_tour_id($category);
+        }
+        $this->gen_contents['tour_details'] = $this->web_model->get_tour_details($tour_id);
+        $this->gen_contents['tour_id'] = $tour_id;
+        
+        //p($this->gen_contents['tour_details']); exit;
+        $this->template->write_view('content', 'select-plan', $this->gen_contents);
         $this->template->render();
     }
 

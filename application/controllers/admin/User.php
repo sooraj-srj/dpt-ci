@@ -73,16 +73,16 @@ class User extends CI_Controller {
      * validating the form elemnets
      */
     function _init_adminlogin_validation_rules() {
-        $this->form_validation->set_rules('admin_username', 'username', 'required|max_length[50]');
-        $this->form_validation->set_rules('admin_password', 'password', 'required|max_length[20]');
+        $this->form_validation->set_rules('username', 'username', 'required|max_length[50]');
+        $this->form_validation->set_rules('password', 'password', 'required|max_length[20]');
     }
 
     /**
      * Initialising the data     
      */
     function _init_adminlogin_details() {
-        $this->username = $this->input->post("admin_username", true);
-        $this->password = $this->input->post("admin_password", true);
+        $this->username = $this->input->post("username", true);
+        $this->password = $this->input->post("password", true);
     }
 
     /**

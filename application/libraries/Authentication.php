@@ -95,18 +95,18 @@ class Authentication {
         }
         $emailid = $login['username'];
         $password = $login['password'];
-        $this->CI->db->select("username AS USERNAME, id as USERID, administrator as NAME, status as STATUS ");
+        $this->CI->db->select("username AS USERNAME, id as USERID, name as NAME, status as STATUS ");
         $this->CI->db->where('username', $emailid);
         $password = $this->CI->db->escape_like_str($password);
         //$password = 'cc' . $password;
         $this->CI->db->where("password = '$password'", NULL, false);
-        $select_query = $this->CI->db->get('administrators');
+        $select_query = $this->CI->db->get('default_admins');
         if (0 < $select_query->num_rows()) {
             $row = $select_query->row();
             if ($row->STATUS == 'A') {
                 $this->CI->db->where('id', $row->USERID);
                 $arr['last_login_date'] = date('Y-m-d H:i:s');
-                $this->CI->db->update('administrators', $arr);
+                $this->CI->db->update('default_admins', $arr);
                 $session_data = array(
                     'ADMIN_USERNAME' => $row->USERNAME,
                     'ADMIN_NAME' => $row->NAME,
@@ -303,7 +303,7 @@ class Authentication {
         $this->CI->db->select("status");
         $this->CI->db->where('status', 'A');
         $this->CI->db->where('id', $user_id);
-        $select_query = $this->CI->db->get('administrators');
+        $select_query = $this->CI->db->get('default_admins');
         if (0 < $select_query->num_rows()) {
             $row = $select_query->row();
             $session_data['ADMIN_STATUS'] = $row->status;

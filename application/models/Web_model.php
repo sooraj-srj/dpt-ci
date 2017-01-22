@@ -44,21 +44,52 @@ class Web_model extends CI_Model {
             return '';
         }
     }
+    
+    //function to get tours from category
+    public function get_tours($category){
+        $qry = "SELECT t.*, tc.id, t.id as tour_id FROM `default_tour` t 
+                LEFT JOIN default_tour_categories tc ON tc.slug = '".$category."' 
+                WHERE t.`category_id` = tc.id
+                ORDER BY t.ordering_count";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+        
+    }
+    
+    //function to get default tour id from category
+    public function get_default_tour_id($category){
+        $qry = "SELECT t.id FROM `default_tour` t 
+                LEFT JOIN default_tour_categories tc ON tc.slug = '".$category."' 
+                WHERE t.`category_id` = tc.id
+                ORDER BY t.ordering_count LIMIT 1";
+        $sel = $this->db->query($qry);
+        $res = $sel->row_array($sel);
+        if(!empty($res)){
+            return $res['id'];
+        }
+        else{
+            return '';
+        }
+        
+    }
+    
+    //function to get tour details
+    public function get_tour_details($tour_id){
+        $query = $this->db->select("*")
+                ->from("default_tour")
+                ->where('id',$tour_id)
+                ->get();
+        $result = $query->row_array();
+        //p($result);
+        return $result;
+    }
 
 
 
-
-
-    //get key from lead match history(sell my copier)
-//    public function get_key_from_SChistory($sellcopier_id,$user_id){
-//        $qry = "SELECT `key` FROM cc_sellcopier_history WHERE sellcopier_id = '$sellcopier_id' AND userID = '$user_id'";
-//        $sel = $this->db->query($qry);
-//        $res = $sel->row_array($sel);
-//        if(!empty($res)){
-//            return $res['key'];
-//        }
-//        else{
-//            return substr(md5(uniqid()), 0, 10);
-//        }
-//    }
 }

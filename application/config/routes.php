@@ -62,16 +62,18 @@ $route['gallery']       = "web/gallery";
 $route['reviews']       = "web/reviews"; 
 $route['our-guide']     = "web/our_guide"; 
 $route['tourist-visa']  = "web/tourist_visa"; 
-$route['list']          = "web/listing"; 
+//$route['list']          = "web/listing"; 
 $route['plan']          = "web/plan"; 
 $route['why-us']        = "web/why_us"; 
+$route['tours/(:any)']        = "web/select_tours/$1"; 
+$route['plan/(:any)/(:any)']  = "web/select_plan/$1/$2"; 
 
 
 //----------- admin common routing ------------
 $route['admin']             = "admin/user/index";
 $route['admin/login']       = "admin/user/index";
 $route['admin/logout']      = "admin/user/logout";
-$route['admin/dashboard']   = "admin/welcome";
+$route['admin/dashboard']   = "admin/admin";
 
 
 
