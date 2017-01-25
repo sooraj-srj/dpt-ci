@@ -1656,7 +1656,7 @@ ul.flags, .flags li {
 
 
 
-.filter-btn-style{border-radius::0px;}	
+.filter-btn-style{border-radius:0px;}	
 
 .filter-btn-style .btn-primary{border-radius:0px !important;
                                margin-top: 3px;}

@@ -21,11 +21,17 @@
         <script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
         <style type="text/css">
             .error{ font-size: 12px; color: #FF3636; font-weight: 400; }
+            .skin-red .main-header .navbar{background-color: #40add6 !important;}
+            .skin-red .main-header .logo{background-color: #248db5 !important;}
+            .skin-red .main-header .navbar .sidebar-toggle:hover{background-color: #248db5 !important;}
+            .skin-red .main-header .logo:hover{background-color: #1f81a7 !important;}
+            .skin-red .main-header li.user-header{background-color: #3a9cc1 !important;}
+            .user-panel>.image>img{height: 50px !important; width: 50px !important;}
         </style>
         <script>
-        //function preventBack(){window.history.forward();}
-        //setTimeout("preventBack()", 0);
-        //window.onunload=function(){null};
+            //function preventBack(){window.history.forward();}
+            //setTimeout("preventBack()", 0);
+            //window.onunload=function(){null};
         </script>
     </head>
 
@@ -54,7 +60,7 @@
                                             <li>
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="<?php echo_image(''); ?>" class="img-circle" alt="User Image">
+                                                        <img src="<?php echo_image('img/avatar2.png'); ?>" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
                                                         Support Team
@@ -66,7 +72,7 @@
                                             <li>
                                                 <a href="#">
                                                     <div class="pull-left">
-                                                        <img src="<?php echo_image('img/user3-128x128.jpg'); ?>" class="img-circle" alt="User Image">
+                                                        <img src="<?php echo_image('img/avatar56.png'); ?>" class="img-circle" alt="User Image">
                                                     </div>
                                                     <h4>
                                                         DPT Design Team
@@ -141,12 +147,12 @@
 
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo_image('img/user/spot1.png'); ?>" class="user-image" alt="User Image">
+                                    <img src="<?php echo_image('images/logo-sm.png'); ?>" class="user-image" alt="User Image">
                                     <span class="hidden-xs">DPT Admin</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="user-header">
-                                        <img src="<?php echo_image('img/user/spot1.png'); ?>" class="img-circle" alt="User Image">
+                                        <img src="<?php echo_image('images/logo-sm.png'); ?>" class="img-circle" alt="User Image">
 
                                         <p>
                                             DPT - Admin
@@ -171,7 +177,7 @@
                 <section class="sidebar">
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="<?php echo_image('img/user/spot1.png'); ?>" class="img-circle" alt="User Image">
+                            <img src="<?php echo_image('images/logo-sm.png'); ?>" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>DPT Admin</p>
@@ -190,30 +196,42 @@
 
                     <ul class="sidebar-menu">
                         <li class="header">ADMIN NAVIGATION</li>
-                        
-                            <li>
-                                <a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
-                            </li>
-                        
 
-                        
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-user-secret"></i>
-                                    <span>Manage Sub-admins</span>
-                                    <!--<span class="pull-right-container">
-                                        <span class="label label-primary pull-right">4</span>
-                                    </span> -->
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#"><i class="fa fa-plus"></i> Add New Sub-admin</a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-list"></i> List All Sub-admins</a>
-                                    </li>
-                                </ul>
-                            </li>
-                      
-                        
+                        <li>
+                            <a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+
+
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-cubes"></i>
+                                <span>Manage Categories</span>
+                                <!--<span class="pull-right-container">
+                                    <span class="label label-primary pull-right">4</span>
+                                </span> -->
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo admin_url() . 'categories/add'; ?>"><i class="fa fa-plus"></i> Add Tour Category</a>
+                                </li>
+                                <li><a href="<?php echo admin_url() . 'categories'; ?>"><i class="fa fa-list"></i> List Tour Categories</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-plane"></i>
+                                <span>Manage Emirates</span>                                
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo admin_url() . 'emirates/add'; ?>"><i class="fa fa-plus"></i> Add New Emirates</a>
+                                </li>
+                                <li><a href="<?php echo admin_url() . 'emirates'; ?>"><i class="fa fa-list"></i> List Emirates</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
                         <li class="divider" style="border: #304148 solid 1px;"></li>
                         <li class="treeview">
                             <a href="#">
@@ -232,8 +250,8 @@
                 </section>
             </aside>
             <?php
-                //contents goes here
-                echo $content;
+            //contents goes here
+            echo $content;
             ?>
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
@@ -242,15 +260,12 @@
                 <strong>Copyright &copy; 2014-2016 <a href="<?php url('admin'); ?>">DPT Admin</a>.</strong> All rights reserved.
             </footer>
         </div>
-        <div data-href='<?php url('admin') ?>' id="admin_url"></div>
+        <div data-href='<?php admin_url(); ?>' id="admin_url"></div>
         <script src="<?php echo c('js_path_url'); ?>admin/jquery-2.2.3.min.js"></script>
-        <script src="<?php echo c('js_path_url'); ?>admin/jquery.validate.js"></script>
-       <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
-        
-
+        <script src="<?php echo c('js_path_url'); ?>admin/jquery.validate.js"></script> 
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>        
         <script>
-        $.widget.bridge('uibutton', $.ui.button);
+            $.widget.bridge('uibutton', $.ui.button);
         </script>
         <script src="<?php echo c('js_path_url'); ?>admin/bootstrap.min.js"></script>
         <script src="<?php echo c('js_path_url'); ?>admin/jquery.dataTables.min.js"></script>
@@ -269,9 +284,11 @@
         <script src="<?php echo c('js_path_url'); ?>admin/jquery.slimscroll.min.js"></script>
         <script src="<?php echo c('js_path_url'); ?>admin/fastclick.js"></script>
         <script src="<?php echo c('js_path_url'); ?>admin/app.min.js"></script>
+        <?php if($dashboard_js == "yes") { ?>
         <script src="<?php echo c('js_path_url'); ?>admin/dashboard.js"></script>
-        <script src="<?php echo c('js_path_url'); ?>admin/demo.js"></script>    
-
+        <?php } ?>
+        <script src="<?php echo c('js_path_url'); ?>admin/demo.js"></script>  
+        <script src="<?php echo c('js_path_url'); ?>admin/admin.js"></script>             
     </body>
 
 </html>

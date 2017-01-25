@@ -646,8 +646,9 @@ function get_encr_password($password) {
 }
 
 function echo_image($image){
+    //echo assets_url().$image;
     if(file_exists('assets/'.$image)){
-        echo assets_url().$image;;
+        echo assets_url().$image;
     }
     else{
         echo assets_url().'images/no-image.jpg';

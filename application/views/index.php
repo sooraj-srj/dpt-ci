@@ -265,28 +265,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="span12">
                 <div id="owl-example2" class="owl-carousel">
                     <div class="item">
-                        <div class="col-md-12"><img src="<?php echo assets_url(); ?>images/desti/fill.jpg" class="img-responsive">
+                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill.jpg'); ?>" class="img-responsive">
                             <div class="text-2-style">lorem ipsum</div>
                         </div>
                     </div>
                     <div class="item">
-                        <div class="col-md-12"><img src="<?php echo assets_url(); ?>images/desti/fill2.jpg" class="img-responsive"></div>
+                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill2.jpg'); ?>" class="img-responsive"></div>
                         <div class="text-2-style">lorem ipsum</div>
                     </div>
                     <div class="item">
-                        <div class="col-md-12"><img src="<?php echo assets_url(); ?>images/desti/fill3.jpg" class="img-responsive"></div>
+                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill3.jpg'); ?>" class="img-responsive"></div>
                         <div class="text-2-style">lorem ipsum</div>
                     </div>
                     <div class="item">
-                        <div class="col-md-12"><img src="<?php echo assets_url(); ?>images/desti/fill4.jpg" class="img-responsive"></div>
+                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill4.jpg'); ?>" class="img-responsive"></div>
                         <div class="text-2-style">lorem ipsum</div>
                     </div>
                     <div class="item">
-                        <div class="col-md-12"><img src="<?php echo assets_url(); ?>images/desti/fill5.jpg" class="img-responsive"></div>
+                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill5.jpg'); ?>" class="img-responsive"></div>
                         <div class="text-2-style">lorem ipsum</div>
                     </div>
                     <div class="item">
-                        <div class="col-md-12"><img src="<?php echo assets_url(); ?>images/desti/fill.jpg" class="img-responsive"></div>
+                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill.jpg'); ?>" class="img-responsive"></div>
                         <div class="text-2-style">lorem ipsum</div>
                     </div>
                 </div>

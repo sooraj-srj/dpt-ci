@@ -74,6 +74,14 @@ $route['admin']             = "admin/user/index";
 $route['admin/login']       = "admin/user/index";
 $route['admin/logout']      = "admin/user/logout";
 $route['admin/dashboard']   = "admin/admin";
+// manage categories
+$route['admin/categories']                  = "admin/admin/categories";
+$route['admin/categories/(:any)']           = "admin/admin/categories/$1";
+$route['admin/categories/(:any)/(:any)']    = "admin/admin/categories/$1/$2";
+// manage emirates
+$route['admin/emirates']                  = "admin/admin/emirates";
+$route['admin/emirates/(:any)']           = "admin/admin/emirates/$1";
+$route['admin/emirates/(:any)/(:any)']    = "admin/admin/emirates/$1/$2";
 
 
 
