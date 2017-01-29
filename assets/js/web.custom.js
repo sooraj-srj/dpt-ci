@@ -149,16 +149,391 @@ $(document).ready(function () {
 //list page
 $(document).ready(function () {
     //left category navigation
-    $('.cat-nav').on('click',function(){
-       var url = $(this).data('url');
-       window.location = url;
+    $('.cat-nav').on('click', function () {
+        var url = $(this).data('url');
+        window.location = url;
     });
     //left tour navigation
-    $('.tour-nav').on('click',function(){
-       var url = $(this).data('url');
-       window.location = url;
+    $('.tour-nav').on('click', function () {
+        var url = $(this).data('url');
+        window.location = url;
     });
 });
+// == bootstrap form validation 
+$(document).ready(function () {
+    //========== Tour booking form validation ==============
+    $('#selectPlanForm').bootstrapValidator({
+        message: 'This value is not valid',        
+        fields: {
+            tour_date: {
+                validators: {
+                    notEmpty: {
+                        message: 'The select tour-date'
+                    }
+                }
+            },            
+            pickUpTime: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose pickup time'
+                    }
+                }
+            },
+            pickup_location: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose pickup location'
+                    }
+                }
+            },
+            dropLocation: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose drop location'
+                    }
+                }
+            },
+            preferedguide: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose preferred guide language'
+                    }
+                }
+            },
+            currencyMode: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose payment mode'
+                    }
+                }
+            },
+            adultNo: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter number of adults'
+                    },
+                    
+                }
+            },
+            firstName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter first name'
+                    }
+                }
+            },
+            lastName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter last name'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter a valid email address'
+                    },
+                    emailAddress: {
+                        message: 'The is not a valid email address'
+                    }
+                }
+            },
+            confirm_email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter confirm email address'
+                    },
+                    emailAddress: {
+                        message: 'Please enter confirm email address'
+                    }
+                }
+            },
+            nationality: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose nationality'
+                    },                    
+                }
+            },
+            countryCode1: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose country code'
+                    },                    
+                }
+            },
+            cell_no1: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter cell no'
+                    },                    
+                }
+            },
+            howfind: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required'
+                    },                    
+                }
+            },
+        }
+    });
+
+    //========== Tourist visa form validation ==============
+    $('#visaForm').bootstrapValidator({
+        message: 'This value is not valid',        
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter your name'
+                    }
+                }
+            },            
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter a valid email address'
+                    },
+                    emailAddress: {
+                        message: 'The is not a valid email address'
+                    }
+                }
+            },
+            isd_code: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose an isd code'
+                    }
+                }
+            },  
+            contact_no: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter contact number'
+                    }
+                }
+            },  
+            nationality: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose ypur nationality'
+                    }
+                }
+            },
+            arrival_date: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose arrival date'
+                    }
+                }
+            },
+            departure_date: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose departure date'
+                    }
+                }
+            },
+            people: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter No.of people'
+                    }
+                }
+            },
+            how_discover_us: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose an option'
+                    },
+                    
+                }
+            },
+            hotel_booking: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please upload your hotel booking'
+                    }
+                }
+            },
+            flight_ticket: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please upload your flight ticket'
+                    }
+                }
+            },
+            
+            passport_copy: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please upload passport copy'
+                    }
+                }
+            },            
+        }
+    });
+
+    //========== Ask question form validation ==============
+    $('#askmeForm').bootstrapValidator({
+        message: 'This value is not valid',        
+        fields: {
+            first_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter your first name'
+                    }
+                }
+            },  
+            last_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter your last name'
+                    }
+                }
+            },            
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter a valid email address'
+                    },
+                    emailAddress: {
+                        message: 'The is not a valid email address'
+                    }
+                }
+            },
+            nationality: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select ypur nationality'
+                    }
+                }
+            },
+            message: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter a message/question'
+                    }
+                }
+            },
+                   
+        }
+    });
+
+    //========== Ask question form validation ==============
+    $('#reviewForm').bootstrapValidator({
+        message: 'This value is not valid',        
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter your name'
+                    }
+                }
+            },                      
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter a valid email address'
+                    },
+                    emailAddress: {
+                        message: 'The is not a valid email address'
+                    }
+                }
+            },
+            rating: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select ypur rating'
+                    }
+                }
+            },
+            country: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select your counry'
+                    }
+                }
+            },
+            comments: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter a comment'
+                    }
+                }
+            },
+                   
+        }
+    });
+
+    //contact form application
+    $('#contactForm').bootstrapValidator({
+        message: 'This value is not valid',        
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter your name'
+                    }
+                }
+            },        
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter a valid email address'
+                    },
+                    emailAddress: {
+                        message: 'The is not a valid email address'
+                    }
+                }
+            },
+            confirm_email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter confirm email address'
+                    },
+                    emailAddress: {
+                        message: 'Please enter confirm email address'
+                    }
+                }
+            },    
+            nationality: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select your nationality'
+                    }
+                }
+            },
+            how_discover_us: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select an option'
+                    }
+                }
+            },
+            isd_code: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select code'
+                    }
+                }
+            },
+            phone_number: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter cell number'
+                    }
+                }
+            },            
+        }
+    });
+
+
+
+});
+// == bootstrap form validation 
 
 //------------ dropzone ---------------
 

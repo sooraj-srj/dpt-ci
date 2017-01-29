@@ -41,15 +41,14 @@
                 <br>
                 <img src="<?php echo assets_url(); ?>images/005.jpg" class="img-responsive">
 
-
             </div>
             <div class="col-md-9">
                 <div class="row">
                     <div id="content-wrap1">
                         <div class="price-decoration2 block-after-indent  screen-only">
-                            <div class="price-decoration__value"><i class="fa fa-tag"></i> <span class="amount"><small>AED </small>580</span>
-                                <span class="amount"><small>USD </small>159</span></div>
-                            <div class="price-decoration__label"><i class="td-clock-2"></i> Duration 4 Hours</div>
+                            <div class="price-decoration__value"><i class="fa fa-tag"></i> <span class="amount"><small>AED </small><?php echo $tour_details['price']; ?></span>
+                                <span class="amount"><small>USD </small><?php echo $tour_details['usd_price']; ?></span></div>
+                            <div class="price-decoration__label"><i class="td-clock-2"></i> Duration <?php echo $tour_details['duration'] ?></div>
                         </div>
                         <div class="panel with-nav-tabs panel-default">
                             <div class="panel-heading">
@@ -64,333 +63,303 @@
                             <div class="panel-body">
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab1default">
-                                        <div class="col-md-12">
-                                            <h4><b>Booking Details</h4>
-                                            </b></div>
-                                        <form>
+                                        <div class="col-md-12"><h4><b>Booking Details</b></h4></div>
+                                        <form name="selectPlanForm" id="selectPlanForm" method="post" action="<?php url('plan-appln'); ?>">
                                             <div class="col-md-12 col-sm-12">
                                                 <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="arrival">Tour Date *</label>
-                                                    <input type="text" class="form-control input-sm datepicker"
-                                                           id="arrival" placeholder="">
+                                                    <label for="arrival">Tour Date<span class="red">*</span></label>
+                                                    <input type="text" class="form-control input-sm datepicker" name="tour_date" id="arrival" placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="name">Preferred Pickup Time*</label>
-                                                    <select class="form-control input-sm" id="months">
-                                                        <option>-- Select No of Month --</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
+                                                    <label for="name">Preferred Pickup Time<span class="red">*</span></label>
+                                                    <select class="form-control input-sm" name="pref_pickup_time" >
+                                                        <option value="">Select</option>
+                                                        <option value="00:00 am">12:00 am</option>
+                                                        <option value="00:30 am">12:30 am</option>
+                                                        <option value="01:00 am">01:00 am</option>
+                                                        <option value="01:30 am">01:30 am</option>
+                                                        <option value="02:00 am">02:00 am</option>
+                                                        <option value="02:30 am">02:30 am</option>
+                                                        <option value="03:00 am">03:00 am</option>
+                                                        <option value="03:30 am">03:30 am</option>
+                                                        <option value="04:00 am">04:00 am</option>
+                                                        <option value="04:30 am">04:30 am</option>
+                                                        <option value="05:00 am">05:00 am</option>
+                                                        <option value="05:30 am">05:30 am</option>
+                                                        <option value="06:00 am">06:00 am</option>
+                                                        <option value="06:30 am">06:30 am</option>
+                                                        <option value="07:00 am">07:00 am</option>
+                                                        <option value="07:30 am">07:30 am</option>
+                                                        <option value="08:00 am">08:00 am</option>
+                                                        <option value="08:30 am">08:30 am</option>
+                                                        <option value="09:00 am">09:00 am</option>
+                                                        <option value="09:30 am">09:30 am</option>
+                                                        <option value="10:00 am">10:00 am</option>
+                                                        <option value="10:30 am">10:30 am</option>
+                                                        <option value="11:00 am">11:00 am</option>
+                                                        <option value="11:30 am">11:30 am</option>
+                                                        <option value="12:00 pm">12:00 pm</option>
+                                                        <option value="12:30 pm">12:30 pm</option>
+                                                        <option value="13:00 pm">01:00 pm</option>
+                                                        <option value="13:30 pm">01:30 pm</option>
+                                                        <option value="14:00 pm">02:00 pm</option>
+                                                        <option value="14:30 pm">02:30 pm</option>
+                                                        <option value="15:00 pm">03:00 pm</option>
+                                                        <option value="15:30 pm">03:30 pm</option>
+                                                        <option value="16:00 pm">04:00 pm</option>
+                                                        <option value="16:30 pm">04:30 pm</option>
+                                                        <option value="17:00 pm">05:00 pm</option>
+                                                        <option value="17:30 pm">05:30 pm</option>
+                                                        <option value="18:00 pm">06:00 pm</option>
+                                                        <option value="18:30 pm">06:30 pm</option>
+                                                        <option value="19:00 pm">07:00 pm</option>
+                                                        <option value="19:30 pm">07:30 pm</option>
+                                                        <option value="20:00 pm">08:00 pm</option>
+                                                        <option value="20:30 pm">08:30 pm</option>
+                                                        <option value="21:00 pm">09:00 pm</option>
+                                                        <option value="21:30 pm">09:30 pm</option>
+                                                        <option value="22:00 pm">10:00 pm</option>
+                                                        <option value="22:30 pm">10:30 pm</option>
+                                                        <option value="23:00 pm">11:00 pm</option>
+                                                        <option value="23:30 pm">11:30 pm</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="name">Preferred Location*</label>
-                                                    <select class="form-control input-sm" id="months">
-                                                        <option>-- Select No of Month --</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
+                                                    <label for="name">Pickup Location<span class="red">*</span></label>
+                                                    <select class="form-control input-sm" id="months" name="pickup_location">
+                                                        <option value="">Select</option>
+                                                        <?php 
+                                                        foreach ($pickup_location as $pl){
+                                                        ?>
+                                                        <option value="<?php echo $pl['id'] ?>"><?php echo $pl['location'] ?></option>
+                                                        <?php
+                                                        } 
+                                                        ?>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="name">End Location*</label>
-                                                    <select class="form-control input-sm" id="months">
-                                                        <option>-- Select No of Month --</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
+                                                    <label for="name">End Location<span class="red">*</span></label>
+                                                    <select class="form-control input-sm" id="months" name="dropLocation">
+                                                        <option value="">Select</option>
+                                                        <?php 
+                                                        foreach ($pickup_location as $pl){
+                                                        ?>
+                                                        <option value="<?php echo $pl['id'] ?>"><?php echo $pl['location'] ?></option>
+                                                        <?php
+                                                        } 
+                                                        ?>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-6 col-sm-6">
                                                             <div class="row">
-                                                                <div class="form-group col-md-7 col-sm-6">
-                                                                    <label for="name">Preferred Guide
-                                                                        Language*</label>
-                                                                    <select class="form-control input-sm"
-                                                                            id="months">
-                                                                        <option>-- Select No of Month --</option>
-                                                                        <option>1</option>
-                                                                        <option>2</option>
-                                                                        <option>3</option>
-                                                                        <option>4</option>
-                                                                        <option>5</option>
-                                                                        <option>6</option>
-                                                                        <option>7</option>
-                                                                        <option>8</option>
-                                                                        <option>9</option>
-                                                                        <option>10</option>
+                                                                <div class="form-group col-md-12 col-sm-6">
+                                                                    <label for="name">Preferred Guide Language<span class="red">*</span></label>
+                                                                    <select class="form-control input-sm" id="months" name="preferedguide">
+                                                                        <option value="">Select</option>
+                                                                        <option value="English">English</option>
+                                                                        <option value="Arabic">Arabic</option>
+                                                                        <option value="Spanish">Spanish</option>
+                                                                        <option value="Italian">Italian</option>
+                                                                        <option value="German">German</option>
+                                                                        <option value="French">French</option>
+                                                                        <option value="Portuguese">Portuguese</option>
+                                                                        <option value="Chinese">Chinese</option>
+                                                                        <option value="Japanese">Japanese</option>
+                                                                        <option value="Russian">Russian</option>                                                                        
                                                                     </select>
-                                                                </div>
-                                                                <div class="form-group col-md-5 col-sm-6">
-                                                                    <label for="name">Payment Option*</label>
-                                                                    <select class="form-control input-sm"
-                                                                            id="months">
-                                                                        <option>-- Select No of Month --</option>
-                                                                        <option>1</option>
-                                                                        <option>2</option>
-                                                                        <option>3</option>
-                                                                        <option>4</option>
-                                                                        <option>5</option>
-                                                                        <option>6</option>
-                                                                        <option>7</option>
-                                                                        <option>8</option>
-                                                                        <option>9</option>
-                                                                        <option>10</option>
-                                                                    </select>
-                                                                </div>
+                                                                </div>                                                                
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-6">
                                                             <div class="row">
                                                                 <div class="form-group col-md-6 col-sm-6">
                                                                     <label for="gender">Pref.currency</label>
-                                                                    <select class="form-control input-sm"
-                                                                            id="months">
-                                                                        <option>-- Select No of Month --</option>
-                                                                        <option>1</option>
-                                                                        <option>2</option>
-                                                                        <option>3</option>
-                                                                        <option>4</option>
-                                                                        <option>5</option>
-                                                                        <option>6</option>
-                                                                        <option>7</option>
-                                                                        <option>8</option>
-                                                                        <option>9</option>
-                                                                        <option>10</option>
+                                                                    <select class="form-control input-sm" id="months" name="currencyCode">
+                                                                        <option value="">Select</option>                                                                        
+                                                                            <option value="USD($)">USD($)</option>
+                                                                            <option value="AED">AED</option>
+                                                                            <option value="EURO">EURO</option>
+                                                                            <option value="AUD">AUD</option>
+                                                                            <option value="UK POUND">UK POUND</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group col-md-6 col-sm-6">
-                                                                    <label for="gender">Payment Mode *</label>
-                                                                    <select class="form-control input-sm"
-                                                                            id="months">
-                                                                        <option>-- Select No of Month --</option>
-                                                                        <option>1</option>
-                                                                        <option>2</option>
-                                                                        <option>3</option>
-                                                                        <option>4</option>
-                                                                        <option>5</option>
-                                                                        <option>6</option>
-                                                                        <option>7</option>
-                                                                        <option>8</option>
-                                                                        <option>9</option>
-                                                                        <option>10</option>
+                                                                    <label for="gender">Payment Mode<span class="red">*</span></label>
+                                                                    <select class="form-control input-sm" id="months" name="currencyMode">
+                                                                        <option value="">Select</option>
+                                                                        <option value="Credit Card">Credit Card</option>
+                                                                        <option value="Cash">Cash</option>                                                                        
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-md-4 col-sm-4">
-                                                            <label for="name">Adults*</label>
-                                                            <input type="text" class="form-control input-sm"
-                                                                   id="name" placeholder="">
+                                                            <label for="name">Adults<span class="red">*</span></label>
+                                                            <input type="text" class="form-control input-sm" id="name" name="adultNo" placeholder="No.of Adults">
                                                         </div>
                                                         <div class="form-group col-md-4 col-sm-4">
                                                             <label for="name">Children</label>
-                                                            <input type="text" class="form-control input-sm"
-                                                                   id="name" placeholder="Age 5-12">
+                                                            <input type="text" class="form-control input-sm" id="name" name="childNo" placeholder="Age 5-12">
                                                         </div>
                                                         <div class="form-group col-md-4 col-sm-4">
                                                             <label for="name">Infants</label>
-                                                            <input type="text" class="form-control input-sm"
-                                                                   id="name" placeholder="Age < 5">
+                                                            <input type="text" class="form-control input-sm" id="name" name="infantNo" placeholder="Age < 5">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <br>
                                                 <div class="col-md-12">
-                                                    <h4><b>Personal Details</h4>
-                                                    </b></div>
-                                                <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="email">First Name*</label>
-                                                    <input type="email" class="form-control input-sm" id="email"
-                                                           placeholder="">
+                                                    <h4><b>Personal Details</b></h4>
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="email">Last Name*</label>
-                                                    <input type="email" class="form-control input-sm" id="email"
-                                                           placeholder="">
+                                                    <label for="firstName">First Name<span class="red">*</span></label>
+                                                    <input type="text" class="form-control input-sm" id="fname" name="firstName" placeholder="First Name">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="email">Email*</label>
-                                                    <input type="email" class="form-control input-sm" id="email"
-                                                           placeholder="">
+                                                    <label for="lastName">Last Name<span class="red">*</span></label>
+                                                    <input type="text" class="form-control input-sm" id="email" name="lastName" placeholder="Last Name">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="email">Confirm Email*</label>
-                                                    <input type="email" class="form-control input-sm" id="email"
-                                                           placeholder="">
+                                                    <label for="email">Email<span class="red">*</span></label>
+                                                    <input type="text" class="form-control input-sm" id="email" name="email" placeholder="Email">
+                                                </div>
+                                                <div class="form-group col-md-6 col-sm-6">
+                                                    <label for="confirm_email">Confirm Email<span class="red">*</span></label>
+                                                    <input type="text" class="form-control input-sm" id="email" name="confirm_email" placeholder="Confirm Email">
                                                 </div>
                                                 <div class="form-group col-md-12 col-sm-12">
-                                                    <label for="email">Nationality*</label>
-                                                    <select class="form-control input-sm" id="years">
-                                                        <option>-- Select No of Year --</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
+                                                    <label for="nationality">Nationality<span class="red">*</span></label>
+                                                    <select class="form-control input-sm" name="nationality">
+                                                        <option value="">Select</option>
+                                                        <?php
+                                                        foreach ($isd_code as $nation){
+                                                        ?>
+                                                        <option value="<?php echo $nation['country_id'] ?>"><?php echo $nation['country_name'] ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6">
                                                     <div class="row">
-                                                        <div class="form-group col-md-3 col-sm-6">
-                                                            <label for="city">Cell No *</label>
-                                                            <select class="form-control input-sm" id="years">
-                                                                <option>-- Select No of Year --</option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                                <option>6</option>
-                                                                <option>7</option>
-                                                                <option>8</option>
-                                                                <option>9</option>
-                                                                <option>10</option>
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <label for="city">Cell No<span class="red">*</span></label>
+                                                            <select class="form-control input-sm" name="countryCode1">
+                                                                <option value="">Select</option>
+                                                                <?php
+                                                                foreach ($isd_code as $isd){
+                                                                ?>
+                                                                <option value="<?php echo '('.$isd['country_name'].') +'.$isd['country_isd'] ?>">
+                                                                    <?php echo $isd['country_name'].' (+'.$isd['country_isd'].')'; ?>
+                                                                </option>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </div>
-                                                        <div class="form-group col-md-9 col-sm-6">
+                                                        <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">&nbsp;</label>
-                                                            <input type="text" class="form-control input-sm"
-                                                                   id="city" placeholder="">
+                                                            <input type="text" class="form-control input-sm" name="cell_no1" id="city" placeholder="Cell No 1">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6">
                                                     <div class="row">
-                                                        <div class="form-group col-md-3 col-sm-6">
-                                                            <label for="city">Cell No2 *</label>
-                                                            <select class="form-control input-sm" id="years">
-                                                                <option>-- Select No of Year --</option>
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                                <option>6</option>
-                                                                <option>7</option>
-                                                                <option>8</option>
-                                                                <option>9</option>
-                                                                <option>10</option>
+                                                        <div class="form-group col-md-6 col-sm-6">
+                                                            <label for="city">Cell No2</label>
+                                                            <select class="form-control input-sm" name="countryCode2">
+                                                                <option value="">Select</option>
+                                                                <?php
+                                                                foreach ($isd_code as $isd){
+                                                                ?>
+                                                                <option value="<?php echo '('.$isd['country_name'].') +'.$isd['country_isd'] ?>">
+                                                                    <?php echo $isd['country_name'].' (+'.$isd['country_isd'].')'; ?>
+                                                                </option>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </div>
-                                                        <div class="form-group col-md-9 col-sm-6">
+                                                        <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">&nbsp;</label>
-                                                            <input type="text" class="form-control input-sm"
-                                                                   id="city" placeholder="">
+                                                            <input type="text" class="form-control input-sm" name="cell_no2" placeholder="Celle No 2">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-12 col-sm-12">
-                                                    <label for="email">How Did You Discover Us *</label>
-                                                    <select class="form-control input-sm" id="years">
-                                                        <option>-- Select No of Year --</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
+                                                    <label for="email">How Did You Discover Us<span class="red">*</span></label>
+                                                    <select class="form-control input-sm" name="howfind">
+                                                        <option value="">Select</option>
+                                                        <option value="Google Search">Google Search</option>
+                                                        <option value="Trip adviser">Trip adviser</option>
+                                                        <option value="Recommended by friend/relatives">Recommended by friend/relatives</option>
+                                                        <option value="Other">Other</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-12 col-sm-12">
                                                     <label for="address">Special Requests</label>
-                                                    <textarea class="form-control input-sm" id="address"
-                                                              rows="5"></textarea>
+                                                    <textarea class="form-control input-sm" id="address" rows="5" name="specialResquest"></textarea>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <button type="button" class="btn main-btn-style">Confirm
-                                                        Booking
-                                                    </button>
-                                                    &nbsp;
+                                                    <input type="hidden" name="tour_id" value="<?php echo $tour_id; ?>">
+                                                    <button type="submit" class="btn main-btn-style">Confirm Booking</button>&nbsp;
                                                     <button type="button" class="btn main-btn-style">Clear</button>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="tab-pane fade" id="tab2default">
-                                        <?php //echo $tour_details['intro']; ?>
+
+                                    <div class="tab-pane fade" id="tab2default">                                        
                                         <?php echo $tour_details['body']; ?>
                                     </div>
+
                                     <div class="tab-pane fade" id="tab3default">
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label for="email">First Name*</label>
-                                            <input type="email" class="form-control input-sm" id="email"
-                                                   placeholder="">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label for="email">Last Name*</label>
-                                            <input type="email" class="form-control input-sm" id="email"
-                                                   placeholder="">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label for="email">Email*</label>
-                                            <input type="email" class="form-control input-sm" id="email"
-                                                   placeholder="">
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label for="email">Phone Number</label>
-                                            <input type="email" class="form-control input-sm" id="email"
-                                                   placeholder="">
-                                        </div>
-                                        <div class="form-group col-md-12 col-sm-12">
-                                            <label for="email">Nationality*</label>
-                                            <select class="form-control input-sm" id="years">
-                                                <option>-- Select No of Year --</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-12 col-sm-12">
-                                            <label for="address">Message:</label>
-                                            <textarea class="form-control input-sm" id="address"
-                                                      rows="5"></textarea>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="button" class="btn main-btn-style">Send</button>
-                                        </div>
+                                        <form name="askmeForm" id="askmeForm" method="post" action="<?php url('askme-appln') ?>">
+                                            <div class="form-group col-md-6 col-sm-6">
+                                                <label for="firstName">First Name<span class="red">*</span></label>
+                                                <input type="text" class="form-control input-sm" id="first_name" name="first_name" placeholder="First Name">
+                                            </div>
+                                            <div class="form-group col-md-6 col-sm-6">
+                                                <label for="email">Last Name<span class="red">*</span></label>
+                                                <input type="text" class="form-control input-sm" id="last_name" name="last_name" placeholder="Last Name">
+                                            </div>
+                                            <div class="form-group col-md-6 col-sm-6">
+                                                <label for="email">Email<span class="red">*</span></label>
+                                                <input type="email" class="form-control input-sm" id="email" name="email" placeholder="Email">
+                                            </div>
+                                            <div class="form-group col-md-6 col-sm-6">
+                                                <label for="email">Phone Number</label>
+                                                <input type="text" class="form-control input-sm" id="" name="phone_number" placeholder="Phone Number">
+                                            </div>
+                                            <div class="form-group col-md-12 col-sm-12">
+                                                <label for="email">Nationality<span class="red">*</span></label>
+                                                <select class="form-control input-sm" id="" name="nationality">
+                                                    <option value="">Select</option>
+                                                    <?php
+                                                    foreach ($isd_code as $nation){
+                                                    ?>
+                                                    <option value="<?php echo $nation['country_name'] ?>"><?php echo $nation['country_name'] ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12 col-sm-12">
+                                                <label for="address">Message<span class="red">*</span></label>
+                                                <textarea class="form-control input-sm" id="address" rows="5" name="message"></textarea>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="hidden" name="tour_id" value="<?php echo $tour_id; ?>">
+                                                <input type="hidden" name="qn_for" value="tour">
+                                                <button type="submit" class="btn main-btn-style">Send</button>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="tab-pane fade" id="tab4default">
+                                    <?php if(empty($tour_gallery)) { echo '<h3 class="text-muted" align="center">No gallery images available!</h3>'; } ?>
                                         <div id="jssor_1"
                                              style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 800px; height: 456px; overflow: hidden; visibility: hidden; background-color: #24262e;">
                                             <!-- Loading Screen -->
@@ -400,43 +369,23 @@
                                             </div>
                                             <div data-u="slides"
                                                  style="cursor: default; position: relative; top: 0px; left: 0px; width: 800px; height: 356px; overflow: hidden;">
-                                                <div data-p="144.50"><img data-u="image" src="<?php echo assets_url(); ?>images/img/01.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-01.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/02.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-02.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/03.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-03.jpg"/></div>
-                                                <a data-u="any" href="http://www.jssor.com" style="display:none">Image
-                                                    Gallery</a>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/04.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-04.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/05.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-05.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/06.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-06.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/07.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-07.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/08.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-08.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/09.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-09.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/10.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-10.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/11.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-11.jpg"/></div>
-                                                <div data-p="144.50" style="display:none;"><img data-u="image"
-                                                                                                src="<?php echo assets_url(); ?>images/img/12.jpg"/>
-                                                    <img data-u="thumb" src="<?php echo assets_url(); ?>images/img/thumb-12.jpg"/></div>
+                                                <?php 
+                                                    $i=0;  
+                                                    if(!empty($tour_gallery)) { 
+                                                        foreach($tour_gallery as $tg){
+                                                ?>
+                                                            <div data-p="144.50">
+                                                                <img data-u="image" src="<?php echo_image('images/tours/'.$tg['image_file']); ?>"/>
+                                                                <img data-u="thumb" src="<?php echo_image('images/tours/'.$tg['image_file']);?>"/>
+                                                            </div>
+                                                <?php
+                                                        $i++;
+                                                        }
+                                                    }
+                                                    
+                                                ?>
+                                                
+                                                
                                             </div>
                                             <!-- Thumbnail Navigator -->
                                             <div data-u="thumbnavigator" class="jssort01"

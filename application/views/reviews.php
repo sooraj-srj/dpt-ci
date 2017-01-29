@@ -1,4 +1,8 @@
-
+<style type="text/css">
+    .gray{
+        color: #e2e0dc !important;
+    }
+</style>
     <div class="detail-img-div"></div>
     <div class="clearfix"></div>
     <div class="details-booking-div">
@@ -33,183 +37,89 @@
                                         <div class="tab-pane fade in active" id="tab1default">
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                    <div class="atlist__item " style="margin-bottom:5px">
-                                                        <div class="padding-all">
-                                                            <h2> Yash
-                                                                <small><i>Dubai</i></small>
-                                                            </h2>
-                                                            <div class="meta">
-                                                                <div class="date"> Posted <span>August 25, 2016</span>
+                                                    <?php 
+                                                    if(!empty($reviews)){
+                                                        foreach($reviews as $rev){ 
+                                                    ?>                                                  
+                                                            <div class="atlist__item " style="margin-bottom:5px">
+                                                                <div class="padding-all">
+                                                                    <h2> <?php echo $rev['name']; ?><small><i> <?php echo $rev['country']; ?></i></small></h2>
+                                                                    <div class="meta">
+                                                                        <div class="date"> <small class="text-muted">Posted:</small> <span><?php echo $rev['review_date']; ?></span>
+                                                                        </div>
+                                                                        <div class="shortcode-tour-reviews__item__rating">
+                                                                            <?php 
+                                                                            $rating = $rev['rating'];
+                                                                            $gray = 5 - $rating;
+                                                                            for($i=1; $i<=$rating; $i++) { ?>
+                                                                            <i class="fa fa-star"></i>
+                                                                            <?php } ?>
+                                                                            <?php for($i=1; $i<=$gray; $i++) { ?>
+                                                                            <i class="fa fa-star gray"></i>
+                                                                            <?php } ?>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="preview"><?php echo $rev['comments']; ?></div>
                                                                 </div>
-                                                                <div class="shortcode-tour-reviews__item__rating"><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i> <i
-                                                                            class="fa fa-star"></i></div>
                                                             </div>
-                                                            <div class="preview"> The dessert safari tour we had with
-                                                                Anwar was wonderful. He was a very talented driver,
-                                                                knowledgable and kind hearted too. It was a great
-                                                                adventure and we experienced new stuff. He was
-                                                                professional and very helpful throughout the whole time.
-                                                                And thank you very much for the wonderful tour Anwar.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="atlist__item " style="margin-bottom:5px">
-                                                        <div class="padding-all">
-                                                            <h2> Yash
-                                                                <small><i>Dubai</i></small>
-                                                            </h2>
-                                                            <div class="meta">
-                                                                <div class="date"> Posted <span>August 25, 2016</span>
-                                                                </div>
-                                                                <div class="shortcode-tour-reviews__item__rating"><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i> <i
-                                                                            class="fa fa-star"></i></div>
-                                                            </div>
-                                                            <div class="preview"> The dessert safari tour we had with
-                                                                Anwar was wonderful. He was a very talented driver,
-                                                                knowledgable and kind hearted too. It was a great
-                                                                adventure and we experienced new stuff. He was
-                                                                professional and very helpful throughout the whole time.
-                                                                And thank you very much for the wonderful tour Anwar.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="atlist__item " style="margin-bottom:5px">
-                                                        <div class="padding-all">
-                                                            <h2> Yash
-                                                                <small><i>Dubai</i></small>
-                                                            </h2>
-                                                            <div class="meta">
-                                                                <div class="date"> Posted <span>August 25, 2016</span>
-                                                                </div>
-                                                                <div class="shortcode-tour-reviews__item__rating"><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i> <i
-                                                                            class="fa fa-star"></i></div>
-                                                            </div>
-                                                            <div class="preview"> The dessert safari tour we had with
-                                                                Anwar was wonderful. He was a very talented driver,
-                                                                knowledgable and kind hearted too. It was a great
-                                                                adventure and we experienced new stuff. He was
-                                                                professional and very helpful throughout the whole time.
-                                                                And thank you very much for the wonderful tour Anwar.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="atlist__item " style="margin-bottom:5px">
-                                                        <div class="padding-all">
-                                                            <h2> Yash
-                                                                <small><i>Dubai</i></small>
-                                                            </h2>
-                                                            <div class="meta">
-                                                                <div class="date"> Posted <span>August 25, 2016</span>
-                                                                </div>
-                                                                <div class="shortcode-tour-reviews__item__rating"><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i> <i
-                                                                            class="fa fa-star"></i></div>
-                                                            </div>
-                                                            <div class="preview"> The dessert safari tour we had with
-                                                                Anwar was wonderful. He was a very talented driver,
-                                                                knowledgable and kind hearted too. It was a great
-                                                                adventure and we experienced new stuff. He was
-                                                                professional and very helpful throughout the whole time.
-                                                                And thank you very much for the wonderful tour Anwar.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="atlist__item " style="margin-bottom:5px">
-                                                        <div class="padding-all">
-                                                            <h2> Yash
-                                                                <small><i>Dubai</i></small>
-                                                            </h2>
-                                                            <div class="meta">
-                                                                <div class="date"> Posted <span>August 25, 2016</span>
-                                                                </div>
-                                                                <div class="shortcode-tour-reviews__item__rating"><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i><i
-                                                                            class="fa fa-star"></i> <i
-                                                                            class="fa fa-star"></i></div>
-                                                            </div>
-                                                            <div class="preview"> The dessert safari tour we had with
-                                                                Anwar was wonderful. He was a very talented driver,
-                                                                knowledgable and kind hearted too. It was a great
-                                                                adventure and we experienced new stuff. He was
-                                                                professional and very helpful throughout the whole time.
-                                                                And thank you very much for the wonderful tour Anwar.
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <?php 
+                                                        }
+                                                    } else {
+                                                        ?>
+                                                        <h3 class="text-muted">No reviews posted!</h3>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab12default">
+                                            <form name="reviewForm" id="reviewForm" method="post" action="<?php url('review-appln') ?>">
                                             <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Name*</label>
-                                                <input type="email" class="form-control input-sm" id="email"
-                                                       placeholder="">
+                                                <label for="email">Name<span class="red">*</span></label>
+                                                <input type="text" class="form-control input-sm" id="" name="name" placeholder="Your Name">
                                             </div>
 
                                             <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Email*</label>
-                                                <input type="email" class="form-control input-sm" id="email"
-                                                       placeholder="">
+                                                <label for="email">Email<span class="red">*</span></label>
+                                                <input type="email" class="form-control input-sm" id="email" name="email" placeholder="Your Email">
                                             </div>
 
                                             <div class="form-group col-md-6 col-sm-12">
-                                                <label for="email">Your Rating*</label>
-                                                <select class="form-control input-sm" id="years">
-                                                    <option>-- Select No of Year --</option>
+                                                <label for="email">Your Rating<span class="red">*</span></label>
+                                                <select class="form-control input-sm" id="years" name="rating">
+                                                    <option value="">Select </option>
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>
                                                     <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
+                                                    <option>5</option>                                                    
                                                 </select>
                                             </div>
 
                                             <div class="form-group col-md-6 col-sm-12">
-                                                <label for="email">Select Country*</label>
-                                                <select class="form-control input-sm" id="years">
-                                                    <option>-- Select No of Year --</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
+                                                <label for="email">Select Country<span class="red">*</span></label>
+                                                <select class="form-control input-sm" id="years" name="country">
+                                                    <option value="">Select</option>
+                                                    <?php
+                                                    foreach ($isd_code as $nation){
+                                                    ?>
+                                                    <option value="<?php echo $nation['country_name'] ?>"><?php echo $nation['country_name'] ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-12 col-sm-12">
-                                                <label for="address">Comments:</label>
-                                                <textarea class="form-control input-sm" id="address"
-                                                          rows="5"></textarea>
+                                                <label for="address">Comments </label>
+                                                <textarea class="form-control input-sm" id="address" rows="5" name="comments"></textarea>
                                             </div>
                                             <div class="col-md-12">
-                                                <button type="button" class="btn main-btn-style">Submit</button>
+                                                <button type="submit" class="btn main-btn-style">Submit</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -218,86 +128,7 @@
                         </div>
 
                         <div class="details-div-last">
-                            <h3>You May Also Like</h3>
-                            <br>
-                            <div class="col-md-4">
-                                <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (1).jpg"
-                                                                 class="img-responsive item-1-img">
-                                    <div class="price-first-position">
-                                        <div class="price-div-bg-text">
-                                            <center>
-                                                <h4><b>AED 580</b></h4>
-                                                <h5><b>USD 159</b></h5>
-                                            </center>
-                                        </div>
-                                    </div>
-                                    <div class="item-head-1">
-                                        <center>
-                                            <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                            </h4>
-                                        </center>
-                                    </div>
-                                    <div class="item--footer-1">
-                                        <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                            Hours
-                                        </div>
-                                        <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                       aria-hidden="true"></i></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (2).jpg"
-                                                                 class="img-responsive item-1-img">
-                                    <div class="price-first-position">
-                                        <div class="price-div-bg-text">
-                                            <center>
-                                                <h4><b>AED 580</b></h4>
-                                                <h5><b>USD 159</b></h5>
-                                            </center>
-                                        </div>
-                                    </div>
-                                    <div class="item-head-1">
-                                        <center>
-                                            <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                            </h4>
-                                        </center>
-                                    </div>
-                                    <div class="item--footer-1">
-                                        <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                            Hours
-                                        </div>
-                                        <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                       aria-hidden="true"></i></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (7).jpg"
-                                                                 class="img-responsive item-1-img">
-                                    <div class="price-first-position">
-                                        <div class="price-div-bg-text">
-                                            <center>
-                                                <h4><b>AED 580</b></h4>
-                                                <h5><b>USD 159</b></h5>
-                                            </center>
-                                        </div>
-                                    </div>
-                                    <div class="item-head-1">
-                                        <center>
-                                            <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                            </h4>
-                                        </center>
-                                    </div>
-                                    <div class="item--footer-1">
-                                        <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                            Hours
-                                        </div>
-                                        <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                       aria-hidden="true"></i></a></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php $this->load->view('popular-tours'); ?>
                         </div>
                     </div>
                 </div>

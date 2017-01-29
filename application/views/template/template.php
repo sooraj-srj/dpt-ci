@@ -17,7 +17,8 @@
     
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>demo.css">
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>set1.css">
-
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>bootstrapValidator.min.css">    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,7 +52,7 @@
     <div class="container">
         <div class="col-md-12">
             <nav id='cssmenu'>
-                <div class="logo"><a href="index.html"><img src="<?php echo assets_url(); ?>images/logo.png" class="img-responsive"></a></div>
+                <div class="logo"><a href="<?php echo url(); ?>"><img src="<?php echo assets_url(); ?>images/logo.png" class="img-responsive"></a></div>
                 <div id="head-mobile"></div>
                 <div class="button"></div>
                 <ul class="menu-ul-style">
@@ -65,18 +66,19 @@
                                 <li><a href='<?php echo base_url().'tours/'.$cats['slug']; ?>'><?php echo $cats['title']; ?></a></li>
                             <?php
                                 }
-                            ?>
-                            
+                            ?>                            
                         </ul>
                     </li>
                     <li><a href='#'>Transfer Services</a>
                         <ul>
-                            <li><a href='list.html'>Dubai</a> </li>
-                            <li><a href='list.html'>Abu Dhabi</a></li>
-                            <li><a href='list.html'>Sharjah</a> </li>
-                            <li><a href='list.html'>Fujierah</a></li>
-                            <li><a href='list.html'>Ras Al Khima</a> </li>
-                            <li><a href='list.html'>Al Ain </a></li>
+                        <?php 
+                            $emirates = get_emirates();  
+                            foreach ($emirates as $em) {
+                                ?>
+                                <li><a href='<?php url(''); ?>'><?php echo $em['name']; ?></a> </li>
+                                <?php
+                            }
+                        ?>                           
                         </ul>
                     </li>
                     <li><a href='<?php echo base_url(); ?>tourist-visa'>Tourist Visa</a></li>
@@ -197,6 +199,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo c('js_path_url'); ?>bootstrap.min.js"></script>
+<script src="<?php echo c('js_path_url'); ?>bootstrapValidator.min.js"></script>
 <script src="<?php echo c('js_path_url'); ?>menumaker.js"></script>
 <script src="<?php echo c('js_path_url'); ?>owl.carousel.min.js"></script>
 <script src="<?php echo c('js_path_url'); ?>owl.custom.js"></script>

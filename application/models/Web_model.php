@@ -46,11 +46,17 @@ class Web_model extends CI_Model {
     }
     
     //function to get tours from category
-    public function get_tours($category){
-        $qry = "SELECT t.*, tc.id, t.id as tour_id FROM `default_tour` t 
-                LEFT JOIN default_tour_categories tc ON tc.slug = '".$category."' 
-                WHERE t.`category_id` = tc.id
-                ORDER BY t.ordering_count";
+    public function get_tours($category = ""){
+        if($category == 'popular'){
+            $qry = "SELECT t.* FROM `default_tour` t ORDER BY RAND() LIMIT 6";
+        }
+        else{
+            $qry = "SELECT t.*, tc.id, t.id as tour_id FROM `default_tour` t 
+                    LEFT JOIN default_tour_categories tc ON tc.slug = '".$category."' 
+                    WHERE t.`category_id` = tc.id
+                    ORDER BY t.ordering_count";
+        }
+        
         $sel = $this->db->query($qry);
         $res = $sel->result_array($sel);
         if(!empty($res)){
@@ -89,7 +95,111 @@ class Web_model extends CI_Model {
         //p($result);
         return $result;
     }
+    
+    //get pickup location 
+    public function get_pickup_location(){
+        $query = $this->db->select("*")
+                ->from("default_pickup_location")
+                ->get();
+        $result = $query->result_array();
+        return $result;
+    }
+    
+    //get nationalities
+    public function get_nationalities(){
+        $query = $this->db->select("*")
+                ->from("default_nationality")
+                ->get();
+        $result = $query->result_array();
+        return $result;
+    }
+    
+    //get isd codes
+    public function get_isd_code(){
+        $query = $this->db->select("*")
+                ->from("default_isd_code")
+                ->get();
+        $result = $query->result_array();
+        return $result;
+    }
 
+    //process tour booking
+    public function process_tour_booking($post_data = array()){
+        if($this->db->insert('default_booking',$post_data)){
+            return 'success';
+        }
+        else{
+            return 'error';
+        }
+    }
+    
+    //visa application
+    public function process_visa_application($post_data = array()){
+        if($this->db->insert('default_visa_booking',$post_data)){
+            return 'success';
+        }
+        else{
+            return 'error';
+        }
+    }
+
+    // process ask qn appln
+    public function process_ask_question($post_data = array())
+    {
+        if($this->db->insert('default_ask_questions',$post_data)){
+            return 'success';
+        }
+        else{
+            return 'error';
+        }
+    }
+
+    // process review appln
+    public function process_review_appln($post_data = array())
+    {
+        if($this->db->insert('default_reviews',$post_data)){
+            return 'success';
+        }
+        else{
+            return 'error';
+        }
+    }
+
+    //function to get tour gallery
+    public function get_tour_gallery($tour_id='')
+    {
+        $query = $this->db->select("*")
+                ->from("default_tour_gallery")
+                ->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
+    //get review function
+    public function get_reviews()
+    {
+        $qry = "SELECT *,DATE_FORMAT(FROM_UNIXTIME(timestamp), '%M %e, %Y') AS 'review_date' 
+                FROM `default_reviews` WHERE 1 ORDER BY timestamp DESC";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+
+    // contact appln
+    public function process_contact_appln($post_data = array())
+    {
+        if($this->db->insert('default_contact_log',$post_data)){
+            return 'success';
+        }
+        else{
+            return 'error';
+        }
+    }
 
 
 }

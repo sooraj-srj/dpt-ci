@@ -62,12 +62,16 @@ $route['gallery']       = "web/gallery";
 $route['reviews']       = "web/reviews"; 
 $route['our-guide']     = "web/our_guide"; 
 $route['tourist-visa']  = "web/tourist_visa"; 
-//$route['list']          = "web/listing"; 
 $route['plan']          = "web/plan"; 
 $route['why-us']        = "web/why_us"; 
-$route['tours/(:any)']        = "web/select_tours/$1"; 
-$route['plan/(:any)/(:any)']  = "web/select_plan/$1/$2"; 
-
+$route['tours/(:any)']        	= "web/select_tours/$1"; 
+$route['plan/(:any)/(:any)']  	= "web/select_plan/$1/$2"; 
+$route['plan-appln']          	= "web/plan_appln"; 
+$route['thank-you']          	= "web/thankyou"; 
+$route['visa-appln']          	= "web/visa_appln"; 
+$route['askme-appln']          	= "web/askme_appln"; 
+$route['review-appln']         	= "web/review_appln"; 
+$route['contact-appln']         = "web/contact_appln"; 
 
 //----------- admin common routing ------------
 $route['admin']             = "admin/user/index";
@@ -75,9 +79,9 @@ $route['admin/login']       = "admin/user/index";
 $route['admin/logout']      = "admin/user/logout";
 $route['admin/dashboard']   = "admin/admin";
 // manage categories
-$route['admin/categories']                  = "admin/admin/categories";
-$route['admin/categories/(:any)']           = "admin/admin/categories/$1";
-$route['admin/categories/(:any)/(:any)']    = "admin/admin/categories/$1/$2";
+$route['admin/categories']                = "admin/admin/categories";
+$route['admin/categories/(:any)']         = "admin/admin/categories/$1";
+$route['admin/categories/(:any)/(:any)']  = "admin/admin/categories/$1/$2";
 // manage emirates
 $route['admin/emirates']                  = "admin/admin/emirates";
 $route['admin/emirates/(:any)']           = "admin/admin/emirates/$1";

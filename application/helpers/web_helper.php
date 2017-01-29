@@ -15,3 +15,11 @@
      $categories = $CI->web_model->get_categories();
      return $categories;
  }
+
+ //function to get emirates
+ function get_emirates(){
+ 	 $CI =& get_instance();
+     $CI->load->model('admin/admin_model');
+     $emirates = $CI->admin_model->get_emirates();
+     return $emirates;
+ }

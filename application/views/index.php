@@ -54,202 +54,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-12">
             <div class="span12">
                 <div id="owl-example" class="owl-carousel">
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (1).jpg"
-                                                             class="img-responsive item-1-img">
-                                <div class="price-first-position">
-                                    <div class="price-div-bg-text">
-                                        <center>
-                                            <h4><b>AED 580</b></h4>
-                                            <h5><b>USD 159</b></h5>
-                                        </center>
+                    <?php 
+                        foreach ($popular_tours as $pt) {                        
+                    ?>
+                            <div class="item">
+                                <div class="col-md-12">
+                                    <div class="item-main-div1">
+                                    <img src="<?php echo_image('images/tours/tour1.jpg'); ?>" class="img-responsive item-1-img">
+                                        <div class="price-first-position">
+                                            <div class="price-div-bg-text">
+                                                <center>
+                                                    <h4><b>AED <?php echo $pt['price']; ?></b></h4>
+                                                    <h5><b>USD <?php echo $pt['usd_price']; ?></b></h5>
+                                                </center>
+                                            </div>
+                                        </div>
+                                        <div class="item-head-1">
+                                            <center>
+                                                <h4 class="atgrid__item__title"><a href="#"><?php echo $pt['title']; ?></a>
+                                                </h4>
+                                            </center>
+                                        </div>
+                                        <div class="item--footer-1">
+                                            <div class="col-md-6">
+                                                <i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp; <?php echo $pt['duration']; ?>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <a href="#">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item-head-1">
-                                    <center>
-                                        <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                        </h4>
-                                    </center>
-                                </div>
-                                <div class="item--footer-1">
-                                    <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                        Hours
-                                    </div>
-                                    <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                   aria-hidden="true"></i></a></div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (2).jpg"
-                                                             class="img-responsive item-1-img">
-                                <div class="price-first-position">
-                                    <div class="price-div-bg-text">
-                                        <center>
-                                            <h4><b>AED 580</b></h4>
-                                            <h5><b>USD 159</b></h5>
-                                        </center>
-                                    </div>
-                                </div>
-                                <div class="item-head-1">
-                                    <center>
-                                        <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                        </h4>
-                                    </center>
-                                </div>
-                                <div class="item--footer-1">
-                                    <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                        Hours
-                                    </div>
-                                    <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                   aria-hidden="true"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (3).jpg"
-                                                             class="img-responsive item-1-img">
-                                <div class="price-first-position">
-                                    <div class="price-div-bg-text">
-                                        <center>
-                                            <h4><b>AED 580</b></h4>
-                                            <h5><b>USD 159</b></h5>
-                                        </center>
-                                    </div>
-                                </div>
-                                <div class="item-head-1">
-                                    <center>
-                                        <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                        </h4>
-                                    </center>
-                                </div>
-                                <div class="item--footer-1">
-                                    <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                        Hours
-                                    </div>
-                                    <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                   aria-hidden="true"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (4).jpg"
-                                                             class="img-responsive item-1-img">
-                                <div class="price-first-position">
-                                    <div class="price-div-bg-text">
-                                        <center>
-                                            <h4><b>AED 580</b></h4>
-                                            <h5><b>USD 159</b></h5>
-                                        </center>
-                                    </div>
-                                </div>
-                                <div class="item-head-1">
-                                    <center>
-                                        <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                        </h4>
-                                    </center>
-                                </div>
-                                <div class="item--footer-1">
-                                    <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                        Hours
-                                    </div>
-                                    <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                   aria-hidden="true"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (5).jpg"
-                                                             class="img-responsive item-1-img">
-                                <div class="price-first-position">
-                                    <div class="price-div-bg-text">
-                                        <center>
-                                            <h4><b>AED 580</b></h4>
-                                            <h5><b>USD 159</b></h5>
-                                        </center>
-                                    </div>
-                                </div>
-                                <div class="item-head-1">
-                                    <center>
-                                        <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                        </h4>
-                                    </center>
-                                </div>
-                                <div class="item--footer-1">
-                                    <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                        Hours
-                                    </div>
-                                    <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                   aria-hidden="true"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (6).jpg"
-                                                             class="img-responsive item-1-img">
-                                <div class="price-first-position">
-                                    <div class="price-div-bg-text">
-                                        <center>
-                                            <h4><b>AED 580</b></h4>
-                                            <h5><b>USD 159</b></h5>
-                                        </center>
-                                    </div>
-                                </div>
-                                <div class="item-head-1">
-                                    <center>
-                                        <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                        </h4>
-                                    </center>
-                                </div>
-                                <div class="item--footer-1">
-                                    <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                        Hours
-                                    </div>
-                                    <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                   aria-hidden="true"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="item-main-div1"><img src="<?php echo assets_url(); ?>images/carous1/fit (8).jpg"
-                                                             class="img-responsive item-1-img">
-                                <div class="price-first-position">
-                                    <div class="price-div-bg-text">
-                                        <center>
-                                            <h4><b>AED 580</b></h4>
-                                            <h5><b>USD 159</b></h5>
-                                        </center>
-                                    </div>
-                                </div>
-                                <div class="item-head-1">
-                                    <center>
-                                        <h4 class="atgrid__item__title"><a href="#">4 Hours Dubai Private Tour</a>
-                                        </h4>
-                                    </center>
-                                </div>
-                                <div class="item--footer-1">
-                                    <div class="col-md-6"><i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp;4
-                                        Hours
-                                    </div>
-                                    <div class="col-md-6"><a href="#">Read More <i class="fa fa-long-arrow-right"
-                                                                                   aria-hidden="true"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -264,31 +103,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-12">
             <div class="span12">
                 <div id="owl-example2" class="owl-carousel">
-                    <div class="item">
-                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill.jpg'); ?>" class="img-responsive">
-                            <div class="text-2-style">lorem ipsum</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill2.jpg'); ?>" class="img-responsive"></div>
-                        <div class="text-2-style">lorem ipsum</div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill3.jpg'); ?>" class="img-responsive"></div>
-                        <div class="text-2-style">lorem ipsum</div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill4.jpg'); ?>" class="img-responsive"></div>
-                        <div class="text-2-style">lorem ipsum</div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill5.jpg'); ?>" class="img-responsive"></div>
-                        <div class="text-2-style">lorem ipsum</div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12"><img src="<?php echo_image('images/emirates/fill.jpg'); ?>" class="img-responsive"></div>
-                        <div class="text-2-style">lorem ipsum</div>
-                    </div>
+                    <?php 
+                        foreach ($emirates as $emirate) {
+                           ?>
+                            <div class="item">
+                                <div class="col-md-12">
+                                    <a href="<?php url(); ?>">
+                                        <img src="<?php echo_image('images/emirates/'.$emirate['image']); ?>" class="img-responsive">
+                                        <div class="text-2-style"><?php echo $emirate['name']; ?></div>
+                                    </a>
+                                </div>
+                            </div>
+                           <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -305,78 +133,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-12">
             <div class="span12">
                 <div id="owl-example3" class="owl-carousel">
+                    <?php 
+                        foreach ($categories as $cats) { 
+                    ?>
                     <div class="item">
                         <div class="col-md-12">
                             <div class="plan-round-div">
                                 <div class="icon-text-div">
                                     <center>
                                         <i class="fa fa-map-marker" aria-hidden="true"></i> <br>
-                                        <h4><b>lorem ipsum</b></h4>
+                                        <h4><b><?php echo $cats['title']; ?></b></h4>
                                     </center>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="plan-round-div">
-                                <div class="icon-text-div">
-                                    <center>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> <br>
-                                        <h4><b>lorem ipsum</b></h4>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="plan-round-div">
-                                <div class="icon-text-div">
-                                    <center>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> <br>
-                                        <h4><b>lorem ipsum</b></h4>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="plan-round-div">
-                                <div class="icon-text-div">
-                                    <center>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> <br>
-                                        <h4><b>lorem ipsum</b></h4>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="plan-round-div">
-                                <div class="icon-text-div">
-                                    <center>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> <br>
-                                        <h4><b>lorem ipsum</b></h4>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <div class="plan-round-div">
-                                <div class="icon-text-div">
-                                    <center>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> <br>
-                                        <h4><b>lorem ipsum</b></h4>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    ?>                                    
                 </div>
             </div>
         </div>
