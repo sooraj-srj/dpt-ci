@@ -137,5 +137,45 @@ class Admin_model extends CI_Model {
             return "deleted";
         }
     }
+
+    //function to get tours from category
+    public function get_tours($tour_id = ""){
+        
+        $qry = "SELECT t.*, tc.id, t.id as tour_id, tc.title as category, e.name as emirates FROM `default_tour` t 
+                LEFT JOIN default_tour_categories tc ON tc.id = t.category_id 
+                LEFT JOIN default_emirates e ON e.id = t.emirates_id                 
+                ORDER BY t.ordering_count";
+        
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+        
+    }
+
+    // process tours - add/edit/delete
+    public function process_tours($mode,$post_data){
+        
+        if($mode == "add"){
+            $this->db->insert("default_tour",$post_data);
+            return "added";
+        }
+        if($mode == "edit"){     
+            $tid = $post_data['id'];     
+            $this->db->where("id",$tid);
+            $this->db->update("default_tour",$post_data);
+            return "edited";
+        }
+        if($mode == "delete"){    
+            $tid = $post_data['id'];      
+            $this->db->where("id",$tid);
+            $this->db->delete("default_tour");
+            return "deleted";
+        }
+    }
     
 }

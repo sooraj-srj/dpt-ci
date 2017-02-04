@@ -90,7 +90,7 @@ class Admin extends CI_Controller {
                     );
                     $response = $this->admin_model->process_category("add",$catdata);
                     if($response == "added"){
-                        sf('succes_message', 'New category has been added successfully');
+                        sf('success_message', 'New category has been added successfully');
                         redirect("admin/categories");
                     }
                     else if($response == "exists"){
@@ -157,6 +157,7 @@ class Admin extends CI_Controller {
             $this->template->write_view('content', $page, $this->gen_contents);
             $this->template->render();
     }
+
     //manage emirates controller 
     public function emirates($mode="list",$eid=""){
         (!$this->authentication->check_logged_in("admin", false)) ? redirect('admin') : '';
@@ -189,7 +190,7 @@ class Admin extends CI_Controller {
                     );
                     $response = $this->admin_model->process_emirates("add",$edata);
                     if($response == "added"){
-                        sf('succes_message', 'New emirates has been added successfully');
+                        sf('success_message', 'New emirates has been added successfully');
                         redirect("admin/emirates");
                     }
                     else if($response == "exists"){
@@ -251,6 +252,123 @@ class Admin extends CI_Controller {
             //rendering page
             $this->gen_contents['page_heading'] = 'Emirates';
             $this->gen_contents['emirates'] = $this->admin_model->get_emirates();
+            $this->template->set_template('admin');
+            $this->template->write_view('content', $page, $this->gen_contents);
+            $this->template->render();
+    }
+
+    //manage tours controller 
+    public function tours($mode="list",$tour_id=""){
+        (!$this->authentication->check_logged_in("admin", false)) ? redirect('admin') : '';
+            $page = 'admin/tours-list';
+            $this->load->model('admin/admin_model');
+            $this->load->model('web_model');
+            $this->gen_contents['categories'] = $this->admin_model->get_categories();
+            $this->gen_contents['emirates'] = $this->admin_model->get_emirates();
+            // Emirates add area
+            if($mode == "add"){
+                $page = 'admin/tours-manage';
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('title', 'Tour Name', 'required');
+                if($this->form_validation->run() == TRUE){
+                    $post_data['title']         = $this->input->post("title",true);
+                    $post_data['category_id']   = $this->input->post("category_id",true);
+                    $post_data['emirates_id']   = $this->input->post("emirates_id",true);
+                    $post_data['intro']         = $this->input->post("intro",true);
+                    $post_data['body']          = $this->input->post("body",true);
+                    $post_data['mail_body']     = $this->input->post("mail_body",true);
+                    $post_data['price']         = $this->input->post("price",true);
+                    $post_data['usd_price']     = $this->input->post("usd_price",true);
+                    $post_data['duration']      = $this->input->post("duration",true);
+                    $post_data['status']        = $this->input->post("status",true);
+                    $post_data['created']       = date('Y-m-d H:i:s');
+                    $post_data['updated']       = date('Y-m-d H:i:s');
+                    // --------- if image not null the upload file -------------
+                    $image_name = "";
+                    if (!empty($_FILES['image']['name'])) { 
+                        
+                        $config['upload_path']          = './assets/images/tours/';  
+                        $config['allowed_types']        = 'jpg|png';                
+                        $config['encrypt_name']         = TRUE;
+                        $this->load->library('upload', $config);
+                        if ($this->upload->do_upload('image')){
+                              $upload_detail = $this->upload->data();
+                              $image_name = $upload_detail["file_name"];
+                        }               
+                    }
+                    //----------------------------------------------------------
+                    $post_data['image']          = $image_name;
+                    //p($post_data); exit;
+                    $response = $this->admin_model->process_tours("add",$post_data);
+                    if($response == "added"){
+                        sf('success_message', 'New tours has been added successfully');
+                        redirect("admin/tours");
+                    }                    
+                }
+
+            }
+            // Emirates edit area
+            if($mode == "edit"){
+                $page = 'admin/tours-manage';
+
+                $this->gen_contents['tourdata'] = $this->web_model->get_tour_details($tour_id);
+
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('title', 'Tour Name', 'required');
+                if($this->form_validation->run() == TRUE){   
+                    $post_data['id']            = $this->input->post("tour_id",true);
+                    $post_data['title']         = $this->input->post("title",true);
+                    $post_data['category_id']   = $this->input->post("category_id",true);
+                    $post_data['emirates_id']   = $this->input->post("emirates_id",true);
+                    $post_data['intro']         = $this->input->post("intro",true);
+                    $post_data['body']          = $this->input->post("body",true);
+                    $post_data['mail_body']     = $this->input->post("mail_body",true);
+                    $post_data['price']         = $this->input->post("price",true);
+                    $post_data['usd_price']     = $this->input->post("usd_price",true);
+                    $post_data['duration']      = $this->input->post("duration",true);
+                    $post_data['status']        = $this->input->post("status",true);
+                    $post_data['updated']       = date('Y-m-d H:i:s');
+                    //p($post_data); exit;
+                    // --------- if image not null then upload file -------------
+                    $image_name = "";
+                    if (!empty($_FILES['image']['name'])) { 
+                        
+                        $config['upload_path']          = './assets/images/tours/';  
+                        $config['allowed_types']        = 'jpg|png';                
+                        $config['encrypt_name'] = TRUE;
+                        $this->load->library('upload', $config);
+                        if ($this->upload->do_upload('image')){
+                              $upload_detail = $this->upload->data();
+                              $image_name = $upload_detail["file_name"];
+                        }               
+                    }
+                    else{
+                        $image_name = $this->input->post("image_name",true);
+                    }
+                    //----------------------------------------------------------
+                    $post_data['image']          = $image_name;
+                    $response = $this->admin_model->process_tours("edit",$post_data);
+                    if($response == "edited"){
+                        sf('success_message', 'New tours has been edited successfully');
+                        redirect("admin/tours");
+                    }
+                    else{
+                        redirect("admin/tours");
+                    }
+                }
+
+            }
+            // Category delete area
+            if($mode == "delete" && !empty($tour_id)){                
+                $tdata = array(
+                    'id'=> $tour_id
+                );
+                $response = $this->admin_model->process_tours("delete",$tdata);
+                redirect("admin/tours");
+            }
+            //rendering page
+            $this->gen_contents['page_heading'] = 'Tours';
+            $this->gen_contents['tours'] = $this->admin_model->get_tours();
             $this->template->set_template('admin');
             $this->template->write_view('content', $page, $this->gen_contents);
             $this->template->render();

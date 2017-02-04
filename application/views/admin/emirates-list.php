@@ -29,12 +29,11 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                 
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <?php include('alert-message.php'); ?>
-                                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                        <table id="example1" class="table table-bordered table-striped" role="grid" aria-describedby="example1_info">
                                             <thead>
                                             <tr role="row">
                                                 <th class="index">#</th>
@@ -47,8 +46,8 @@
                                             <?php foreach ($emirates as $index=> $emi) { ?>
                                                 <tr role="row" class="odd">
                                                     <td class="index" data-id="<?php $emi['id'] ?>"><?php echo $index+1; ?></td>
-                                                    <td class="sorting_1"><?php echo $emi['name']; ?></td>
-                                                    <td class="sorting_1">
+                                                    <td><?php echo $emi['name']; ?></td>
+                                                    <td>
                                                         <?php if(!empty($emi['image'])) { ?>
                                                             <img src="<?php echo_image('images/emirates/'.$emi['image']) ?>" class="img-responsive" width="50">
                                                         <?php } else { ?> 
@@ -69,7 +68,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                        
                         </div>
                         <!-- /.box-body -->
                     </div>

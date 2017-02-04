@@ -18,9 +18,10 @@ class Web extends CI_Controller {
     //default index page
     public function index() {
         $this->load->model('admin/admin_model');
-        $this->gen_contents['emirates'] = $this->admin_model->get_emirates();   
-        $this->gen_contents['popular_tours'] = $this->web_model->get_tours('popular');   
-        $this->gen_contents['categories'] = $this->web_model->get_categories();   
+        $this->gen_contents['emirates']         = $this->admin_model->get_emirates();   
+        $this->gen_contents['popular_tours']    = $this->web_model->get_tours('popular');   
+        $this->gen_contents['categories']       = $this->web_model->get_categories();   
+        $this->gen_contents['reviews']          = $this->web_model->get_reviews();        
         //p($this->gen_contents['popular_tours']); exit;     
         $this->template->write_view('content', 'index', $this->gen_contents);
         $this->template->render();
@@ -33,6 +34,31 @@ class Web extends CI_Controller {
         $this->template->write_view('content', 'about', $this->gen_contents);
         $this->template->render();
     }
+
+    //faq page
+    public function faq()
+    {
+        $this->gen_contents = array();
+        $this->template->write_view('content', 'faq', $this->gen_contents);
+        $this->template->render();
+    }
+
+    //terms page
+    public function terms()
+    {
+        $this->gen_contents = array();
+        $this->template->write_view('content', 'terms', $this->gen_contents);
+        $this->template->render();
+    }
+
+    //careers page
+    public function careers()
+    {
+        $this->gen_contents = array();
+        $this->template->write_view('content', 'careers', $this->gen_contents);
+        $this->template->render();
+    }
+
 
     //contact page
     public function contact()
@@ -138,10 +164,22 @@ class Web extends CI_Controller {
         $post_data['cell_no2']          = $this->input->post('cell_no2',true);
         //$post_data['howfind']           = $this->input->post('howfind',true);
         $post_data['specialRequests']   = $this->input->post('specialResquest',true);
-        $post_data['countryCode2']      = $this->input->post('countryCode2',true);
+        $post_data['cell_no2']          = $this->input->post('cell_no2',true);
+        
+        $post_data['hotelName']         = $this->input->post('hotelName',true);
+        $post_data['hotelAddress']      = $this->input->post('hotelAddress',true);
+        $post_data['hotelPhoneNo']      = $this->input->post('hotelPhoneNo',true);
+        $post_data['flightName']        = $this->input->post('flightName',true);
+        $post_data['terminalName']      = $this->input->post('terminalName',true);
+        $post_data['flightArrival']     = $this->input->post('flightArrival',true);
+        $post_data['flightDeparture']   = $this->input->post('flightDeparture',true);
+        $post_data['endhotelName']      = $this->input->post('endhotelName',true);
+        $post_data['endhotelAddress']   = $this->input->post('endhotelAddress',true);
+        $post_data['endhotelPhoneNo']   = $this->input->post('endhotelPhoneNo',true);
+
         $post_data['tour_id']           = $this->input->post('tour_id',true);
         $post_data['timestamp']         = time();
-        //p($post_data);
+        //p($post_data); exit;
         $response = $this->web_model->process_tour_booking($post_data);
         if($response == "success"){
             // ====== Send email notification =========
@@ -151,9 +189,9 @@ class Web extends CI_Controller {
             $body_content   = 'Hi, A new booking from '.$post_data['firstName'];
             $from_email     = 'info@dubaiprivatetour.com';
 
-            //send_mail($to_email, $from_name, $subject, $body_content, $from_email);
+            send_mail($to_email, $from_name, $subject, $body_content, $from_email);
             // ====== Send email notification =========
-            sf('success_message','Your booking has been completed successfully!');
+            sf('success_message','Your booking has been submitted successfully. We will update the booking status by email soon.');
             redirect('thank-you');
         }
         else{

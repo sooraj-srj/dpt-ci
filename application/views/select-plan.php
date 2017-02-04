@@ -124,32 +124,99 @@
                                                         <option value="23:30 pm">11:30 pm</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="name">Pickup Location<span class="red">*</span></label>
-                                                    <select class="form-control input-sm" id="months" name="pickup_location">
-                                                        <option value="">Select</option>
-                                                        <?php 
-                                                        foreach ($pickup_location as $pl){
-                                                        ?>
-                                                        <option value="<?php echo $pl['id'] ?>"><?php echo $pl['location'] ?></option>
-                                                        <?php
-                                                        } 
-                                                        ?>
-                                                    </select>
+                                                
+
+                                                <div class="col-md-6 col-sm-6"> <!-- ========= PICKUP LOCATION ========== -->
+                                                    <div class="form-group">
+                                                        <label for="name">Pickup Location<span class="red">*</span></label>
+                                                        <select class="form-control input-sm" id="pickupLocation" name="pickup_location">
+                                                            <option value="">Select</option>
+                                                            <?php 
+                                                            foreach ($pickup_location as $pl){
+                                                            ?>
+                                                            <option value="<?php echo $pl['id'] ?>"><?php echo $pl['location'] ?></option>
+                                                            <?php
+                                                            } 
+                                                            ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- hide and show for hotel details -->
+                                                    <div id="hotelDetails1" style="display: none;">
+                                                        <div class="form-group">
+                                                            <label for="Hotel Name">Hotel Name<span class="red">*</span></label>                                 
+                                                            <input type="text" class="form-control" name="hotelName" id="hotelName" placeholder="Hotel Name" value="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="hotelAddress">Hotel Address<span class="red">*</span></label>       
+                                                            <input type="text" class="form-control" name="hotelAddress" id="hotelAddress" placeholder="Hotel Address" value="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="hotelPhoneNo">Hotel Telephone<span class="red">*</span></label>
+                                                            <input type="text" class="form-control" name="hotelPhoneNo" id="hotelPhoneNo" placeholder="Hotel Phone No" value="">
+                                                        </div>
+                                                    </div>
+                                                    <!-- hide and show for flight details -->
+                                                    <div id="flightDetails1" style="display: none;">
+                                                        <div class="form-group">
+                                                            <label for="flightName">Flight Name and No<span class="red">*</span></label>      
+                                                            <input type="text" class="form-control" name="flightName" id="flightName" placeholder="Flight Name" value="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="terminalName">Terminal Name<span class="red">*</span></label>      
+                                                            <input type="text" class="form-control" name="terminalName" id="terminalName" placeholder="Terminal Name" value="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="flightArrival">Arrival Time<span class="red">*</span></label>       
+                                                            <input type="text" class="form-control" name="flightArrival" id="flightArrival" placeholder="Flight Arrival" value="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="flightDeparture">Departure Time</label>
+                                                            <input type="text" class="form-control" name="flightDeparture" id="flightDeparture" placeholder="Flight Departure" value="">        
+                                                        </div>
+                                                    </div>
+                                                    <!-- hide and show for ship name -->
+                                                    <div id="shipDetails" style="display: none;">
+                                                        <div class="form-group">
+                                                            <label for="shipName">Ship Name<span class="red">*</span></label>
+                                                            <input type="text" class="form-control" name="shipName" id="shipName" placeholder="shipName" value=""> 
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group col-md-6 col-sm-6">
-                                                    <label for="name">End Location<span class="red">*</span></label>
-                                                    <select class="form-control input-sm" id="months" name="dropLocation">
-                                                        <option value="">Select</option>
-                                                        <?php 
-                                                        foreach ($pickup_location as $pl){
-                                                        ?>
-                                                        <option value="<?php echo $pl['id'] ?>"><?php echo $pl['location'] ?></option>
-                                                        <?php
-                                                        } 
-                                                        ?>
-                                                    </select>
+
+                                                <div class="col-md-6 col-sm-6"> <!-- ========= END LOCATION ========== -->
+                                                    <div class="form-group">
+                                                        <label for="name">End Location<span class="red">*</span></label>
+                                                        <select class="form-control input-sm" id="dropLocation" name="dropLocation">
+                                                            <option value="">Select</option>
+                                                            <?php 
+                                                            foreach ($pickup_location as $pl){
+                                                            ?>
+                                                            <option value="<?php echo $pl['id'] ?>"><?php echo $pl['location'] ?></option>
+                                                            <?php
+                                                            } 
+                                                            ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <div id="endloc" style="display: none;">
+                                                        <div class="form-group">
+                                                            <label for="endhotel Name">End Hotel Name<span class="red">*</span></label>
+                                                            <input type="text" class="form-control" name="endhotelName" id="endhotelName" placeholder="Hotel Name" value="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="endhotelAddress">End Hotel Address<span class="red">*</span></label>       
+                                                            <input type="text" class="form-control" name="endhotelAddress" id="endhotelAddress" placeholder="Hotel Address" value="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="endhotelPhoneNo">End Hotel Telephone<span class="red">*</span></label>
+                                                            <input type="text" class="form-control" name="endhotelPhoneNo" id="endhotelPhoneNo" placeholder="Hotel Phone No" value="">                                                            
+                                                        </div>
+                                                    </div>
+                                                    
                                                 </div>
+
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-6 col-sm-6">

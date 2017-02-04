@@ -230,9 +230,31 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-suitcase" aria-hidden="true"></i>
+                                <span>Manage Tours</span>                                
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo admin_url() . 'tours/add'; ?>"><i class="fa fa-plus"></i> Add New Tours</a>
+                                </li>
+                                <li><a href="<?php echo admin_url() . 'tours'; ?>"><i class="fa fa-list"></i> List Tours</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bookmark" aria-hidden="true"></i>
+                                <span>Manage Bookings</span>                                
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo admin_url() . 'tour-booking'; ?>"><i class="fa fa-list"></i> Tour Bookings</a>
+                                </li>                                
+                            </ul>
+                        </li>
 
 
-                        <li class="divider" style="border: #304148 solid 1px;"></li>
+                        <!-- <li class="divider" style="border: #304148 solid 1px;"></li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-cogs"></i>
@@ -245,7 +267,9 @@
                                 </li>
 
                             </ul>
-                        </li>    
+                        </li> --> 
+
+
                     </ul>
                 </section>
             </aside>
@@ -257,7 +281,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 1.0
                 </div>
-                <strong>Copyright &copy; 2014-2016 <a href="<?php url('admin'); ?>">DPT Admin</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="<?php url('admin'); ?>">DPT Admin</a>.</strong> All rights reserved.
             </footer>
         </div>
         <div data-href='<?php admin_url(); ?>' id="admin_url"></div>

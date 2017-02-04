@@ -172,7 +172,7 @@ $(document).ready(function () {
                     }
                 }
             },            
-            pickUpTime: {
+            pref_pickup_time: {
                 validators: {
                     notEmpty: {
                         message: 'Please choose pickup time'
@@ -190,6 +190,76 @@ $(document).ready(function () {
                 validators: {
                     notEmpty: {
                         message: 'Please choose drop location'
+                    }
+                }
+            },
+            hotelName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter hotel name'
+                    }
+                }
+            },
+            hotelAddress: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter hotel address'
+                    }
+                }
+            },
+            hotelPhoneNo: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter hotel phone number'
+                    }
+                }
+            },
+            endhotelName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter end hotel name'
+                    }
+                }
+            },
+            endhotelAddress: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter end hotel address'
+                    }
+                }
+            },
+            endhotelPhoneNo: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter end hotel phone number'
+                    }
+                }
+            },
+            flightName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter flight name'
+                    }
+                }
+            },
+            terminalNmae: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter terminal name'
+                    }
+                }
+            },
+            flightArrival: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter flight arrival time'
+                    }
+                }
+            },
+            shipName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please enter ship name'
                     }
                 }
             },
@@ -534,6 +604,45 @@ $(document).ready(function () {
 
 });
 // == bootstrap form validation 
+
+// == Tour form management
+$(document).ready(function() {
+    $("#pickupLocation").on("change",function(){    //pickup location onchange
+        var id = $(this).val();
+        if(id != '1'){
+            $("#hotelDetails1").hide();
+        }
+        if(id == '1'){
+            $("#hotelDetails1").show();
+        }
+        else if(id == '2' || id == '3' || id == '4'){
+            $("#hotelDetails1").hide();
+            $("#shipDetails").hide();
+            $("#flightDetails1").show();
+        }
+        else if(id == '5' || id == '6' || id == '7'){
+            $("#hotelDetails1").hide();
+            $("#flightDetails1").hide();
+            $("#shipDetails").show();
+        }
+        else{
+            $("#hotelDetails1").hide();
+            $("#flightDetails1").hide();
+            $("#shipDetails").hide();
+        }
+    });
+
+    $("#dropLocation").on("change",function(){    //drop location onchange
+        var id = $(this).val();
+        if(id=='1'){
+             $("#endloc").show();
+        }
+        else{
+            $("#endloc").hide();
+        }
+    });
+});
+// == Tour form management
 
 //------------ dropzone ---------------
 

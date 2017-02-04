@@ -104,13 +104,13 @@
         <div class="col-md-3">
             <h4 class="footer-head-style">Quick Link</h4>
             <ul class="footer-quick-ul">
-                <li>HOME</li>
-                <li>ABOUT US </li>
-                <li>WHY US </li>
-                <li>FAQ'S</li>
-                <li>CANCELLATION POLICY</li>
-                <li>CAREERS</li>
-                <li>CONTACT US</li>
+                <li><a href="<?php url(); ?>" style="color:#fff;">HOME</a></li>
+                <li><a href="<?php url('about'); ?>" style="color:#fff;">ABOUT US</a></li>
+                <li><a href="<?php url('why-us'); ?>" style="color:#fff;">WHY US</a></li>
+                <li><a href="<?php url('faqs'); ?>" style="color:#fff;">FAQ'S</a></li>
+                <li><a href="<?php url('terms-and-conditions'); ?>" style="color:#fff;">CANCELLATION POLICY</a></li>
+                <li><a href="<?php url('careers'); ?>" style="color:#fff;">CAREERS</a></li>
+                <li><a href="<?php url('contact'); ?>" style="color:#fff;">CONTACT US</a></li>
             </ul>
 
             <img src="<?php echo assets_url(); ?>images/credit-card.png" class="img-responsive">

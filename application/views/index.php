@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+
 <div class="slider-div">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -31,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             Unforgettable experience which is going to make this beautiful city one of your
                             favourite destination all year round. The historical cultural and modernisation of Dubai
                             revealed with its full glory. Come have the Dubai tour of your life with us.</p>
-                        <p><a class="btn main-btn-style" href="#" role="button">Quick Contact</a></p>
+                        <p><a class="btn main-btn-style" href="<?php url('contact'); ?>" role="button">Quick Contact</a></p>
                     </div>
                 </div>
             </div>
@@ -163,17 +164,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="title title--big title--center title--underline title--decoration-bottom-center">
                     <h3 class="title__primary">WHY US</h3>
                 </div>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                    of type and scrambled it to make a type specimen book. </p>
+                <p>Dubai Private Tour / Milan Tours & Tour Guide Services LLC we believe that it’s the small things that make the difference between a good day out and a perfect one. We always do that little bit extra to ensure your tour is special.   - See more at: http://www.dubaiprivatetour.com/#sthash.66kbLrHV.dpuf</p>
                 <div class="col-md-6 position-div-4-allign">
                     <div class="position-4-div">
                         <div class="round-div-2"><i class="fa fa-globe" aria-hidden="true"></i></div>
                     </div>
                     <div class="position-5-div">
-                        <h4><b>Lorem Ipsum</b></h4>
-                        <p>Our wide range of tours and services include bespoke options… <a href="whyus.html"><i
-                                    class="fa fa-long-arrow-right" aria-hidden="true"></i></a></p>
+                        <h4><b>Our Expertise</b></h4>
+                        <p>
+                            We are licensed specialists in the field of travel and tours, with sixteen years of rich experience… 
+                            <a href="<?php url('why-us'); ?>"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-6 position-div-4-allign">
@@ -181,8 +182,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="round-div-2"><i class="fa fa-plane" aria-hidden="true"></i></div>
                     </div>
                     <div class="position-5-div">
-                        <h4><b>Lorem Ipsum</b></h4>
-                        <p>We are licensed specialists in the field of travel and tours,… <a href="whyus.html"><i
+                        <h4><b>The Widest Range of Tour Options</b></h4>
+                        <p>Our wide range of tours and services include bespoke options to suit your requirements… <a href="<?php url('why-us'); ?>"><i
                                     class="fa fa-long-arrow-right" aria-hidden="true"></i></a></p>
                     </div>
                 </div>
@@ -191,8 +192,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="round-div-2"><i class="fa fa-star-o" aria-hidden="true"></i></div>
                     </div>
                     <div class="position-5-div">
-                        <h4><b>Lorem Ipsum</b></h4>
-                        <p>We pride ourselves on the outstanding services given by our… <a href="whyus.html"><i
+                        <h4><b>Highest Rate of Customer Satisfaction</b></h4>
+                        <p>At Dubai Private Tour / Milan Tours and Tour Guide Services LLC , we pride ourselves in knowing… <a href="<?php url('why-us'); ?>"><i
                                     class="fa fa-long-arrow-right" aria-hidden="true"></i></a></p>
                     </div>
                 </div>
@@ -201,8 +202,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="round-div-2"><i class="fa fa-certificate" aria-hidden="true"></i></div>
                     </div>
                     <div class="position-5-div">
-                        <h4><b>Lorem Ipsum</b></h4>
-                        <p>We have extensive knowledge of the region and can give you the… <a href="whyus.html"><i
+                        <h4><b>The most experienced Tour Operators, Managers and Guides</b></h4>
+                        <p>We pride ourselves on the outstanding services given by our experienced Tour Managers and Guides… <a href="<?php url('why-us'); ?>"><i
                                     class="fa fa-long-arrow-right" aria-hidden="true"></i></a></p>
                     </div>
                 </div>
@@ -211,8 +212,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="round-div-2"><i class="fa fa-money" aria-hidden="true"></i></div>
                     </div>
                     <div class="position-5-div">
-                        <h4><b>Lorem Ipsum</b></h4>
-                        <p>We believe in relationship Rather than just a Guide-Tourist… <a href="whyus.html"><i
+                        <h4><b>The Best Value in the Industry</b></h4>
+                        <p>We have extensive knowledge of the region and can give you the best value for your money…  <a href="<?php url('why-us'); ?>"><i
                                     class="fa fa-long-arrow-right" aria-hidden="true"></i></a></p>
                     </div>
                 </div>
@@ -221,8 +222,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="round-div-2"><i class="fa fa-heart" aria-hidden="true"></i></div>
                     </div>
                     <div class="position-5-div">
-                        <h4><b>Lorem Ipsum</b></h4>
-                        <p>We believe in relationship Rather than just a Guide-Tourist… <a href="whyus.html"><i
+                        <h4><b>Relationship</b></h4>
+                        <p>We believe in relationship Rather than just a Guide-Tourist Thread…  <a href="<?php url('why-us'); ?>"><i
                                     class="fa fa-long-arrow-right" aria-hidden="true"></i></a></p>
                     </div>
                 </div>
@@ -245,15 +246,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="col-md-10 col-md-offset-1 about-text-div-main">
 
                 <div class="about-text-div">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley of type and scrambled it to make a type specimen book. It has survived not only five
-                        centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                        passages,</p>
+                    <p>If you are looking for a warm and sunny holiday or a family vacation, look no further than Dubai city. Dubai is every tourist’s paradise. With its modern skyline, comprehensive infrastructure, brilliant attractions, glamorous shopping malls, fine dining and quality hotels; Dubai is easily one of the best places to visit in the world.</p>
                 </div>
                 <center>
-                    <a href="about.html">
+                    <a href="<?php url('about'); ?>">
                         <button type="button" class="btn main-btn-style">Read more</button>
                     </a>
                 </center>
@@ -263,42 +259,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="title title--big title--center title--underline title--decoration-bottom-center">
                 <h3 class="title__primary">WHAT OUR CUSTOMERS SAYS!</h3>
             </div>
+            <?php 
+            if(!empty($reviews)){
+                foreach($reviews as $rev){ 
+            ?> 
             <div class="shortcode-tour-reviews">
-                <h4 class="review-name"><b>Name</b></h4>
-                <span class="country-name">india</span>
+                <h4 class="review-name"><b><?php echo $rev['name']; ?></b></h4>
+                <span class="country-name"><?php echo $rev['country']; ?></span>
                 <br>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                    of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                    popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                    passages,</p>
+                <p><?php echo $rev['comments']; ?></p>
 
-                <div class="pro-rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
+                <div class="pro-rating">
+                    <?php 
+                    $rating = $rev['rating'];
+                    $gray = 5 - $rating;
+                    for($i=1; $i<=$rating; $i++) { ?>
+                    <i class="fa fa-star"></i>
+                    <?php } ?>
+                    <?php for($i=1; $i<=$gray; $i++) { ?>
+                    <i class="fa fa-star" style="color: #e2e0dc !important;"></i>
+                    <?php } ?>
+                </div>
             </div>
             <div class="clearfix"></div>
             <br>
-            <div class="shortcode-tour-reviews">
-                <h4 class="review-name"><b>Name</b></h4>
-                <span class="country-name">india</span>
-                <br>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                    of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining essentially unchanged. It was
-                    popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                    passages,</p>
-
-                <div class="pro-rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                        class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-            </div>
+            <?php 
+                }
+            } else {
+                ?>
+                <h3 class="text-muted">No reviews posted!</h3>
+                <?php
+            }
+            ?>
 
             <center>
-                <a href="review.html">
+                <a href="<?php url('reviews'); ?>">
                     <button type="button" class="btn main-btn-style">Read more</button>
                 </a>&nbsp;
-                <a href="review.html">
+                <a href="<?php url('reviews'); ?>">
                     <button type="button" class="btn main-btn-style">Write a Review</button>
                 </a>
             </center>

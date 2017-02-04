@@ -201,5 +201,15 @@ class Web_model extends CI_Model {
         }
     }
 
+    //function to get email templates
+    public function get_mail_template($value = '')
+    {
+        $query = $this->db->select("*")
+                ->from("default_email_templates")
+                ->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
 
 }
