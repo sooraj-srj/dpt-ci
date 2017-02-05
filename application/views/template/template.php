@@ -75,7 +75,7 @@
                             $emirates = get_emirates();  
                             foreach ($emirates as $em) {
                                 ?>
-                                <li><a href='<?php url(''); ?>'><?php echo $em['name']; ?></a> </li>
+                                <li><a href='<?php url('transfer/'.$em['id']); ?>'><?php echo $em['name']; ?></a> </li>
                                 <?php
                             }
                         ?>                           

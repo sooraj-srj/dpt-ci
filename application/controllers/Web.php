@@ -118,6 +118,8 @@ class Web extends CI_Controller {
         $this->template->render();
     }
 
+    //transfer service
+
     //plan page
     public function select_plan($category,$emirates)
     {
@@ -132,7 +134,23 @@ class Web extends CI_Controller {
         $this->gen_contents['tour_gallery'] = $this->web_model->get_tour_gallery($tour_id);
         $this->gen_contents['tour_id'] = $tour_id;
         $this->gen_contents['pickup_location'] = $this->web_model->get_pickup_location();
-        //$this->gen_contents['nationalities'] = $this->web_model->get_nationalities();
+        $this->gen_contents['flag'] = 'tours';
+        $this->gen_contents['isd_code'] = $this->web_model->get_isd_code();
+        
+        //p($this->gen_contents['tour_details']); exit;
+        $this->template->write_view('content', 'select-plan', $this->gen_contents);
+        $this->template->render();
+    }
+
+    //select and submit transfer service
+    public function select_transfer($emirates_id)
+    {        
+        $this->load->model('web_model');
+        $this->gen_contents['emirates_id'] = $emirates_id;
+        $this->gen_contents['tour_id'] = 0;
+        
+        $this->gen_contents['pickup_location'] = $this->web_model->get_pickup_location();
+        $this->gen_contents['flag'] = 'transfer';
         $this->gen_contents['isd_code'] = $this->web_model->get_isd_code();
         
         //p($this->gen_contents['tour_details']); exit;
@@ -144,6 +162,7 @@ class Web extends CI_Controller {
     public function plan_appln()
     {
         $this->load->model('web_model');
+
         $tour_date                      = explode('/',$this->input->post('tour_date',true));
         $post_data['tour_date']         = $tour_date[2].'-'.$tour_date[1].'-'.$tour_date[0];
         $post_data['pref_pickup_time']  = $this->input->post('pref_pickup_time',true);
@@ -179,16 +198,28 @@ class Web extends CI_Controller {
 
         $post_data['tour_id']           = $this->input->post('tour_id',true);
         $post_data['timestamp']         = time();
+        $tour_name = $this->web_model->get_tourname($post_data['tour_id']);
         //p($post_data); exit;
         $response = $this->web_model->process_tour_booking($post_data);
+
+        $user_name = $post_data['firstName'];
+        $tour_name = $this->web_model->get_tourname($post_data['tour_id']);
         if($response == "success"){
             // ====== Send email notification =========
-            $to_email       = 'soorajsolutino@gmail.com';
+            if($tour_id > 0){
+                $message = "Your booking for the tour, ".$tour_name." has been initiated successfully";
+            }
+            else{
+                $message = "Your booking for transfer service has been initiated successfully";
+            }
+            $to_email       = $post_data['email'];
             $from_name      = 'Dubai Private Tours';
-            $subject        = 'A new booking';
-            $body_content   = 'Hi, A new booking from '.$post_data['firstName'];
+            $subject        = $tour_name.': Booking initiated!';            
+            $body_content   = $this->web_model->getEmailTemplate();
+            $body_content   = str_replace('{{user_name}}', $user_name, $body_content);
+            $body_content   = str_replace('{{message}}', $message, $body_content);
             $from_email     = 'info@dubaiprivatetour.com';
-
+            //echo $body_content; exit;
             send_mail($to_email, $from_name, $subject, $body_content, $from_email);
             // ====== Send email notification =========
             sf('success_message','Your booking has been submitted successfully. We will update the booking status by email soon.');

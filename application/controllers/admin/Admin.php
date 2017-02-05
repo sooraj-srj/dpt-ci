@@ -374,4 +374,95 @@ class Admin extends CI_Controller {
             $this->template->render();
     }
 
+    //list tour bookings
+    public function tour_bookings($params='')
+    {
+        $this->load->model('admin/admin_model');
+        $this->gen_contents['page_heading'] = 'Tour Bookings';
+        $this->gen_contents['tour_bookings'] = $this->admin_model->get_tour_bookings();
+        //p($this->gen_contents['tour_bookings']); exit;
+        //rendering page        
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/tours-booking', $this->gen_contents);
+        $this->template->render();
+    }
+
+    //display booking details page
+    public function tour_bookings_details($booking_id='')
+    {
+        $this->load->model('admin/admin_model');
+        $this->gen_contents['page_heading'] = 'Tour Booking Details';
+        $this->gen_contents['booking_details'] = $this->admin_model->get_tour_booking_details($booking_id);
+        //p($this->gen_contents['booking_details']); exit;
+        //rendering page        
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/tours-booking-details', $this->gen_contents);
+        $this->template->render();
+    }
+
+    // update booking by admin
+    public function booking_appln($booking_id = '',$action = '')
+    {
+        $this->load->model('admin/admin_model');
+        $booking_details = $this->admin_model->get_tour_booking_details($booking_id);
+        foreach ($booking_details as $bd) { }
+        if($action == 'confirm'){
+            $response = $this->admin_model->update_booking_status($booking_id,'approved');
+            
+            if($response == "success"){
+                // ====== Send email notification =========
+                $mail_body = $this->admin_model->get_email_template('booking-mail');
+                if($bd['mail_body'] != '') $tour_details = $bd['mail_body']; else $tour_details = $bd['body'];
+                $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body['body']);                
+                $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
+                
+                //$to_email       = 'soorajsolutino@gmail.com';
+                $to_email       = $bd['email'];
+                $from_name      = 'Dubai Private Tours';
+                $subject        = $bd['title'].": Booking confirmed!";
+                $body_content   = $mail_body;
+                //echo $body_content; exit;
+                $from_email     = 'info@dubaiprivatetour.com';
+
+                send_mail($to_email, $from_name, $subject, $body_content, $from_email);
+                // ====== Send email notification =========
+                sf('success_message','Booking has been confirmed successfully');
+                redirect('admin/tour-booking/'.$booking_id);
+            }
+            else{
+                redirect('admin/tour-booking/'.$booking_id);
+            }
+        }
+        else if($action == 'cancel'){
+            $response = $this->admin_model->update_booking_status($booking_id,'cancelled');
+            sf('success_message','Booking has been cancelled successfully');
+            redirect('admin/tour-booking/'.$booking_id);
+        }
+    }
+
+    //update email template -Booking email
+    public function manage_email_template($template='')
+    {
+        $template = 'booking-mail';
+        $this->load->model('admin/admin_model');
+        $this->gen_contents['page_heading'] = 'Update Email Template';
+
+        if($this->input->post("update_et",true)){
+            $post_data['body'] = $this->input->post("body",true);
+            $response = $this->admin_model->process_email_template($post_data);
+            if($response == "edited"){
+                sf('success_message', 'Email template has been updated successfully');
+                redirect("admin/email-template");
+            }
+        }
+
+        $this->gen_contents['email_template'] = $this->admin_model->get_email_template($template);
+        //p($this->gen_contents['booking_details']); exit;
+        //rendering page        
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/email-template-manage', $this->gen_contents);
+        $this->template->render();
+    }
+
+
 }

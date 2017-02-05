@@ -211,5 +211,39 @@ class Web_model extends CI_Model {
         return $result;
     }
 
+    //get tour name
+    public function get_tourname($tour_id='')
+    {
+        $query = $this->db->select("title")
+                ->from("default_tour")
+                ->where('id',$tour_id)
+                ->get();
+        $result = $query->row_array();
+        return $result['title'];
+    }
+
+    //get email template for booking
+    public function getEmailTemplate()
+    {
+        
+        $booking_mail = '<!DOCTYPE html>
+            <html>
+            <head>
+            <title>Booking</title>
+            </head>
+            <body>
+            Hi, {{user_name}}
+            <br><br>
+            {{message}}. We will review youe booking and will contact you by email.
+            <br><br><br>
+            Thanks
+            <br>
+            Dubai Private Tours<br>
+            <a href="http://dubaiprivatetours.com">http://dubaiprivatetours.com</a>
+            </body>
+            </html>';
+        return $booking_mail;
+    }
+
 
 }

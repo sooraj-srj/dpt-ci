@@ -641,6 +641,20 @@ $(document).ready(function() {
             $("#endloc").hide();
         }
     });
+
+    //Admin section - booking details
+    $(".booking_details").on('click',function(){
+        var booking_id = $(this).data('id');
+        var post_url = "";
+        $.ajax({
+            url: post_url,
+            type: "post",
+            data: { 'booking_id':data_id },
+            success: function (response) {
+                
+            }
+        });
+    });
 });
 // == Tour form management
 

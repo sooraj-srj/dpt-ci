@@ -71,6 +71,8 @@ $route['terms-and-conditions']  = "web/terms";
 $route['tours/(:any)']        	= "web/select_tours/$1"; 
 $route['plan/(:any)/(:any)']  	= "web/select_plan/$1/$2"; 
 $route['plan-appln']          	= "web/plan_appln"; 
+//manage transfer service
+$route['transfer/(:any)']       = "web/select_transfer/$1"; 
 $route['thank-you']          	= "web/thankyou"; 
 $route['visa-appln']          	= "web/visa_appln"; 
 $route['askme-appln']          	= "web/askme_appln"; 
@@ -95,6 +97,12 @@ $route['admin/emirates/(:any)/(:any)']    = "admin/admin/emirates/$1/$2";
 $route['admin/tours']                  = "admin/admin/tours";
 $route['admin/tours/(:any)']           = "admin/admin/tours/$1";
 $route['admin/tours/(:any)/(:any)']    = "admin/admin/tours/$1/$2";
+// manage emirates
+$route['admin/tour-booking']           = "admin/admin/tour_bookings";
+$route['admin/tour-booking/(:any)']    = "admin/admin/tour_bookings_details/$1";
+$route['admin/booking-appln/(:any)/(:any)']    = "admin/admin/booking_appln/$1/$2";
+
+$route['admin/email-template']           = "admin/admin/manage_email_template";
 
 
 

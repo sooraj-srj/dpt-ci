@@ -177,5 +177,85 @@ class Admin_model extends CI_Model {
             return "deleted";
         }
     }
+
+    //get tour booking list
+    public function get_tour_bookings($params='')
+    {
+        $qry = "SELECT b.*,t.*,tc.title as category,e.name as emirates, b.status as booking_status, b.id as booking_id,
+                DATE_FORMAT(FROM_UNIXTIME(b.timestamp), '%d/%b/%Y') booking_date, 
+                DATE_FORMAT(b.tour_date, '%d/%b/%Y') tour_date,
+                CONCAT(b.firstName,' ',b.lastName) as user_name
+                FROM `default_booking` b
+                LEFT JOIN default_tour t ON b.tour_id = t.id
+                LEFT JOIN default_tour_categories tc ON tc.id = t.category_id 
+                LEFT JOIN default_emirates e ON e.id = t.emirates_id 
+                ORDER BY b.`id`  DESC";
+        
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+    
+    // get tour booking details
+    public function get_tour_booking_details($booking_id='')
+    {
+        $qry = "SELECT b.*,t.*,tc.title as category,e.name as emirates, b.status as booking_status, b.id as booking_id, ic.country_name, 
+                pl.location as pickup_location, pl1.location as drop_location,
+                DATE_FORMAT(FROM_UNIXTIME(b.timestamp), '%d/%b/%Y') booking_date, 
+                DATE_FORMAT(b.tour_date, '%d/%b/%Y') tour_date,
+                CONCAT(b.firstName,' ',b.lastName) as user_name
+                FROM `default_booking` b
+                LEFT JOIN default_tour t ON b.tour_id = t.id
+                LEFT JOIN default_tour_categories tc ON tc.id = t.category_id 
+                LEFT JOIN default_emirates e ON e.id = t.emirates_id 
+                LEFT JOIN default_isd_code ic ON ic.country_id = b.nationality 
+                LEFT JOIN default_pickup_location pl ON pl.id = b.pickup_location 
+                LEFT JOIN default_pickup_location pl1 ON pl1.id = b.dropLocation
+                WHERE b.id = '$booking_id'
+                ORDER BY b.`id`  DESC";
+        
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+
+    public function update_booking_status($booking_id='', $action='')
+    {
+        $data['status'] = $action;
+        $this->db->where("id",$booking_id);
+        $this->db->update("default_booking",$data);
+        return "success";
+    }
+
+    //get email template data
+    public function get_email_template($template='')
+    {
+        $qry = "SELECT * FROM default_email_templates WHERE slug = '$template'";
+        $sel = $this->db->query($qry);
+        $res = $sel->row_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+    //update email template
+    public function process_email_template($post_data='')
+    {
+        $this->db->where("slug",'booking-mail');
+        $this->db->update("default_email_templates",$post_data);
+        return "edited";
+    }
     
 }

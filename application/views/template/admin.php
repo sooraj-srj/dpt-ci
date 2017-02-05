@@ -249,6 +249,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="<?php echo admin_url() . 'tour-booking'; ?>"><i class="fa fa-list"></i> Tour Bookings</a>
+                                </li> <li><a href="<?php echo admin_url() . 'email-template'; ?>"><i class="fa fa-list"></i> Edit email template</a>
                                 </li>                                
                             </ul>
                         </li>

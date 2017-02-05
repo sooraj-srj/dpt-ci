@@ -219,9 +219,11 @@
 
                                                 <div class="col-md-12">
                                                     <div class="row">
+                                                        
                                                         <div class="col-md-6 col-sm-6">
                                                             <div class="row">
                                                                 <div class="form-group col-md-12 col-sm-6">
+                                                                <?php if($flag != "transfer") { ?>
                                                                     <label for="name">Preferred Guide Language<span class="red">*</span></label>
                                                                     <select class="form-control input-sm" id="months" name="preferedguide">
                                                                         <option value="">Select</option>
@@ -234,11 +236,13 @@
                                                                         <option value="Portuguese">Portuguese</option>
                                                                         <option value="Chinese">Chinese</option>
                                                                         <option value="Japanese">Japanese</option>
-                                                                        <option value="Russian">Russian</option>                                                                        
+                                                                        <option value="Russian">Russian</option>                                
                                                                     </select>
+                                                                    <?php } ?>
                                                                 </div>                                                                
                                                             </div>
                                                         </div>
+                                                        
                                                         <div class="col-md-6 col-sm-6">
                                                             <div class="row">
                                                                 <div class="form-group col-md-6 col-sm-6">
