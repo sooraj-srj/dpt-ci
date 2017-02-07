@@ -100,9 +100,17 @@ $route['admin/tours/(:any)/(:any)']    = "admin/admin/tours/$1/$2";
 // manage emirates
 $route['admin/tour-booking']           = "admin/admin/tour_bookings";
 $route['admin/tour-booking/(:any)']    = "admin/admin/tour_bookings_details/$1";
-$route['admin/booking-appln/(:any)/(:any)']    = "admin/admin/booking_appln/$1/$2";
+//$route['admin/booking-appln/(:any)/(:any)']    = "admin/admin/booking_appln/$1/$2";
+$route['admin/booking-appln']    	   = "admin/admin/booking_appln";
 
-$route['admin/email-template']           = "admin/admin/manage_email_template";
+$route['admin/email-template']         = "admin/admin/manage_email_template";
+
+//manage gallery
+$route['admin/gallery']                  = "admin/admin/gallery";
+$route['admin/gallery/(:any)']           = "admin/admin/gallery/$1";
+$route['admin/gallery/(:any)/(:any)']    = "admin/admin/gallery/$1/$2";
+
+$route['admin/gallery-images/(:any)']    = "admin/admin/gallery_images/$1";
 
 
 

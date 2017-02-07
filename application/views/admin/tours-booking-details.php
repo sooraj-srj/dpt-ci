@@ -6,6 +6,9 @@
     .box-body{
         font-weight: normal !important;
     }
+    #cke_1_contents{
+        height: 700px !important;
+    }
 </style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" style="min-height: 946px; !important;">
@@ -79,8 +82,8 @@
                                             <!-- /.box-body -->
                                             </div>
                                         <!-- /.box -->
-                                        </div>
-                                        <div class="col-md-5">
+
+                                            <!-- Tour details -->
                                             <div class="box box-solid box-new">
                                             <div class="box-header with-border">
                                               <i class="fa fa-bookmark"></i>
@@ -153,15 +156,23 @@
                                             </div>
                                         <!-- /.box -->
                                         </div>
-                                        
-                                        <div class="col-md-2">
-                                            <?php if($bd['booking_status'] != 'approved'){  ?>
-                                                <a href="<?php url('admin/booking-appln/'.$bd['booking_id']); ?>/confirm" onclick="return confirm('Are you sure you want to confirm this booking?')" class="btn btn-success">Confirm Booking</a><br><br>
-                                                <a href="<?php url('admin/booking-appln/'.$bd['booking_id']); ?>/cancel" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this booking?')">Cancel Booking</a>                                                 
-                                            <?php } else { ?>
-                                                <h3 class="text-success">Approved</h3>
-                                            <?php } ?>
-                                        </div>                                       
+                                        <div class="col-md-7">
+                                            <form name="confirmForm" method="post" action="<?php url('admin/booking-appln') ?>"> 
+                                                <label>Email content to the user</label>
+                                                <textarea name="mail_body" class="form-control ckeditor" placeholder="Template Body"><?php echo $mail_content; ?></textarea>    
+                                                <input type="hidden" name="booking_id" value="<?php echo $bd['booking_id']; ?>">
+                                                <div class="pull-right">
+                                                <br>
+                                                <?php if($bd['booking_status'] != 'approved'){  ?>                                                
+                                                    <button type="submit" class="btn btn-danger" name="btn-booking" onclick="return confirm('Are you sure you want to cancel this booking?')" value="cancel">Cancel Booking</button>    
+                                                    <button type="submit" value="confirm" name="btn-booking" onclick="return confirm('Are you sure you want to confirm this booking?')" class="btn btn-success">Confirm Booking</a>                                             
+                                                <?php } else { ?>
+                                                    <h3 class="text-success">Approved</h3>
+                                                <?php } ?>
+                                                </div>
+                                            </form>
+                                        </div>
+                                                                       
 
                                     </div>
                                 </div>

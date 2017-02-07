@@ -253,7 +253,16 @@
                                 </li>                                
                             </ul>
                         </li>
-
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                                <span>Manage Gallery</span>                                
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo admin_url() . 'gallery'; ?>"><i class="fa fa-list"></i> List Gallery</a>
+                                </li>                              
+                            </ul>
+                        </li>
 
                         <!-- <li class="divider" style="border: #304148 solid 1px;"></li>
                         <li class="treeview">

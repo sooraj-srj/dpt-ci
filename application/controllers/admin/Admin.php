@@ -393,6 +393,14 @@ class Admin extends CI_Controller {
         $this->load->model('admin/admin_model');
         $this->gen_contents['page_heading'] = 'Tour Booking Details';
         $this->gen_contents['booking_details'] = $this->admin_model->get_tour_booking_details($booking_id);
+        $booking_details = $this->gen_contents['booking_details'];
+        foreach ($booking_details as $bd) { }
+
+        $mail_body = $this->admin_model->get_email_template('booking-mail');
+        if($bd['mail_body'] != '') $tour_details = $bd['mail_body']; else $tour_details = $bd['body'];
+        $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body['body']);                
+        $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
+        $this->gen_contents['mail_content'] = $mail_body;
         //p($this->gen_contents['booking_details']); exit;
         //rendering page        
         $this->template->set_template('admin');
@@ -401,21 +409,21 @@ class Admin extends CI_Controller {
     }
 
     // update booking by admin
-    public function booking_appln($booking_id = '',$action = '')
+    public function booking_appln()
     {
         $this->load->model('admin/admin_model');
+        $booking_id = $this->input->post("booking_id",true);
         $booking_details = $this->admin_model->get_tour_booking_details($booking_id);
         foreach ($booking_details as $bd) { }
+        $action = $this->input->post("btn-booking",true);
         if($action == 'confirm'){
             $response = $this->admin_model->update_booking_status($booking_id,'approved');
             
             if($response == "success"){
                 // ====== Send email notification =========
-                $mail_body = $this->admin_model->get_email_template('booking-mail');
-                if($bd['mail_body'] != '') $tour_details = $bd['mail_body']; else $tour_details = $bd['body'];
-                $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body['body']);                
-                $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
-                
+                     
+                $mail_body = $this->input->post("mail_body",true);
+                //echo $mail_body; exit;
                 //$to_email       = 'soorajsolutino@gmail.com';
                 $to_email       = $bd['email'];
                 $from_name      = 'Dubai Private Tours';
@@ -461,6 +469,73 @@ class Admin extends CI_Controller {
         //rendering page        
         $this->template->set_template('admin');
         $this->template->write_view('content', 'admin/email-template-manage', $this->gen_contents);
+        $this->template->render();
+    }
+
+    //manage gallery
+    public function gallery($mode="list",$id=""){
+        (!$this->authentication->check_logged_in("admin", false)) ? redirect('admin') : '';
+            $page = 'admin/gallery-list';
+            $this->load->model('admin/admin_model');
+            // Emirates add area
+            if($mode == "add"){
+                $page = 'admin/gallery-add';
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('title', 'Gallery Name', 'required');
+                if($this->form_validation->run() == TRUE){
+                    $post_data['title'] = $this->input->post("title",true);                    
+                    $response = $this->admin_model->process_gallery("add",$post_data);
+                    if($response == "added"){
+                        sf('success_message', 'New gallery has been added successfully');
+                        redirect("admin/gallery");
+                    }                    
+                }
+
+            }
+            // Emirates edit area
+            if($mode == "edit"){
+                $page = 'admin/gallery-add';
+                $gdata = $this->admin_model->get_gallery_data($id);
+                $this->gen_contents['gdata'] = $gdata;
+
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('title', 'Gallery Name', 'required');
+                if($this->form_validation->run() == TRUE){   
+                    $post_data['title'] = $this->input->post("title",true);                    
+                    $post_data['id'] =  $this->input->post("id",true);               
+                    
+                    $response = $this->admin_model->process_gallery("edit",$post_data);
+                    if($response == "edited"){
+                        sf('success_message', 'Gallery data has been added successfully');
+                        redirect("admin/gallery");
+                    }
+                    
+                }
+
+            }
+            // Category delete area
+            if($mode == "delete" && !empty($id)){                
+                $post_data = array(
+                    'id'=> $id
+                );
+                $response = $this->admin_model->process_gallery("delete",$post_data);
+                redirect("admin/gallery");
+            }
+            //rendering page
+            $this->gen_contents['page_heading'] = 'Gallery';
+            $this->gen_contents['gallery'] = $this->admin_model->get_galleries();
+            $this->template->set_template('admin');
+            $this->template->write_view('content', $page, $this->gen_contents);
+            $this->template->render();
+    }
+
+    // Gallery images
+    public function gallery_images($id='')
+    {
+        $this->gen_contents['page_heading'] = 'Gallery Images';
+        $this->gen_contents['gallery_images'] = $this->admin_model->get_gallery_images($gallery_id);
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/gallery-images', $this->gen_contents);
         $this->template->render();
     }
 

@@ -257,5 +257,69 @@ class Admin_model extends CI_Model {
         $this->db->update("default_email_templates",$post_data);
         return "edited";
     }
-    
+
+    //get gallery list
+    public function get_galleries()
+    {
+        $query = $this->db->select("*")
+                ->from("default_gallery")
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            return $result;
+        } else {
+            return '';
+        }
+    }
+
+    //get gallery data
+     public function get_gallery_data($id)
+    {
+        $query = $this->db->select("*")
+                ->where('id',$id)
+                ->from("default_gallery")
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            return $result;
+        } else {
+            return '';
+        }
+    }
+
+    // process gallery - add/edit/delete
+    public function process_gallery($mode,$post_data){
+        
+        if($mode == "add"){
+            $this->db->insert("default_gallery",$post_data);
+            return "added";
+        }
+        if($mode == "edit"){     
+            $tid = $post_data['id'];     
+            $this->db->where("id",$tid);
+            $this->db->update("default_gallery",$post_data);
+            return "edited";
+        }
+        if($mode == "delete"){    
+            $tid = $post_data['id'];      
+            $this->db->where("id",$tid);
+            $this->db->delete("default_gallery");
+            return "deleted";
+        }
+    }
+
+    //get gallery images
+    public function get_gallery_images($id='')
+    {
+        $query = $this->db->select("*")
+                ->from("default_gallery_sub_images")
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            return $result;
+        } else {
+            return '';
+        }
+    }
+
 }
