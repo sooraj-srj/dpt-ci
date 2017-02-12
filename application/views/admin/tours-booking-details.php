@@ -32,14 +32,14 @@
                     ?>
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">View booking details of <b><?php echo $bd['user_name']; ?><b></h3>                            
+                            <h3 class="box-title">View booking details of <b><?php echo $bd['user_name'];  
+                            if($bd['booking_status'] == 'approved'){?> <span style="color: #30ca32;">(Approved!)</span> <?php } ?><b></h3>                            
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                             
                                 
-                                <div class="row">
-                                    <div class="col-sm-12">
+                                    <div class="col-md-12">
                                         <?php include('alert-message.php'); ?>
                                         
                                         <div class="col-md-5">
@@ -157,26 +157,32 @@
                                         <!-- /.box -->
                                         </div>
                                         <div class="col-md-7">
-                                            <form name="confirmForm" method="post" action="<?php url('admin/booking-appln') ?>"> 
-                                                <label>Email content to the user</label>
-                                                <textarea name="mail_body" class="form-control ckeditor" placeholder="Template Body"><?php echo $mail_content; ?></textarea>    
-                                                <input type="hidden" name="booking_id" value="<?php echo $bd['booking_id']; ?>">
-                                                <div class="pull-right">
-                                                <br>
-                                                <?php if($bd['booking_status'] != 'approved'){  ?>                                                
-                                                    <button type="submit" class="btn btn-danger" name="btn-booking" onclick="return confirm('Are you sure you want to cancel this booking?')" value="cancel">Cancel Booking</button>    
-                                                    <button type="submit" value="confirm" name="btn-booking" onclick="return confirm('Are you sure you want to confirm this booking?')" class="btn btn-success">Confirm Booking</a>                                             
-                                                <?php } else { ?>
-                                                    <h3 class="text-success">Approved</h3>
-                                                <?php } ?>
+                                            <form name="confirmForm1" method="post" action="<?php url('admin/booking-appln') ?>" role="form">      
+                                                <div class="form-group">
+                                                    <label>Mail Subject</label><div class="clearfix"></div>
+                                                    <textarea name="subject" class="form-control"><?php echo $bd['title']; ?>: Booking Confirmed!</textarea>
                                                 </div>
-                                            </form>
-                                        </div>
-                                                                       
-
+                                                <div class="form-group">
+                                                    <label>Email content to the user</label>
+                                                    <textarea name="mail_body" class="form-control ckeditor" placeholder="Template Body">
+                                                    <?php echo $mail_content; ?></textarea>    
+                                                </div>
+                                                
+                                                <div class="form-group pull-right">
+                                                    <input type="hidden" name="booking_id" value="<?php echo $bd['booking_id']; ?>">
+                                                    <br>
+                                                    <?php if($bd['booking_status'] != 'approved'){  ?>                                                
+                                                        <button type="submit" class="btn btn-danger" name="btn-booking" onclick="return confirm('Are you sure you want to cancel this booking?')" value="cancel">Cancel Booking</button>    
+                                                        <button type="submit" value="confirm" name="btn-booking" onclick="return confirm('Are you sure you want to confirm this booking?')" class="btn btn-success">Confirm Booking</button>                                             
+                                                    <?php } else { ?>
+                                                        <h3 class="text-success" style="color: #30ca32;"><b>Approved!</b></h3>
+                                                    <?php } ?>
+                                                </div>
+                                            </form>  
+                                        </div>                          
                                     </div>
-                                </div>
-                            </div>
+                               
+                         
                         </div>
                         <!-- /.box-body -->
                     </div>

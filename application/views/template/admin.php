@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="<?php echo c('css_path_url'); ?>admin/datepicker3.css">
         <link rel="stylesheet" href="<?php echo c('css_path_url'); ?>admin/daterangepicker.css">
         <link rel="stylesheet" href="<?php echo c('css_path_url'); ?>admin/bootstrap3-wysihtml5.min.css">       
+        <link rel="stylesheet" href="<?php echo c('css_path_url'); ?>dropzone.css">       
         <script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
         <style type="text/css">
             .error{ font-size: 12px; color: #FF3636; font-weight: 400; }
@@ -318,6 +319,9 @@
         <script src="<?php echo c('js_path_url'); ?>admin/jquery.slimscroll.min.js"></script>
         <script src="<?php echo c('js_path_url'); ?>admin/fastclick.js"></script>
         <script src="<?php echo c('js_path_url'); ?>admin/app.min.js"></script>
+        <!-- dropzone -->
+        <script src="<?php echo c('js_path_url'); ?>dropzone.js"></script>
+
         <?php if($dashboard_js == "yes") { ?>
         <script src="<?php echo c('js_path_url'); ?>admin/dashboard.js"></script>
         <?php } ?>

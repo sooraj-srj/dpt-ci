@@ -322,4 +322,10 @@ class Admin_model extends CI_Model {
         }
     }
 
+    //insert gallery images
+    
+    public function update_gallery_image($post_data){
+        $this->db->insert("default_gallery_sub_images",$post_data);
+    }
+
 }

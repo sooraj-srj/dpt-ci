@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             Unforgettable experience which is going to make this beautiful city one of your
                             favourite destination all year round. The historical cultural and modernisation of Dubai
                             revealed with its full glory. Come have the Dubai tour of your life with us.</p>
-                        <p><a class="btn main-btn-style" href="#" role="button">Quick Contact</a></p>
+                        <p><a class="btn main-btn-style" href="<?php url('contact'); ?>" role="button">Quick Contact</a></p>
                     </div>
                 </div>
             </div>

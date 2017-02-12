@@ -422,12 +422,13 @@ class Admin extends CI_Controller {
             if($response == "success"){
                 // ====== Send email notification =========
                      
-                $mail_body = $this->input->post("mail_body",true);
+                $mail_body  = $this->input->post("mail_body",true);
+                $subject    = $this->input->post("subject",true);
                 //echo $mail_body; exit;
                 //$to_email       = 'soorajsolutino@gmail.com';
                 $to_email       = $bd['email'];
                 $from_name      = 'Dubai Private Tours';
-                $subject        = $bd['title'].": Booking confirmed!";
+                $subject        = 
                 $body_content   = $mail_body;
                 //echo $body_content; exit;
                 $from_email     = 'info@dubaiprivatetour.com';
@@ -533,7 +534,8 @@ class Admin extends CI_Controller {
     public function gallery_images($id='')
     {
         $this->gen_contents['page_heading'] = 'Gallery Images';
-        $this->gen_contents['gallery_images'] = $this->admin_model->get_gallery_images($gallery_id);
+        $this->gen_contents['gallery_images']   = $this->admin_model->get_gallery_images($id);
+        $this->gen_contents['gallery_data']     = $this->admin_model->get_gallery_data($id);
         $this->template->set_template('admin');
         $this->template->write_view('content', 'admin/gallery-images', $this->gen_contents);
         $this->template->render();
