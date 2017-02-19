@@ -311,9 +311,17 @@ class Admin_model extends CI_Model {
     //get gallery images
     public function get_gallery_images($id='')
     {
-        $query = $this->db->select("*")
+        if($id == ''){
+            $query = $this->db->select("*")
                 ->from("default_gallery_sub_images")
                 ->get();
+        }
+        else{
+            $query = $this->db->select("*")
+                ->from("default_gallery_sub_images")
+                ->where('resource_id',$id)
+                ->get();
+        }
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
             return $result;

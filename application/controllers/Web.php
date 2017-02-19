@@ -72,7 +72,15 @@ class Web extends CI_Controller {
     //gallery page
     public function gallery()
     {
-        $this->gen_contents = array();
+        $this->load->model('web_model');
+        $this->load->model('admin/admin_model');
+        $this->gen_contents['galleries'] = $this->admin_model->get_galleries();
+        $gallery_id = '';
+        if($this->input->get('id') != ''){
+            $gallery_id = $this->input->get('id');
+        }
+        $this->gen_contents['gallery_images'] = $this->admin_model->get_gallery_images($gallery_id);
+        $this->gen_contents['gallery_data'] = $this->admin_model->get_gallery_data($gallery_id);
         $this->template->write_view('content', 'gallery', $this->gen_contents);
         $this->template->render();
     }

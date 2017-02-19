@@ -1,5 +1,5 @@
 
-<div class="content-wrapper" style="min-height: 946px; !important;">
+<div class="content-wrapper" style="min-height: 946px !important;">
     <section class="content-header">
         <h1> Manage Email Template</h1>
         <ol class="breadcrumb">

@@ -81,7 +81,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <i class="fa fa-clock-o" aria-hidden="true"></i> &nbsp; <?php echo $pt['duration']; ?>
                                             </div>
                                             <div class="col-md-6">
-                                            <a href="#">Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                            <a href="<?php url('plan/'.$pt['cat_slug'].'/'.$pt['emirates_id'].'?plan='.$pt['tour_id']) ?>">
+                                            Read More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                                            <!--plan/luxury-tours/1?plan=32-->
                                             </div>
                                         </div>
                                     </div>
@@ -141,10 +143,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-12">
                             <div class="plan-round-div">
                                 <div class="icon-text-div">
-                                    <center>
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i> <br>
-                                        <h4><b><?php echo $cats['title']; ?></b></h4>
-                                    </center>
+                                    <a href="<?php url('tours/'.$cats['slug']); ?>">
+                                        <center>
+                                            <i class="fa fa-map-marker" aria-hidden="true"></i> <br>
+                                            <h4><b><?php echo $cats['title']; ?></b></h4>
+                                        </center>
+                                    </a>
                                 </div>
                             </div>
                         </div>

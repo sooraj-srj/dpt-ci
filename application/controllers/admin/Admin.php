@@ -428,7 +428,7 @@ class Admin extends CI_Controller {
                 //$to_email       = 'soorajsolutino@gmail.com';
                 $to_email       = $bd['email'];
                 $from_name      = 'Dubai Private Tours';
-                $subject        = 
+                //$subject        = 
                 $body_content   = $mail_body;
                 //echo $body_content; exit;
                 $from_email     = 'info@dubaiprivatetour.com';

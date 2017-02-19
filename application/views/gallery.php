@@ -35,67 +35,40 @@
         <div class="col-md-9 gallery-div-bg-right">
             <div class="gallery-div-bg-style">
 
-                <div class="col-md-9"><h4>Desert Safari</h4></div>
+                <div class="col-md-9"><h4><?php if($gallery_data['title'] != '') echo $gallery_data['title']; else echo 'All Images'; ?></h4></div>
                 <div class="col-md-3">
                     <div class="dropdown filter-btn-style">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Gallery
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">JavaScript</a></li>
+                            <?php
+                                foreach($galleries as $gal) {
+                                    ?>
+                                    <li><a href="<?php url('gallery?id='.$gal['id']) ?>"><?php echo $gal['title']; ?></a></li>
+                                    <?php
+                                }
+                            ?>                            
                         </ul>
                     </div>
                 </div>
 
             </div>
-
+            <?php
+                if(empty($gallery_images)){
+                    echo '<center>No images in gallery!</center>';
+                }
+            ?>
             <ul class="row">
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                    <img class="img-responsive" src="<?php echo assets_url(); ?>images/carous1/fit.jpg">
-                </li>
-                
+                <?php                     
+                    foreach ($gallery_images as $gi) {
+                ?>
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                            <img class="img-responsive" src="<?php echo_image('images/gallery/'.$gi['file_name']) ?>">
+                        </li>
+                <?php
+                    }
+                ?>
             </ul> 
-
 
         </div>
     </div>

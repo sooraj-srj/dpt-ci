@@ -594,6 +594,13 @@ ul.menu-ul-style {
     border: 2px solid #fff;
     border-radius: 100%;
 }
+.plan-round-div:hover{
+    background: rgba(241,91,41,0.85) !important;
+}
+.plan-round-div a{
+    color: #fff !important;
+    text-decoration:none;
+}
 .icon-text-div i {
     font-size: 50px;
 }
