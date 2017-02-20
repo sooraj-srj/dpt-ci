@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                         <div class="item-head-1">
                                             <center>
-                                                <h4 class="atgrid__item__title"><a href="#"><?php echo $pt['title']; ?></a>
+                                                <h4 class="atgrid__item__title"><a href="<?php url('plan/'.$pt['cat_slug'].'/'.$pt['emirates_id'].'?plan='.$pt['tour_id']) ?>"><?php echo $pt['title']; ?></a>
                                                 </h4>
                                             </center>
                                         </div>

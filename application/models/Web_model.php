@@ -46,11 +46,11 @@ class Web_model extends CI_Model {
     }
     
     //function to get tours from category
-    public function get_tours($category = ""){
+    public function get_tours($category = "",$limit = 6){
         if($category == 'popular'){
             $qry = "SELECT t.*, tc.id, t.id as tour_id, tc.slug as cat_slug FROM `default_tour` t 
                     LEFT JOIN default_tour_categories tc ON tc.id = t.category_id
-                    WHERE t.`category_id` = tc.id ORDER BY RAND() LIMIT 6";
+                    WHERE t.`category_id` = tc.id ORDER BY RAND() LIMIT $limit";
         }
         else{
             $qry = "SELECT t.*, tc.id, t.id as tour_id FROM `default_tour` t 

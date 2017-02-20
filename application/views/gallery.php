@@ -55,7 +55,7 @@
             </div>
             <?php
                 if(empty($gallery_images)){
-                    echo '<center>No images in gallery!</center>';
+                    echo '<center>No images in this gallery!</center>';
                 }
             ?>
             <ul class="row">

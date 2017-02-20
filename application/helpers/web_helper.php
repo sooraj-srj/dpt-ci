@@ -18,8 +18,16 @@
 
  //function to get emirates
  function get_emirates(){
- 	 $CI =& get_instance();
+ 	$CI =& get_instance();
      $CI->load->model('admin/admin_model');
      $emirates = $CI->admin_model->get_emirates();
      return $emirates;
+ }
+
+ //function to get popular tours
+ function get_tours($type="",$limit=6){
+     $CI =& get_instance();
+     $CI->load->model('web_model');
+     $tours = $CI->web_model->get_tours($type,$limit);
+     return $tours;
  }

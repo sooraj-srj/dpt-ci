@@ -282,6 +282,41 @@ $(document).ready(function () {
                     notEmpty: {
                         message: 'Please enter number of adults'
                     },
+                    integer:{
+                        message: 'Please enter a number'
+                    }
+                    
+                }
+            },
+            childNo: {
+                validators: {
+                    integer:{
+                        message: 'Please enter a number'
+                    }
+                    
+                }
+            },
+            infantNo: {
+                validators: {
+                    integer:{
+                        message: 'Please enter a number'
+                    }
+                    
+                }
+            },            
+            cell_no1: {
+                validators: {
+                    integer:{
+                        message: 'This is not a number'
+                    }
+                    
+                }
+            },
+            cell_no2: {
+                validators: {
+                    integer:{
+                        message: 'This is not a number'
+                    }
                     
                 }
             },

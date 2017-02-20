@@ -62,8 +62,18 @@
                             <?php $categories = get_categories(); ?>
                             <?php 
                                 foreach ($categories as $cats){
+                                    if($cats['slug'] == 'ferrari-world'){
+                                        $link = base_url().'plan/ferrari-world/4?plan=74';
+                                    }
+                                    else{
+                                        $link = base_url().'tours/'.$cats['slug'];
+                                    }
                             ?>  
-                                <li><a href='<?php echo base_url().'tours/'.$cats['slug']; ?>'><?php echo $cats['title']; ?></a></li>
+                                <li>
+                                    <a href='<?php echo $link; ?>'>
+                                        <?php echo $cats['title']; ?>
+                                    </a>
+                                </li>
                             <?php
                                 }
                             ?>                            
