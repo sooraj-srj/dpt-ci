@@ -541,5 +541,41 @@ class Admin extends CI_Controller {
         $this->template->render();
     }
 
+    //manage menu
+    public function menu($mode="list",$id=""){
+        (!$this->authentication->check_logged_in("admin", false)) ? redirect('admin') : '';
+            $page = 'admin/menu-list';
+            $this->load->model('admin/admin_model');
+            
+            // menu edit area
+            if($mode == "edit"){
+                $page = 'admin/menu-edit';
+                $mdata = $this->admin_model->get_menu_data($id);
+                $this->gen_contents['mdata'] = $mdata;
+
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('menu_name', 'Menu Name', 'required');
+                if($this->form_validation->run() == TRUE){   
+                    $post_data['menu_name'] = $this->input->post("menu_name",true);                    
+                    $post_data['id'] =  $this->input->post("id",true);               
+                    
+                    $response = $this->admin_model->process_menu("edit",$post_data);
+                    if($response == "edited"){
+                        sf('success_message', 'Menu has been edited successfully');
+                        redirect("admin/menu");
+                    }
+                    
+                }
+
+            }
+            
+            //rendering page
+            $this->gen_contents['page_heading'] = 'Menu';
+            $this->gen_contents['menu'] = $this->admin_model->get_menu();
+            $this->template->set_template('admin');
+            $this->template->write_view('content', $page, $this->gen_contents);
+            $this->template->render();
+    }
+
 
 }

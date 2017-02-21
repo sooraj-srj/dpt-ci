@@ -264,6 +264,16 @@
                                 </li>                              
                             </ul>
                         </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                <span>Manage Menu</span>                                
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo admin_url() . 'menu'; ?>"><i class="fa fa-list"></i> List Menu</a>
+                                </li>                              
+                            </ul>
+                        </li>
 
                         <!-- <li class="divider" style="border: #304148 solid 1px;"></li>
                         <li class="treeview">

@@ -336,4 +336,43 @@ class Admin_model extends CI_Model {
         $this->db->insert("default_gallery_sub_images",$post_data);
     }
 
+    //get menu list
+    public function get_menu()
+    {
+        $query = $this->db->select("*")
+                ->from("default_menus")
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            return $result;
+        } else {
+            return '';
+        }
+    }
+
+    //get gallery data
+     public function get_menu_data($id)
+    {
+        $query = $this->db->select("*")
+                ->where('id',$id)
+                ->from("default_menus")
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            return $result;
+        } else {
+            return '';
+        }
+    }
+
+    // process gallery - add/edit/delete
+    public function process_menu($mode,$post_data){
+        if($mode == "edit"){     
+            $tid = $post_data['id'];     
+            $this->db->where("id",$tid);
+            $this->db->update("default_menus",$post_data);
+            return "edited";
+        }        
+    }
+
 }

@@ -56,46 +56,58 @@
                 <div id="head-mobile"></div>
                 <div class="button"></div>
                 <ul class="menu-ul-style">
-                    <li class='active'><a href='<?php echo base_url(); ?>'>HOME</a></li>
-                    <li><a href='#'>Tours & Safaries</a>
-                        <ul>
-                            <?php $categories = get_categories(); ?>
+                <?php 
+                    $menus = get_menu(); 
+                    foreach($menus as $menu){              
+                        ?>
+                        <li>
+                            <a href='<?php url($menu['link']); ?>'><?php echo $menu['menu_name']; ?></a>
                             <?php 
-                                foreach ($categories as $cats){
-                                    if($cats['slug'] == 'ferrari-world'){
-                                        $link = base_url().'plan/ferrari-world/4?plan=74';
-                                    }
-                                    else{
-                                        $link = base_url().'tours/'.$cats['slug'];
-                                    }
-                            ?>  
-                                <li>
-                                    <a href='<?php echo $link; ?>'>
-                                        <?php echo $cats['title']; ?>
-                                    </a>
-                                </li>
-                            <?php
-                                }
-                            ?>                            
-                        </ul>
-                    </li>
-                    <li><a href='#'>Transfer Services</a>
-                        <ul>
-                        <?php 
-                            $emirates = get_emirates();  
-                            foreach ($emirates as $em) {
+                            if($menu['type'] == 'category'){
                                 ?>
-                                <li><a href='<?php url('transfer/'.$em['id']); ?>'><?php echo $em['name']; ?></a> </li>
+                                <ul>
+                                    <?php $categories = get_categories(); ?>
+                                    <?php 
+                                        foreach ($categories as $cats){
+                                            if($cats['slug'] == 'ferrari-world'){
+                                                $link = base_url().'plan/ferrari-world/4?plan=74';
+                                            }
+                                            else{
+                                                $link = base_url().'tours/'.$cats['slug'];
+                                            }
+                                    ?>  
+                                        <li>
+                                            <a href='<?php echo $link; ?>'>
+                                                <?php echo $cats['title']; ?>
+                                            </a>
+                                        </li>
+                                    <?php
+                                        }
+                                    ?>                            
+                                </ul>
                                 <?php
                             }
-                        ?>                           
-                        </ul>
-                    </li>
-                    <li><a href='<?php echo base_url(); ?>tourist-visa'>Tourist Visa</a></li>
-                    <li><a href='<?php echo base_url(); ?>our-guide'>Our Guides</a></li>
-                    <li><a href='<?php echo base_url(); ?>reviews'>Review</a></li>
-                    <li><a href='<?php echo base_url(); ?>gallery'>GALLERY</a></li>
-                    <li><a href='<?php echo base_url(); ?>contact'>CONTACT</a></li>
+                            else if($menu['type'] == 'emirates'){
+                                ?>
+                                <ul>
+                                <?php 
+                                    $emirates = get_emirates();  
+                                    foreach ($emirates as $em) {
+                                        ?>
+                                        <li><a href='<?php url('transfer/'.$em['id']); ?>'><?php echo $em['name']; ?></a> </li>
+                                        <?php
+                                    }
+                                ?>                           
+                                </ul>
+                                <?php
+                            }
+                            ?>
+
+                        </li>
+                        <?php
+                    }
+                ?>
+                  
                 </ul>
             </nav>
         </div>

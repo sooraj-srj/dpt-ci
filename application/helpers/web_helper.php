@@ -31,3 +31,11 @@
      $tours = $CI->web_model->get_tours($type,$limit);
      return $tours;
  }
+
+ //function to get menu
+ function get_menu(){
+     $CI =& get_instance();
+     $CI->load->model('admin/admin_model');
+     $menu = $CI->admin_model->get_menu();
+     return $menu;
+ }

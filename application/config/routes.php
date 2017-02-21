@@ -113,6 +113,10 @@ $route['admin/gallery/(:any)/(:any)']    = "admin/admin/gallery/$1/$2";
 $route['admin/gallery-images/(:any)']    = "admin/admin/gallery_images/$1";
 $route['admin/upload']    				= "admin/dropzone/upload";
 
+$route['admin/menu']                  	= "admin/admin/menu";
+$route['admin/menu/(:any)']           	= "admin/admin/menu/$1";
+$route['admin/menu/(:any)/(:any)']   	= "admin/admin/menu/$1/$2";
+
 
 
 
