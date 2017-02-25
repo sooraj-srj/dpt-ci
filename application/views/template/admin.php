@@ -34,6 +34,9 @@
             //setTimeout("preventBack()", 0);
             //window.onunload=function(){null};
         </script>
+
+        <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=2l225mzji2ehq4bxk5v37quqbu2w4zegjzm0z41uhmyrxw5j"></script>
+        <script>tinymce.init({ selector:'.textarea' });</script>
     </head>
 
     <body class="sidebar-mini skin-red">
@@ -199,7 +202,7 @@
                         <li class="header">ADMIN NAVIGATION</li>
 
                         <li>
-                            <a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            <a href="<?php echo admin_url(); ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
 
 

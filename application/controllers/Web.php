@@ -214,21 +214,29 @@ class Web extends CI_Controller {
         $tour_name = $this->web_model->get_tourname($post_data['tour_id']);
         if($response == "success"){
             // ====== Send email notification =========
-            if($tour_id > 0){
-                $message = "Your booking for the tour, ".$tour_name." has been initiated successfully";
+            if($post_data['tour_id'] > 0){
+                $content = "Your booking for the tour, ".$tour_name." has been initiated successfully. We will contact you soon.";
+                $content1 = "A new booking for the tour, ".$tour_name." has been initiated from the user <strong>".$user_name."</strong>. <br> 
+                Please check the admin panel for more details.";
             }
             else{
-                $message = "Your booking for transfer service has been initiated successfully";
+                $content = "Your booking for transfer service has been initiated successfully. We will contact you soon";
+                $content1 = "A new booking for transfer service has been initiated from the user <strong>".$user_name."</strong>. <br> 
+                Please check the admin panel for more details.";
             }
+
             $to_email       = $post_data['email'];
             $from_name      = 'Dubai Private Tours';
-            $subject        = $tour_name.': Booking initiated!';            
-            $body_content   = $this->web_model->getEmailTemplate();
-            $body_content   = str_replace('{{user_name}}', $user_name, $body_content);
-            $body_content   = str_replace('{{message}}', $message, $body_content);
+            $subject        = 'Booking initiated for '.$tour_name; 
+            $body_content   = email_header($user_name, 'Successfully submitted your booking').$content.email_footer();            
             $from_email     = 'info@dubaiprivatetour.com';
             //echo $body_content; exit;
             send_mail($to_email, $from_name, $subject, $body_content, $from_email);
+
+            $to_email1      = 'info@dubaiprivatetour.com';
+            $subject1       = "A new booking for ".$tour_name;
+            send_mail($to_email1, $from_name, $subject1, $body_content, $from_email);
+            $body_content1   = email_header('Admin', 'A new booking initiated').$content1.email_footer();    
             // ====== Send email notification =========
             sf('success_message','Your booking has been submitted successfully. We will update the booking status by email soon.');
             redirect('thank-you');

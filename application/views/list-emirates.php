@@ -14,9 +14,15 @@
                         <?php 
                         $i = 1;
                         foreach ($categories as $cats){
+                            if($cats['slug'] == 'ferrari-world'){
+                                $link = base_url().'plan/ferrari-world/4?plan=74';
+                            }
+                            else{
+                                $link = base_url().'tours/'.$cats['slug'];
+                            }
                         ?>
                         <li class="mainNavItem <?php if($current == $cats['slug']){ echo 'active'; } ?>">
-                            <div id="navItem<?php echo $i; ?>" data-url="<?php echo base_url().'tours/'.$cats['slug']; ?>" class="cat-nav">
+                            <div id="navItem<?php echo $i; ?>" data-url="<?php echo $link; ?>" class="cat-nav">
                                 <?php echo $cats['title'] ?>
                             </div>
                         </li>

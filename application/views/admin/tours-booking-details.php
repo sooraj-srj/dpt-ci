@@ -9,6 +9,9 @@
     #cke_1_contents{
         height: 700px !important;
     }
+    #mail_body_ifr{
+        height: 628px !important;
+    }
 </style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper" style="min-height: 946px; !important;">
@@ -164,7 +167,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email content to the user</label>
-                                                    <textarea name="mail_body" class="form-control ckeditor" placeholder="Template Body">
+                                                    <textarea name="mail_body" class="form-control textarea" placeholder="Template Body">
                                                     <?php echo $mail_content; ?></textarea>    
                                                 </div>
                                                 
