@@ -52,7 +52,7 @@
                     </a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown messages-menu">
+                            <!--<li class="dropdown messages-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-envelope-o"></i>
                                     <span class="label label-success">4</span>
@@ -136,7 +136,7 @@
                                     <li class="header">You have 10 notifications</li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
-                                        <ul class="menu">
+                                        <!--<ul class="menu">
                                             <li>
                                                 <a href="#">
                                                     <i class="fa fa-users text-aqua"></i> 5 new members joined today
@@ -147,7 +147,7 @@
                                     <li class="footer"><a href="#">View all</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>-->
 
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -253,8 +253,11 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="<?php echo admin_url() . 'tour-booking'; ?>"><i class="fa fa-list"></i> Tour Bookings</a>
-                                </li> <li><a href="<?php echo admin_url() . 'email-template'; ?>"><i class="fa fa-list"></i> Edit email template</a>
-                                </li>                                
+                                </li> 
+                                <li><a href="<?php echo admin_url() . 'transfer-service-booking'; ?>"><i class="fa fa-list"></i> Transfer Service Bookings</a>
+                                </li> 
+                                <!--<li><a href="<?php echo admin_url() . 'email-template'; ?>"><i class="fa fa-list"></i> Edit email template</a>
+                                </li>-->                                
                             </ul>
                         </li>
                         <li class="treeview">
@@ -275,6 +278,30 @@
                             <ul class="treeview-menu">
                                 <li><a href="<?php echo admin_url() . 'menu'; ?>"><i class="fa fa-list"></i> List Menu</a>
                                 </li>                              
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <span>Manage Reviews/Questions</span>                                
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo admin_url() . 'reviews'; ?>"><i class="fa fa-list"></i> Reviews</a>
+                                </li> 
+                                <li><a href="<?php echo admin_url() . 'questions'; ?>"><i class="fa fa-list"></i> Ask Questions</a>
+                                </li>                    
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <span>Manage Tour Agents</span>                                
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo admin_url() . 'agents'; ?>"><i class="fa fa-list"></i> List Agents</a>
+                                </li> 
                             </ul>
                         </li>
 
@@ -308,7 +335,7 @@
                 <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="<?php url('admin'); ?>">DPT Admin</a>.</strong> All rights reserved.
             </footer>
         </div>
-        <div data-href='<?php admin_url(); ?>' id="admin_url"></div>
+        <div data-href='<?php url('admin'); ?>/' id="admin_url"></div>
         <script src="<?php echo c('js_path_url'); ?>admin/jquery-2.2.3.min.js"></script>
         <script src="<?php echo c('js_path_url'); ?>admin/jquery.validate.js"></script> 
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>        

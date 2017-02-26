@@ -7,7 +7,7 @@
     <div class="content-wrapper" style="min-height: 946px; !important;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Manage Tour Bookings </h1>
+            <h1>Manage Transfer Service Bookings </h1>
             <ol class="breadcrumb">
                 <li><a href="<?php url('admin') ?>"><i class="fa fa-dashboard"></i> </a></li>
                 <li class="active">List Tours</li>
@@ -22,7 +22,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">List all tour bookings</h3>                            
+                            <h3 class="box-title">List all transfer service bookings</h3>                            
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -35,31 +35,28 @@
                                             <thead>
                                             <tr role="row">
                                                 <th class="index">#</th>
-                                                <th>TourName</th>   
+                                                <th>Emirates</th>
                                                 <th>BookingFrom</th>
                                                 <th>BookingDate </th>
-                                                <th>TourDate</th>
-                                                <th>Emirates</th>
+                                                <th>TourDate</th>                                                
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <?php 
-                                                $i=1;
                                                 foreach ($tour_bookings as $index=> $tb) { 
-                                                    if($tb['tour_id'] != 0) {
+                                                    if($tb['tour_id'] == 0) {
                                                 ?>
                                                 <tr role="row" class="odd">
-                                                    <td class="index" data-id="<?php $tour['id'] ?>"><?php echo $i++; ?></td>
-                                                    <td><?php echo $tb['title']; ?></td>
+                                                    <td class="index" data-id="<?php $tour['id'] ?>"><?php echo $index+1; ?></td>
+                                                    <td><?php echo $tb['emirates']; ?></td>
                                                     <td>
                                                         <?php echo $tb['user_name']; ?> <small class="text-primary"><?php echo $tb['email']; ?></small> <br>
                                                         <small class="text-muted"><?php echo $tb['countryCode1'].' '.$tb['cell_no1']; ?></small>
                                                     </td>
                                                     <td><?php echo $tb['booking_date']; ?></td>
-                                                    <td><?php echo $tb['tour_date']; ?></td>
-                                                    <td><?php echo $tb['emirates']; ?></td>
+                                                    <td><?php echo $tb['tour_date']; ?></td>                                                    
                                                     <td>
                                                         <?php if($tb['booking_status'] == 'initiated') { ?>
                                                             <span class="label label-warning">Initiated</span>
@@ -71,7 +68,7 @@
                                                         
                                                     </td>
                                                     <td>
-                                                        <a href="<?php url('admin/tour-booking/'.$tb['booking_id']);  ?>" class="label label-info" data-id="<?php echo $tb['booking_id'] ?>">Review and Confirm</a>
+                                                        <a href="<?php url('admin/transfer-service-booking/'.$tb['booking_id'].'?type=ts');  ?>" class="label label-info" data-id="<?php echo $tb['booking_id'] ?>">Review and Confirm</a>
                                                     </td>
                                                     <!-- <td>
                                                         <?php if($tb['booking_status'] == 'initiated') { ?>

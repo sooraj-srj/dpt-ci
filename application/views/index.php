@@ -111,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                            ?>
                             <div class="item">
                                 <div class="col-md-12">
-                                    <a href="<?php url(); ?>">
+                                    <a href="<?php url('transfer/'.$emirate['id']); ?>">
                                         <img src="<?php echo_image('images/emirates/'.$emirate['image']); ?>" class="img-responsive">
                                         <div class="text-2-style"><?php echo $emirate['name']; ?></div>
                                     </a>
@@ -234,9 +234,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
         <div class="col-md-3">
-            <img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive">
+            <a href="<?php url('tourist-visa'); ?>"><img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive"></a>
             <br>
-            <img src="<?php echo assets_url(); ?>images/b7734aab25c8c4d.jpg" class="img-responsive">
+            <a href="<?php url('reviews'); ?>"><img src="<?php echo assets_url(); ?>images/b7734aab25c8c4d.jpg" class="img-responsive"></a>
         </div>
     </div>
 </div>

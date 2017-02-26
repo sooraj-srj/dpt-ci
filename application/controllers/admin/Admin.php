@@ -387,20 +387,56 @@ class Admin extends CI_Controller {
         $this->template->render();
     }
 
+    //list transfer service bookings
+    public function transfer_service_bookings($params='')
+    {
+        $this->load->model('admin/admin_model');
+        $this->gen_contents['page_heading'] = 'Transfer Service Bookings';
+        $this->gen_contents['tour_bookings'] = $this->admin_model->get_ts_bookings();
+        //p($this->gen_contents['tour_bookings']); exit;
+        //rendering page        
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/transfer-service-booking', $this->gen_contents);
+        $this->template->render();
+    }
+
     //display booking details page
     public function tour_bookings_details($booking_id='')
     {
         $this->load->model('admin/admin_model');
         $this->gen_contents['page_heading'] = 'Tour Booking Details';
+        $tour_type = $this->gen_contents['tour_type'] = $this->input->get('type');
+        $this->gen_contents['agents'] = $this->admin_model->get_agents();
+
         $this->gen_contents['booking_details'] = $this->admin_model->get_tour_booking_details($booking_id);
         $booking_details = $this->gen_contents['booking_details'];
         foreach ($booking_details as $bd) { }
+        if($tour_type == 'ts'){
+            $emirates_data = $this->admin_model->get_emairates_from_booking($booking_id);   // for TS
+        }
 
+        $this->gen_contents['emirates'] = $emirates_data['emirates'];
         $mail_body = $this->admin_model->get_email_template('booking-mail');
-        if($bd['mail_body'] != '') $tour_details = $bd['mail_body']; else $tour_details = $bd['body'];
-        $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body['body']);                
-        $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
+       
+        if($tour_type == 'ts'){
+            $message  = "You are selected <b>"  .$emirates_data['emirates']. '</b> transfer service.';
+            $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body['body']);
+            $mail_body = str_replace('{{tour_details}}', $message, $mail_body);
+            //echo $mail_body; exit;
+        }
+        else{
+             if($bd['mail_body'] != '') 
+                $tour_details = $bd['mail_body']; 
+            else 
+                $tour_details = $bd['body'];
+            $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body['body']);                
+            $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
+        }
+        
+
         $this->gen_contents['mail_content'] = $mail_body;
+       
+
         //p($this->gen_contents['booking_details']); exit;
         //rendering page        
         $this->template->set_template('admin');
@@ -434,6 +470,11 @@ class Admin extends CI_Controller {
                 $from_email     = 'info@dubaiprivatetour.com';
 
                 send_mail($to_email, $from_name, $subject, $body_content, $from_email);
+
+                $agent_email  = $this->input->post("agent_email",true);
+                if(!empty($agent_email)){
+                    send_mail($agent_email, $from_name, "New Booking Confirmation- Ref: ".$subject, $body_content, $from_email); //send to agent
+                }                
                 // ====== Send email notification =========
                 sf('success_message','Booking has been confirmed successfully');
                 redirect('admin/tour-booking/'.$booking_id);
@@ -572,6 +613,92 @@ class Admin extends CI_Controller {
             //rendering page
             $this->gen_contents['page_heading'] = 'Menu';
             $this->gen_contents['menu'] = $this->admin_model->get_menu();
+            $this->template->set_template('admin');
+            $this->template->write_view('content', $page, $this->gen_contents);
+            $this->template->render();
+    }
+
+    //function to list reviews
+    public function list_reviews($flag='',$id='')
+    {
+        $this->gen_contents['page_heading'] = 'Reviews';        
+        //p($this->gen_contents['reviews']); exit;
+        if($flag == 'delete'){
+            $this->admin_model->delete_review($id);
+        }
+        $this->gen_contents['reviews']   = $this->admin_model->get_reviews();
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/reviews-list', $this->gen_contents);
+        $this->template->render();
+    }
+    //function to list questions
+    public function list_questions($value='')
+    {
+        $this->gen_contents['page_heading'] = 'Questions';
+        $this->gen_contents['questions']   = $this->admin_model->get_questions();
+        //p($this->gen_contents['reviews']); exit;
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/questions-list', $this->gen_contents);
+        $this->template->render();
+    }
+
+
+    //manage agents
+    public function agents($mode="list",$id=""){
+        (!$this->authentication->check_logged_in("admin", false)) ? redirect('admin') : '';
+            $page = 'admin/agents-list';
+            $this->load->model('admin/admin_model');
+            // Emirates add area
+            if($mode == "add"){
+                $page = 'admin/agents-add';
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('name', 'Agent Name', 'required');
+                if($this->form_validation->run() == TRUE){
+                    $post_data['name'] = $this->input->post("name",true);                    
+                    $post_data['email'] = $this->input->post("email",true);                    
+                    $post_data['phone'] = $this->input->post("phone",true);                    
+                    $response = $this->admin_model->process_agents("add",$post_data);
+                    if($response == "added"){
+                        sf('success_message', 'New tour agent has been added successfully');
+                        redirect("admin/agents");
+                    }                    
+                }
+
+            }
+            // Emirates edit area
+            if($mode == "edit"){
+                $page = 'admin/agents-add';
+                $agent_data = $this->admin_model->get_agent_data($id);
+                $this->gen_contents['agent_data'] = $agent_data;
+
+                $this->load->library('form_validation');
+                $this->form_validation->set_rules('name', 'Agent Name', 'required');
+                if($this->form_validation->run() == TRUE){   
+                    $post_data['name'] = $this->input->post("name",true);                    
+                    $post_data['email'] = $this->input->post("email",true);                    
+                    $post_data['phone'] = $this->input->post("phone",true);                  
+                    $post_data['id'] =  $this->input->post("id",true);               
+                    
+                    $response = $this->admin_model->process_agents("edit",$post_data);
+                    if($response == "edited"){
+                        sf('success_message', 'Agent data has been updated successfully');
+                        redirect("admin/agents");
+                    }
+                    
+                }
+
+            }
+            // Category delete area
+            if($mode == "delete" && !empty($id)){                
+                $post_data = array(
+                    'id'=> $id
+                );
+                $response = $this->admin_model->process_agents("delete",$post_data);
+                redirect("admin/agents");
+            }
+            //rendering page
+            $this->gen_contents['page_heading'] = 'Agents';
+            $this->gen_contents['agents'] = $this->admin_model->get_agents();
             $this->template->set_template('admin');
             $this->template->write_view('content', $page, $this->gen_contents);
             $this->template->render();

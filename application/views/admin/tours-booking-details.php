@@ -20,8 +20,12 @@
             <h1>Manage Tour Bookings </h1>
             <ol class="breadcrumb">
                 <li><a href="<?php url('admin') ?>"><i class="fa fa-dashboard"></i> </a></li>
-                <li><a href="<?php url('admin/tour-booking') ?>"> List Bookings </a></li>
-                <li class="active">List Tours</li>
+                <?php if($tour_type == 'ts'){ ?>
+                <li><a href="<?php url('admin/transfer-service-booking') ?>"> List Transfer Service Bookings </a></li>
+                <?php } else {?>
+                <li><a href="<?php url('admin/tour-booking') ?>"> List Tour Bookings </a></li>
+                <?php } ?>
+                <li class="active">Booking Details</li>
             </ol>
         </section>
 
@@ -162,8 +166,21 @@
                                         <div class="col-md-7">
                                             <form name="confirmForm1" method="post" action="<?php url('admin/booking-appln') ?>" role="form">      
                                                 <div class="form-group">
+                                                    <label>Select Agents</label><div class="clearfix"></div>
+                                                    <select name="agent_email" class="form-control">
+                                                        <option value="">Select Agent</option>
+                                                        <?php foreach($agents as $agent) {
+                                                            ?>
+                                                            <option value="<?php echo $agent['email'] ?>">
+                                                            <?php echo $agent['name'].' ('.$agent['email'].')'; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>Mail Subject</label><div class="clearfix"></div>
-                                                    <textarea name="subject" class="form-control"><?php echo $bd['title']; ?>: Booking Confirmed!</textarea>
+                                                    <textarea name="subject" class="form-control"><?php if($tour_type == 'ts') echo 'Your '. $emirates.' transfer service'; else echo $bd['title']; ?>: Booking Confirmed!</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email content to the user</label>

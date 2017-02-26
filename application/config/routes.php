@@ -103,6 +103,9 @@ $route['admin/tour-booking/(:any)']    = "admin/admin/tour_bookings_details/$1";
 //$route['admin/booking-appln/(:any)/(:any)']    = "admin/admin/booking_appln/$1/$2";
 $route['admin/booking-appln']    	   = "admin/admin/booking_appln";
 
+$route['admin/transfer-service-booking']           = "admin/admin/transfer_service_bookings";
+$route['admin/transfer-service-booking/(:any)']    = "admin/admin/tour_bookings_details/$1";
+
 $route['admin/email-template']         = "admin/admin/manage_email_template";
 
 //manage gallery
@@ -116,6 +119,14 @@ $route['admin/upload']    				= "admin/dropzone/upload";
 $route['admin/menu']                  	= "admin/admin/menu";
 $route['admin/menu/(:any)']           	= "admin/admin/menu/$1";
 $route['admin/menu/(:any)/(:any)']   	= "admin/admin/menu/$1/$2";
+
+$route['admin/reviews']                  	= "admin/admin/list_reviews";
+$route['admin/reviews/(:any)/(:any)']       = "admin/admin/list_reviews/$1/$2";
+$route['admin/questions']                  	= "admin/admin/list_questions";
+
+$route['admin/agents']                  = "admin/admin/agents";
+$route['admin/agents/(:any)']           = "admin/admin/agents/$1";
+$route['admin/agents/(:any)/(:any)']    = "admin/admin/agents/$1/$2";
 
 
 

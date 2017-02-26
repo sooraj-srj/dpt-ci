@@ -21,7 +21,7 @@
                 <div class="clearfix"></div>
                 <br>
                 <img src="<?php echo assets_url(); ?>images/003.jpg" class="img-responsive"> <br>
-                <img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive"></div>
+                <a href="<?php url('tourist-visa') ?>"><img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive"></div></a>
             <div class="col-md-9">
 
 

@@ -200,6 +200,28 @@ class Admin_model extends CI_Model {
             return '';
         }
     }
+
+    //get tour booking list
+    public function get_ts_bookings($params='')
+    {
+        $qry = "SELECT b.*,e.name as emirates, b.status as booking_status, b.id as booking_id,
+                DATE_FORMAT(FROM_UNIXTIME(b.timestamp), '%d/%b/%Y') booking_date, 
+                DATE_FORMAT(b.tour_date, '%d/%b/%Y') tour_date,
+                CONCAT(b.firstName,' ',b.lastName) as user_name
+                FROM `default_booking` b
+                LEFT JOIN default_emirates e ON e.id = b.emirates_id 
+                WHERE b.tour_id = 0
+                ORDER BY b.`id`  DESC";
+        
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
     
     // get tour booking details
     public function get_tour_booking_details($booking_id='')
@@ -221,6 +243,23 @@ class Admin_model extends CI_Model {
         
         $sel = $this->db->query($qry);
         $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+
+    //get emirates name from booking id
+    public function get_emairates_from_booking($booking_id='')
+    {
+        $qry = "SELECT b.*,e.name as emirates
+                FROM default_booking b 
+                LEFT JOIN default_emirates e ON e.id = b.emirates_id 
+                WHERE b.id = '$booking_id'";
+        $sel = $this->db->query($qry);
+        $res = $sel->row_array($sel);
         if(!empty($res)){
             return $res;
         }
@@ -374,5 +413,94 @@ class Admin_model extends CI_Model {
             return "edited";
         }        
     }
+
+    //Get reviews
+    public function get_reviews()
+    {
+        $qry = "SELECT *,DATE_FORMAT(FROM_UNIXTIME(timestamp), '%d/%m/%Y') AS 'review_date' 
+                FROM `default_reviews` WHERE 1 ORDER BY timestamp DESC";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+
+    //Get questions
+    public function get_questions()
+    {
+        $qry = "SELECT *,DATE_FORMAT(FROM_UNIXTIME(timestamp), '%d/%m/%Y') AS 'qdate' 
+                FROM `default_ask_questions` WHERE 1 ORDER BY timestamp DESC";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+
+    //delete review
+    public function delete_review($id='')
+    {
+        $this->db->where("id",$id);
+        $this->db->delete("default_reviews");
+        return "deleted";
+    }
+
+    //get agents
+    public function get_agents($value='')
+    {
+        $qry = "SELECT * FROM default_tour_agents ORDER BY name";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+
+    // process agents - add/edit/delete
+    public function process_agents($mode,$post_data){
+        
+        if($mode == "add"){
+            $this->db->insert("default_tour_agents",$post_data);
+            return "added";
+        }
+        if($mode == "edit"){     
+            $tid = $post_data['id'];     
+            $this->db->where("id",$tid);
+            $this->db->update("default_tour_agents",$post_data);
+            return "edited";
+        }
+        if($mode == "delete"){    
+            $tid = $post_data['id'];      
+            $this->db->where("id",$tid);
+            $this->db->delete("default_tour_agents");
+            return "deleted";
+        }
+    }
+
+    //get agents data
+     public function get_agent_data($id)
+    {
+        $query = $this->db->select("*")
+                ->where('id',$id)
+                ->from("default_tour_agents")
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            return $result;
+        } else {
+            return '';
+        }
+    }
+
 
 }

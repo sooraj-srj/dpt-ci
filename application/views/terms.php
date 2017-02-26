@@ -4,7 +4,6 @@
 <div class="about-div">
     <div class="container">
         <div class="col-md-3">
-
             <div class="clearfix"></div>
             <div class="left-package-list">
                 <div class="widget banners">
@@ -16,7 +15,8 @@
             <div class="clearfix"></div>
             <br>
             <img src="<?php echo assets_url(); ?>images/003.jpg" class="img-responsive"> <br>
-            <img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive"></div>
+            <a href="<?php url('tourist-visa'); ?>"><img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive"></a>
+        </div>
         <div class="col-md-9">
             <div class="price-decoration__label">
                 <h4>CANCELLATION AND REFUND POLICY</h4>

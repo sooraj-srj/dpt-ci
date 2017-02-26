@@ -75,10 +75,10 @@
                      <tbody>
                        <tr>
                          <td>
-                         <h4 style="text-align:center;font-family: Roboto, sans-serif; background-color:#2BB9F4; color:#fff;
-                         padding:10px; margin:0;">Confirmed Booking</h4>
-                         <p style="font-family: Roboto, sans-serif; margin:2px 0; font-size:15px; font-weight:bold;">Dear '.$user_name.' ,</p>
-                           <p style="font-family: Roboto, sans-serif; margin:10px 0; font-size:14px;">'.$message.'</p></td>
+                              <h4 style="text-align:center;font-family: Roboto, sans-serif; background-color:#2BB9F4; color:#fff;
+                              padding:10px; margin:0;">'.$message.'</h4><br>
+                              <p style="font-family: Roboto, sans-serif; margin:2px 0; font-size:15px; font-weight:bold;">Dear '.$user_name.' ,</p>
+                         </td>
                        </tr>
                      </tbody>
                    </table>
@@ -97,9 +97,9 @@
                              <tbody>
                                <tr>
                                  <td width="100%"><p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;"><strongThanks</strong></p>
-                                   <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;"><strong>Dubai Private Tours</strong></p>               
+                                   <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;"><strong>Dubai Private Tours</strong></p> <br>              
                                    <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;">Visit us @ <a href="http://www.milantoursdubai.com/" target="_blank">www.milantoursdubai.com</a></p>
-                                   <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;">Visit  us @ <a href="http://www.dubaiprivatetour.com/" target="_blank">www.dubaiprivatetour.com</a></p></td>
+                                   <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;">Visit us @ <a href="http://www.dubaiprivatetour.com/" target="_blank">www.dubaiprivatetour.com</a></p></td>
                                </tr>
                              </tbody>
                            </table></td>
