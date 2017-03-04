@@ -163,39 +163,9 @@
                         </div>
                         <div class="clearfix"></div>
                         <br>
-                        <div class="details-share-div"><a class="share-btn share-btn-branded share-btn-twitter"
-                                                          href="#"
-                                                          title="Share on Twitter"> <span class="share-btn-icon"></span>
-                                <span class="share-btn-text"><i class="fa fa-twitter"
-                                                                aria-hidden="true"></i> Twitter</span> </a>
-
-                            <!-- Branded Facebook button -->
-                            <a class="share-btn share-btn-branded share-btn-facebook"
-                               href="#"
-                               title="Share on Facebook"> <span class="share-btn-icon"></span> <span
-                                    class="share-btn-text"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</span>
-                            </a>
-
-                            <!-- Branded Google+ button -->
-                            <a class="share-btn share-btn-branded share-btn-googleplus"
-                               href="#"
-                               title="Share on Google+"> <span class="share-btn-icon"></span> <span
-                                    class="share-btn-text"><i class="fa fa-google-plus" aria-hidden="true"></i> Google+</span>
-                            </a>
-
-                            <!-- Branded LinkedIn button -->
-                            <a class="share-btn share-btn-branded share-btn-linkedin"
-                               href="#"
-                               title="Share on LinkedIn"> <span class="share-btn-icon"></span> <span
-                                    class="share-btn-text"><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn</span>
-                            </a>
-
-                            <!-- Branded Pinterest button -->
-                            <a class="share-btn share-btn-branded share-btn-pinterest"
-                               href="#"
-                               title="Share on Pinterest"> <span class="share-btn-icon"></span> <span
-                                    class="share-btn-text"><i class="fa fa-pinterest-p" aria-hidden="true"></i> Pinterest</span>
-                            </a></div>
+                        <div class="details-share-div">
+                            <?php $this->load->view('addthis'); ?>
+                        </div>
                     </div>
                     
 
