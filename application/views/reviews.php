@@ -19,8 +19,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <br>
-                    <img src="<?php echo assets_url(); ?>images/003.jpg" class="img-responsive"> <br>
-                    <a href="<?php url('tourist-visa') ?>"><img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive"></a>                    
+                    <?php $this->load->view('common/left-ad'); ?>                    
                 </div>
                 <div class="col-md-9">
                     <div class="row">
@@ -92,11 +91,11 @@
                                                 <label for="email">Your Rating<span class="red">*</span></label>
                                                 <select class="form-control input-sm" id="years" name="rating">
                                                     <option value="">Select </option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>                                                    
+                                                    <option value="5">Excellent</option>    
+                                                    <option value="4">Very Good</option>   
+                                                    <option value="3">Average</option>                                                           
+                                                    <option value="2">Poor</option>
+                                                    <option value="1">Terrible</option>                               
                                                 </select>
                                             </div>
 

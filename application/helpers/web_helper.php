@@ -126,3 +126,29 @@
                     </html>';
      return $email_footer;
  }
+
+
+ function get_message($flag = ''){
+    $message = "";
+    if($flag == 'booking'){
+      $text1 = "booking";
+      $text2 = "tour booking";
+    }
+    if($flag == 'enquiry'){
+      $text1 = "enquiry";
+      $text2 = "reply";
+    }
+    if($flag == 'booking_email'){
+      $text1 = "booking";
+      $text2 = "tour booking";
+      $message .= "<p><h5>Greetings and thank you for choosing Dubai Private Tour !!!! </h5></p><br>";
+    }
+
+    $message .= '<p><h4><b>We are in receipt of your '.$text1.' and you shall receive our '.$text2.' confirmation within the next 24 hours.</b></h4> <small>(Kindly do check your SPAM Folder in case the reply isn’t delivered in Inbox)</small></p>
+      <p>In case of any urgent matter, kindly Call / Text / Whatsapp us in either of the below numbers 
+      <br><b>+971-552501818 / +971-552554333</b></p>
+      <p>We work on trust basis and do not request payment in advance.</p>
+      <p>You may kindly choose to pay us on day of tour by <b>CASH / CARD</b>. We accept all major <b>CREDIT / DEBIT / AMEX / DINER’S / MASTER / MAESTRO</b>.</p>
+      <p>We also do not have any cancellation policy. However, if there is any cancellation, kindly inform us in advance.</p>';
+    return $message;
+ }

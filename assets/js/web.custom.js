@@ -601,7 +601,12 @@ $(document).ready(function () {
                     },
                     emailAddress: {
                         message: 'Please enter confirm email address'
+                    },
+                    identical: {
+                        field: 'email',
+                        message: 'Email and confirm email should be same'
                     }
+
                 }
             },    
             nationality: {
@@ -639,7 +644,9 @@ $(document).ready(function () {
 
 });
 // == bootstrap form validation 
+function resetPickupLocationDiv(){
 
+}
 // == Tour form management
 $(document).ready(function() {
     $("#pickupLocation").on("change",function(){    //pickup location onchange
@@ -648,22 +655,34 @@ $(document).ready(function() {
             $("#hotelDetails1").hide();
         }
         if(id == '1'){
+            $("#shipDetails").hide();
+            $("#flightDetails1").hide();
+            $("#mallDetails").hide();
             $("#hotelDetails1").show();
         }
         else if(id == '2' || id == '3' || id == '4'){
             $("#hotelDetails1").hide();
             $("#shipDetails").hide();
+            $("#mallDetails").hide();
             $("#flightDetails1").show();
         }
         else if(id == '5' || id == '6' || id == '7'){
             $("#hotelDetails1").hide();
             $("#flightDetails1").hide();
+            $("#mallDetails").hide();
             $("#shipDetails").show();
+        }
+        else if(id == '11'){
+            $("#hotelDetails1").hide();
+            $("#flightDetails1").hide();
+            $("#shipDetails").hide();
+            $("#mallDetails").show();
         }
         else{
             $("#hotelDetails1").hide();
             $("#flightDetails1").hide();
             $("#shipDetails").hide();
+            $("#mallDetails").hide();
         }
     });
 
@@ -690,6 +709,18 @@ $(document).ready(function() {
             }
         });
     });
+
+    //Disable cut/copy/paste
+      $('#contactEmail').bind("cut copy paste",function(e) {
+          e.preventDefault();
+          alert("Sory! This option is not available.");
+      });
+      $('#contactEmailConfirm').bind("cut copy paste",function(e) {
+          e.preventDefault();
+          alert("Sory! This option is not available.");
+      });
+
+
 });
 // == Tour form management
 

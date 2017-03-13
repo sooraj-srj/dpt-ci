@@ -38,6 +38,9 @@ body {
     float: left;
     padding-right: 25px;
 }
+.top-ul-social li a{
+    color: #fff !important;
+}
 .logo-menu-div {
     width: 100%;
     float: left;
@@ -479,7 +482,7 @@ ul.menu-ul-style {
 }
 .price-div-bg-text {
     background-color: rgba(34, 176, 227, 0.78);
-    width: 30%;
+    width: 40%;
     float: right;
     color: #fff;
 }
@@ -1726,3 +1729,16 @@ ul.flags, .flags li {
 .red{
     color: red;
 }
+/*Thank you message*/
+    .text-thankyou{
+        font-size: 14px;
+        color: #333;
+        line-height: 1.6;
+    }
+    .text-thankyou small{
+        font-style: italic;
+    }
+    .text-thankyou h4{
+        line-height: 1.6 !important;
+    }
+/*Thank you message*/

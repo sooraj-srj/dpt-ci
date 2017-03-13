@@ -377,9 +377,10 @@ class Admin extends CI_Controller {
     //list tour bookings
     public function tour_bookings($params='')
     {
+        $filters['td'] = $this->input->get('td');
         $this->load->model('admin/admin_model');
         $this->gen_contents['page_heading'] = 'Tour Bookings';
-        $this->gen_contents['tour_bookings'] = $this->admin_model->get_tour_bookings();
+        $this->gen_contents['tour_bookings'] = $this->admin_model->get_tour_bookings($filters);
         //p($this->gen_contents['tour_bookings']); exit;
         //rendering page        
         $this->template->set_template('admin');

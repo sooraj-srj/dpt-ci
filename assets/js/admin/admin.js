@@ -102,6 +102,12 @@ $(document).ready(function () {
         format: "yyyy-mm-dd"
     });
 
+    //search date picker
+    $('#booking_date').datepicker({
+        autoclose: true,
+        format: "yyyy-mm-dd"
+    });
+
 });
 //******* END OF DOCUMENT.READY() ***************//
 

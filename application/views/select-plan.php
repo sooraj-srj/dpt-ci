@@ -7,7 +7,7 @@
             <div class="col-md-3">
                 <div class="price-decoration block-after-indent  screen-only">
                     <!--<div class="price-decoration__value"> <i class="fa fa-tag"></i> <span class="amount"><small>AED </small>580</span> <span class="amount"><small>USD </small>159</span> </div>-->
-                    <div class="price-decoration__label"><h4>Select Your Package</h4></div>
+                    <div class="price-decoration__label"><h4>Select Your Tours</h4></div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="left-package-list">
@@ -33,13 +33,7 @@
                 <div class="clearfix"></div>
                 <br>
 
-                <img src="<?php echo assets_url(); ?>images/003.jpg" class="img-responsive">
-                <br>
-                <a href="<?php url('tourist-visa'); ?>"><img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive"></a>
-                <br>
-                <a href="<?php url('plan/ferrari-world/4?plan=74'); ?>"><img src="<?php echo assets_url(); ?>images/004.jpg" class="img-responsive"></a>
-                <br>
-                <img src="<?php echo assets_url(); ?>images/005.jpg" class="img-responsive">
+                <?php $this->load->view('common/left-ad'); ?>
 
             </div>
             <div class="col-md-9">
@@ -159,11 +153,11 @@
                                                     <!-- hide and show for flight details -->
                                                     <div id="flightDetails1" style="display: none;">
                                                         <div class="form-group">
-                                                            <label for="flightName">Flight Name and No<span class="red">*</span></label>      
+                                                            <label for="flightName">Flight Name<span class="red">*</span></label>      
                                                             <input type="text" class="form-control" name="flightName" id="flightName" placeholder="Flight Name" value="">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="terminalName">Terminal Name<span class="red">*</span></label>      
+                                                            <label for="terminalName">Terminal Number<span class="red">*</span></label>      
                                                             <input type="text" class="form-control" name="terminalName" id="terminalName" placeholder="Terminal Name" value="">
                                                         </div>
                                                         <div class="form-group">
@@ -180,6 +174,13 @@
                                                         <div class="form-group">
                                                             <label for="shipName">Ship Name<span class="red">*</span></label>
                                                             <input type="text" class="form-control" name="shipName" id="shipName" placeholder="shipName" value=""> 
+                                                        </div>
+                                                    </div>
+                                                    <!-- hide and show for MAll name -->
+                                                    <div id="mallDetails" style="display: none;">
+                                                        <div class="form-group">
+                                                            <label for="shipName">Mall Name<span class="red">*</span></label>
+                                                            <input type="text" class="form-control" name="mallName" id="mallName" placeholder="Mall Name" value=""> 
                                                         </div>
                                                     </div>
                                                 </div>

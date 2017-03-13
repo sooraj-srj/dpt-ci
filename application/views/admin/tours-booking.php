@@ -17,15 +17,25 @@
         <section class="content">
             <div class="row">
                 <div class="col-xs-12">
-
                     <!-- /.box -->
-
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">List all tour bookings</h3>                            
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-inline">
+                                      <div class="form-group">
+                                        <label for="email">Booking Date</label>
+                                        <input type="text" class="form-control" id="booking_date" name="td">
+                                      </div>                                      
+                                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <br>
                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                                 
                                 <div class="row">

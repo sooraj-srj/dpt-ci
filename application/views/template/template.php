@@ -32,13 +32,13 @@
     <div class="container">
         <div class="col-md-6">
             <ul class="top-ul-num">
-                <li><i class="fa fa-mobile" aria-hidden="true"></i> &nbsp; +971 55 2501 818</li>
+                <li><i class="fa fa-mobile" aria-hidden="true"></i> &nbsp; +971 55 955 4333</li>
                 <li><i class="fa fa-phone" aria-hidden="true"></i> &nbsp; +971 4 3961 444</li>
             </ul>
         </div>
         <div class="col-md-6">
             <ul class="top-ul-social">
-                <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+                <li><a href="https://www.facebook.com/DubaiPrivatTour/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                 <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
                 <li><i class="fa fa-google-plus" aria-hidden="true"></i></li>
                 <li><i class="fa fa-linkedin" aria-hidden="true"></i></li>
@@ -202,7 +202,9 @@
 
             <div class="footer-social-icon">
                 <div class="foot-soc-icon-div col-1"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                <div class="foot-soc-icon-div col-2"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                <div class="foot-soc-icon-div col-2">
+                    <a href="https://www.facebook.com/DubaiPrivatTour/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </div>
                 <div class="foot-soc-icon-div col-3"><i class="fa fa-google-plus" aria-hidden="true"></i></div>
                 <div class="foot-soc-icon-div col-4"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
                 <div class="foot-soc-icon-div col-5"><i class="fa fa-instagram" aria-hidden="true"></i></div>

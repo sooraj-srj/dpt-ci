@@ -17,12 +17,12 @@
                 </div>
                 <div class="form-group col-md-12 col-sm-6">
                     <label for="email">Email<span class="red">*</span></label>
-                    <input type="email" class="form-control input-sm" id="email" name="email" placeholder="Your Email">
+                    <input type="email" class="form-control input-sm" id="contactEmail" name="email" placeholder="Your Email">
                 </div>
 
                 <div class="form-group col-md-12 col-sm-6">
                     <label for="email">Confirm Email<span class="red">*</span></label>
-                    <input type="email" class="form-control input-sm" id="email" name="confirm_email" placeholder="Confirm Email">
+                    <input type="email" class="form-control input-sm" id="contactEmailConfirm" name="confirm_email" placeholder="Confirm Email">
                 </div>
                 <div class="form-group col-md-12 col-sm-6">
                     <label for="name">Nationality</label>

@@ -21,7 +21,7 @@ class Web extends CI_Controller {
         $this->gen_contents['emirates']         = $this->admin_model->get_emirates();   
         $this->gen_contents['popular_tours']    = $this->web_model->get_tours('popular');   
         $this->gen_contents['categories']       = $this->web_model->get_categories();   
-        $this->gen_contents['reviews']          = $this->web_model->get_reviews();        
+        $this->gen_contents['reviews']          = $this->web_model->get_reviews(3);        
         //p($this->gen_contents['popular_tours']); exit;     
         $this->template->write_view('content', 'index', $this->gen_contents);
         $this->template->render();
@@ -215,31 +215,37 @@ class Web extends CI_Controller {
         if($response == "success"){
             // ====== Send email notification =========
             if($post_data['tour_id'] > 0){
-                $content = "Your booking for the tour, <strong>".$tour_name."</strong> has been submitted successfully. We will contact you soon.";
+                //$content = "Your booking for the tour, <strong>".$tour_name."</strong> has been submitted successfully. We will contact you soon.";
                 $content1 = "A new booking for the tour, ".$tour_name." has been submitted from the user <strong>".$user_name."</strong>. <br> 
                 Please check the admin panel for more details.";
             }
             else{
-                $content = "Your booking for transfer service has been submitted successfully. We will contact you soon";
+                //$content = "Your booking for transfer service has been submitted successfully. We will contact you soon";
                 $content1 = "A new booking for transfer service has been submitted from the user <strong>".$user_name."</strong>. <br> 
                 Please check the admin panel for more details.";
             }
+            $content = get_message('booking');
 
             $to_email       = $post_data['email'];
             $from_name      = 'Dubai Private Tours';
-            $subject        = 'Booking initiated for '.$tour_name; 
+            $subject        = 'Greetings and thank you for choosing Dubai Private Tours!'; 
             $body_content   = email_header($user_name, 'Successfully submitted your booking').$content.email_footer();            
             $from_email     = 'info@dubaiprivatetour.com';
-            //echo $body_content; exit;
             send_mail($to_email, $from_name, $subject, $body_content, $from_email); // send notification to user
 
             $to_email1      = 'info@dubaiprivatetour.com';
             $subject1       = "A new booking for ".$tour_name;
             $body_content1  = email_header('Admin', 'New booking notification').$content1.email_footer();    
             //send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
+
+            $to_email2      = 'dubaiprivatetour@gmail.com';
+            $subject2       = "A new booking for ".$tour_name;
+            $body_content1  = email_header('Admin', 'New booking notification').$content1.email_footer();    
+            //send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
             
             // ====== Send email notification =========
-            sf('success_message','Your booking has been submitted successfully. We will update the booking status by email soon.');
+            $success_message = get_message('booking');
+            sf('success_message',$success_message);
             redirect('thank-you');
         }
         else{

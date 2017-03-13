@@ -179,7 +179,7 @@ class Admin_model extends CI_Model {
     }
 
     //get tour booking list
-    public function get_tour_bookings($params='')
+    public function get_tour_bookings($filters=array())
     {
         $qry = "SELECT b.*,t.*,tc.title as category,e.name as emirates, b.status as booking_status, b.id as booking_id,
                 DATE_FORMAT(FROM_UNIXTIME(b.timestamp), '%d/%b/%Y') booking_date, 
@@ -188,8 +188,13 @@ class Admin_model extends CI_Model {
                 FROM `default_booking` b
                 LEFT JOIN default_tour t ON b.tour_id = t.id
                 LEFT JOIN default_tour_categories tc ON tc.id = t.category_id 
-                LEFT JOIN default_emirates e ON e.id = t.emirates_id 
-                ORDER BY b.`id`  DESC";
+                LEFT JOIN default_emirates e ON e.id = t.emirates_id
+                WHERE 1 ";
+        if(!empty($filters['td'])){
+            $qry .= " AND b.tour_date = '$filters[td]'";
+        }
+
+            $qry .= " ORDER BY b.`id`  DESC";
         
         $sel = $this->db->query($qry);
         $res = $sel->result_array($sel);

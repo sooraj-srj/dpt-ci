@@ -15,8 +15,8 @@
             </div>
             <div class="clearfix"></div>
             <br>
-            <img src="<?php echo assets_url(); ?>images/003.jpg" class="img-responsive"> <br>
-            <img src="<?php echo assets_url(); ?>images/7fdc3fb083f48a1.jpg" class="img-responsive"></div>
+            <?php $this->load->view('common/left-ad'); ?>
+        </div>
         <div class="col-md-9">
             <div class="price-decoration__label">
                 <h4>FAQ'S</h4>

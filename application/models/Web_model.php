@@ -178,10 +178,14 @@ class Web_model extends CI_Model {
     }
 
     //get review function
-    public function get_reviews()
+    public function get_reviews($limit = '')
     {
         $qry = "SELECT *,DATE_FORMAT(FROM_UNIXTIME(timestamp), '%M %e, %Y') AS 'review_date' 
-                FROM `default_reviews` WHERE 1 ORDER BY timestamp DESC";
+                FROM `default_reviews` WHERE 1 ";
+        $qry .= "ORDER BY timestamp DESC";
+        if($limit != ''){
+            $qry .= " LIMIT $limit";
+        }
         $sel = $this->db->query($qry);
         $res = $sel->result_array($sel);
         if(!empty($res)){
