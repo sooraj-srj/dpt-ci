@@ -139,48 +139,57 @@
                                                     <div id="hotelDetails1" style="display: none;">
                                                         <div class="form-group">
                                                             <label for="Hotel Name">Hotel Name<span class="red">*</span></label>                                 
-                                                            <input type="text" class="form-control" name="hotelName" id="hotelName" placeholder="Hotel Name" value="">
+                                                            <input type="text" class="form-control input-sm" name="hotelName" id="hotelName" placeholder="Hotel Name" value="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="hotelAddress">Hotel Address<span class="red">*</span></label>       
-                                                            <input type="text" class="form-control" name="hotelAddress" id="hotelAddress" placeholder="Hotel Address" value="">
+                                                            <input type="text" class="form-control input-sm" name="hotelAddress" id="hotelAddress" placeholder="Hotel Address" value="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="hotelPhoneNo">Hotel Telephone<span class="red">*</span></label>
-                                                            <input type="text" class="form-control" name="hotelPhoneNo" id="hotelPhoneNo" placeholder="Hotel Phone No" value="">
+                                                            <input type="text" class="form-control input-sm" name="hotelPhoneNo" id="hotelPhoneNo" placeholder="Hotel Phone No" value="">
                                                         </div>
                                                     </div>
                                                     <!-- hide and show for flight details -->
                                                     <div id="flightDetails1" style="display: none;">
                                                         <div class="form-group">
                                                             <label for="flightName">Flight Name<span class="red">*</span></label>      
-                                                            <input type="text" class="form-control" name="flightName" id="flightName" placeholder="Flight Name" value="">
+                                                            <input type="text" class="form-control input-sm" name="flightName" id="flightName" placeholder="Flight Name" value="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="terminalName">Terminal Number<span class="red">*</span></label>      
-                                                            <input type="text" class="form-control" name="terminalName" id="terminalName" placeholder="Terminal Name" value="">
+                                                            <input type="text" class="form-control input-sm" name="terminalName" id="terminalName" placeholder="Terminal Name" value="">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="flightArrival">Arrival Time<span class="red">*</span></label>       
-                                                            <input type="text" class="form-control" name="flightArrival" id="flightArrival" placeholder="Flight Arrival" value="">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6 col-sm-6">
+                                                                <label for="flightArrival">Arrival Time<span class="red">*</span></label>       
+                                                                <input type="text" class="form-control input-sm" name="flightArrivalTime" id="flightArrival" placeholder="Flight Arrival" value="">
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-sm-6">
+                                                                <label for="flightArrival">&nbsp;</label>       
+                                                                <select class="form-control input-sm" name="flightArrivalUnit">
+                                                                    <option value="AM">AM</option>
+                                                                    <option value="PM">PM</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="flightDeparture">Departure Time</label>
-                                                            <input type="text" class="form-control" name="flightDeparture" id="flightDeparture" placeholder="Flight Departure" value="">        
+                                                            <input type="text" class="form-control input-sm" name="flightDeparture" id="flightDeparture" placeholder="Flight Departure" value="">        
                                                         </div>
                                                     </div>
                                                     <!-- hide and show for ship name -->
                                                     <div id="shipDetails" style="display: none;">
                                                         <div class="form-group">
                                                             <label for="shipName">Ship Name<span class="red">*</span></label>
-                                                            <input type="text" class="form-control" name="shipName" id="shipName" placeholder="shipName" value=""> 
+                                                            <input type="text" class="form-control input-sm" name="shipName" id="shipName" placeholder="shipName" value=""> 
                                                         </div>
                                                     </div>
                                                     <!-- hide and show for MAll name -->
                                                     <div id="mallDetails" style="display: none;">
                                                         <div class="form-group">
                                                             <label for="shipName">Mall Name<span class="red">*</span></label>
-                                                            <input type="text" class="form-control" name="mallName" id="mallName" placeholder="Mall Name" value=""> 
+                                                            <input type="text" class="form-control input-sm" name="mallName" id="mallName" placeholder="Mall Name" value=""> 
                                                         </div>
                                                     </div>
                                                 </div>
@@ -203,16 +212,16 @@
                                                     <div id="endloc" style="display: none;">
                                                         <div class="form-group">
                                                             <label for="endhotel Name">End Hotel Name<span class="red">*</span></label>
-                                                            <input type="text" class="form-control" name="endhotelName" id="endhotelName" placeholder="Hotel Name" value="">
+                                                            <input type="text" class="form-control input-sm" name="endhotelName" id="endhotelName" placeholder="Hotel Name" value="">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="endhotelAddress">End Hotel Address<span class="red">*</span></label>       
-                                                            <input type="text" class="form-control" name="endhotelAddress" id="endhotelAddress" placeholder="Hotel Address" value="">
+                                                            <input type="text" class="form-control input-sm" name="endhotelAddress" id="endhotelAddress" placeholder="Hotel Address" value="">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="endhotelPhoneNo">End Hotel Telephone<span class="red">*</span></label>
-                                                            <input type="text" class="form-control" name="endhotelPhoneNo" id="endhotelPhoneNo" placeholder="Hotel Phone No" value="">                                                            
+                                                            <input type="text" class="form-control input-sm" name="endhotelPhoneNo" id="endhotelPhoneNo" placeholder="Hotel Phone No" value="">                                                            
                                                         </div>
                                                     </div>
                                                     

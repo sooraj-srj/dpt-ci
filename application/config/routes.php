@@ -128,6 +128,9 @@ $route['admin/agents']                  = "admin/admin/agents";
 $route['admin/agents/(:any)']           = "admin/admin/agents/$1";
 $route['admin/agents/(:any)/(:any)']    = "admin/admin/agents/$1/$2";
 
+//manage display order
+$route['admin/update_display_order']                  = "admin/admin/update_display_order";
+
 
 
 

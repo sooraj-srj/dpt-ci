@@ -404,33 +404,39 @@ class Admin extends CI_Controller {
     //display booking details page
     public function tour_bookings_details($booking_id='')
     {
+
         $this->load->model('admin/admin_model');
+        //$tour_template = $this->admin_model->get_tour_template($booking_id);
+        //echo $tour_template['template'];
+        //exit;
+
         $this->gen_contents['page_heading'] = 'Tour Booking Details';
         $tour_type = $this->gen_contents['tour_type'] = $this->input->get('type');
         $this->gen_contents['agents'] = $this->admin_model->get_agents();
 
         $this->gen_contents['booking_details'] = $this->admin_model->get_tour_booking_details($booking_id);
         $booking_details = $this->gen_contents['booking_details'];
+        //p($booking_details); exit;
         foreach ($booking_details as $bd) { }
+
         if($tour_type == 'ts'){
             $emirates_data = $this->admin_model->get_emairates_from_booking($booking_id);   // for TS
         }
 
         $this->gen_contents['emirates'] = $emirates_data['emirates'];
-        $mail_body = $this->admin_model->get_email_template('booking-mail');
-       
+        //$mail_body = $this->admin_model->get_email_template('booking-mail'); //old
+        $tour_template = $this->admin_model->get_tour_template($bd['category_id']);
+        $mail_body = $tour_template['template'];
+        
         if($tour_type == 'ts'){
-            $message  = "You are selected <b>"  .$emirates_data['emirates']. '</b> transfer service.';
-            $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body['body']);
-            $mail_body = str_replace('{{tour_details}}', $message, $mail_body);
+            $tour_details  = "You are selected <b>"  .$emirates_data['emirates']. '</b> transfer service.';
+            $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body);
+            $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
             //echo $mail_body; exit;
         }
         else{
-             if($bd['mail_body'] != '') 
-                $tour_details = $bd['mail_body']; 
-            else 
-                $tour_details = $bd['body'];
-            $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body['body']);                
+            $tour_details = get_tour_details_table($bd);
+            $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body);                
             $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
         }
         
@@ -703,6 +709,15 @@ class Admin extends CI_Controller {
             $this->template->set_template('admin');
             $this->template->write_view('content', $page, $this->gen_contents);
             $this->template->render();
+    }
+
+    //update display order
+    public function update_display_order(){
+        $post_data['id'] = $this->input->post('id',true);
+        $post_data['display_order'] = $this->input->post('order',true);
+        $post_data['flag'] = $this->input->post('flag',true);
+        $this->load->model('admin/admin_model');
+        $this->admin_model->update_display_order($post_data);
     }
 
 

@@ -34,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <?php include('alert-message.php'); ?>
-                                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                        <table id="sort_order_list" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                             <thead>
                                             <tr role="row">
                                                 <th class="index">#</th>
@@ -45,7 +45,7 @@
                                             <tbody>
                                             <?php foreach ($menu as $index=> $m) { ?>
                                                 <tr role="row" class="odd">
-                                                    <td class="index" data-id="<?php $m['id'] ?>"><?php echo $index+1; ?></td>
+                                                    <td class="index" data-id="<?php echo $m['id']; ?>" data-flag="menu"><?php echo $index+1; ?></td>
                                                     <td class="sorting_1"><?php echo $m['menu_name']; ?></td>
                                                     <td>
                                                         <a href="<?php url('admin/menu/edit/'.$m['id']) ?>" class="text-primary">Edit</a>  

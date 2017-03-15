@@ -1,4 +1,23 @@
-
+<style type="text/css">
+    .item-resize{
+        position: relative;
+        width: 250px;
+        height: 200px;
+        overflow: hidden;
+    }
+    .crop-resize{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        /*width: 100%;*/
+        /*height: auto;*/
+        height: 100%;
+        width: auto;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
+</style>
 <div class="content-wrapper" style="min-height: 946px !important;">
     <section class="content-header">
         <h1> Manage Gallery Images</h1>
@@ -32,7 +51,9 @@
                     foreach ($gallery_images as $images) {
                         ?>
                         <div class="col-md-3">
-                            <img src="<?php echo_image('images/gallery/'.$images['file_name']); ?>" class="img-responsive thumbnail">
+                            <div class="item-resize">
+                                <img src="<?php echo_image('images/gallery/'.$images['file_name']); ?>" class="img-responsive thumbnail crop-resize">
+                            </div>
                         </div>
                         <?php
                     }

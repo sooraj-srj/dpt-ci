@@ -114,24 +114,24 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6 col-sm-12">
-                                                            <label for="email">Upload Hotel Booking<span class="red">*</span></label>
-                                                            <input type="file" name="hotel_booking" class="form-control input-sm">
+                                                            <label for="email">Upload Hotel Booking<span class="red">*</span> <small><i>(You can choose multiple files here)</i></small></label>
+                                                            <input type="file" name="hotel_booking[]" class="form-control input-sm" multiple="">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6 col-sm-12">
-                                                            <label for="email">Upload Your Flight Ticket<span class="red">*</span></label>
-                                                            <input type="file" name="flight_ticket" class="form-control input-sm">
+                                                            <label for="email">Upload Your Flight Ticket<span class="red">*</span> <small><i>(You can choose multiple files here)</i></small></label>
+                                                            <input type="file" name="flight_ticket[]" class="form-control input-sm" multiple="">
                                                         </div>     
                                                     </div>                                               
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6 col-sm-12">
-                                                            <label for="email">Upload Passport Copy<span class="red">*</span></label>
-                                                            <input type="file" name="passport_copy" class="form-control input-sm">
+                                                            <label for="email">Upload Passport Copy<span class="red">*</span> <small><i>(You can choose multiple files here)</i></small></label>
+                                                            <input type="file" name="passport_copy[]" class="form-control input-sm" multiple="">
                                                         </div>     
                                                     </div>                                               
                                                 </div>

@@ -77,7 +77,7 @@
                          <td>
                               <h4 style="text-align:center;font-family: Roboto, sans-serif; background-color:#2BB9F4; color:#fff;
                               padding:10px; margin:0;">'.$message.'</h4><br>
-                              <p style="font-family: Roboto, sans-serif; margin:2px 0; font-size:15px; font-weight:bold;">Dear '.$user_name.' ,</p>
+                              <p style="font-family: Roboto, sans-serif; margin:2px 0; font-size:15px; font-weight:bold;">Dear '.$user_name.',</p>
                          </td>
                        </tr>
                      </tbody>
@@ -151,4 +151,24 @@
       <p>You may kindly choose to pay us on day of tour by <b>CASH / CARD</b>. We accept all major <b>CREDIT / DEBIT / AMEX / DINER’S / MASTER / MAESTRO</b>.</p>
       <p>We also do not have any cancellation policy. However, if there is any cancellation, kindly inform us in advance.</p>';
     return $message;
+ }
+
+ function get_tour_details_table($bd = array()){
+    $tour_details = '<table width="100%" border="1" style="border-collapse: collapse;" cellpadding="5">
+                  <tbody>
+                    <tr>
+                      <td width="21%"><u>Tour date</u></td>
+                      <td width="36%"><u>Tour title</u></td>
+                      <td width="20%"><u>Start time</u></td>
+                      <td width="23%"><u>Duration</u></td>
+                    </tr>
+                    <tr>
+                      <td>'.$bd['tour_date'].'</td>
+                      <td>'.$bd['title'].'</td>
+                      <td>'.$bd['pref_pickup_time'].'</td>
+                      <td>'.$bd['duration'].'</td>
+                    </tr>
+                  </tbody>
+                </table>';
+      return $tour_details;
  }

@@ -12,8 +12,19 @@
     }
     .filter-btn-style{border-radius:0px;}	
     .filter-btn-style .btn-primary{border-radius:0px !important;margin-top:3px;}
-    .filter-btn-style ul li{margin-bottom:0px !important;}		
+    .filter-btn-style ul li{margin-bottom:0px !important;}	
+    .gallery{
+        display: inline-block;
+        margin-top: 20px;
+    }
+    /* for image resize */
+    .img-resize{
+        width: 100% !important;
+        height: 130px !important;
+    }
+    /* for image resize */
 </style>
+
 <div class="detail-img-div"></div>
 <div class="clearfix"></div>
 <div class="gallery-div">
@@ -58,18 +69,29 @@
                     echo '<center>No images in this gallery!</center>';
                 }
             ?>
-            <ul class="row">
+            <div class='list-group gallery'>
                 <?php                     
                     foreach ($gallery_images as $gi) {
                 ?>
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
-                            <img class="img-responsive" src="<?php echo_image('images/gallery/'.$gi['file_name']) ?>">
-                        </li>
+                        <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
+                            <a class="thumbnail fancybox" rel="ligthbox" href="<?php echo_image('images/gallery/'.$gi['file_name']) ?>">
+                                <img class="img-responsive img-resize" alt="" src="<?php echo_image('images/gallery/'.$gi['file_name']) ?>" />
+                               <!--  <div class='text-right'>
+                                    <small class='text-muted'>Image Title</small>
+                                </div>  -->
+                            </a>
+                        </div> <!-- col-6 / end -->
+
                 <?php
                     }
                 ?>
-            </ul> 
+                </div>
+
 
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    
+</script>
+

@@ -1,17 +1,23 @@
 
-function updateDisplayOrder(id,order) {
-        console.log('ID: '+id+', Order: '+order);
-//        $.ajax({
-//            url: 'update_category_order',
-//            type: "post",
-//            data: {
-//                'id': id,
-//                'order': order
-//            },
-//            success: function (response) { }
-//        });
-    }
+function updateDisplayOrder(id,order,flag) {
+    //console.log('ID: '+id+', Order: '+order+', flag: '+flag);
+    //console.log($("#admin_url").data('href'));
+    var post_url = $("#admin_url").data('href');
+    $.ajax({
+       url: 'update_display_order',
+       type: "post",
+       data: {
+           'id': id,
+           'order': order,
+           'flag' : flag 
+       },
+       success: function (response) { 
+            console.log(response);
+       }
+    });
+}
 $(document).ready(function () {
+
         // ========== DRAG AND PLACE ORDERING ========
         var fixHelperModified = function(e, tr) {
             var $originals = tr.children();
@@ -25,12 +31,13 @@ $(document).ready(function () {
             $('td.index', ui.item.parent()).each(function (i) {
                 var order   = i + 1;
                 var id      = $(this).data('id');
+                var flag    = $(this).data('flag');
                 $(this).html(order);
-                updateDisplayOrder(id,order);
+                updateDisplayOrder(id,order,flag);
             });
         };
 
-        $("#example1 tbody").sortable({
+        $("#sort_order_list tbody").sortable({
             helper: fixHelperModified,
             stop: updateIndex
         }).disableSelection();
@@ -48,6 +55,7 @@ $(document).ready(function () {
    
     //************* data tables ************
     var table = $("#example1").DataTable();
+    var table = $("#category_sort").DataTable();
     
     $('#city_table').DataTable({
         "paging": false,

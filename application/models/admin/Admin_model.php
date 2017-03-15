@@ -13,6 +13,7 @@ class Admin_model extends CI_Model {
     public function get_categories(){
         $query = $this->db->select("*")
                 ->from("default_tour_categories")
+                ->order_by('display_order')
                 ->get();
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
@@ -385,6 +386,7 @@ class Admin_model extends CI_Model {
     {
         $query = $this->db->select("*")
                 ->from("default_menus")
+                ->order_by('display_order')
                 ->get();
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
@@ -493,7 +495,7 @@ class Admin_model extends CI_Model {
     }
 
     //get agents data
-     public function get_agent_data($id)
+    public function get_agent_data($id)
     {
         $query = $this->db->select("*")
                 ->where('id',$id)
@@ -504,6 +506,38 @@ class Admin_model extends CI_Model {
             return $result;
         } else {
             return '';
+        }
+    }
+
+    //get tour template from admin - usinf catID
+    public function get_tour_template($cat_id = ''){
+        $query = $this->db->select("*")
+                ->where('cat_id',$cat_id)
+                ->from("default_tour_templates")
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            return $result;
+        } else {
+            return '';
+        }
+    }
+
+    //Update display order
+    public function update_display_order($post_data = array()){
+        $update_data = array(
+            'display_order' => $post_data['display_order']
+        );
+        //---------- update category order ------------------
+        if($post_data['flag'] == 'category'){
+            $this->db->where("id",$post_data['id']);
+            $this->db->update("default_tour_categories",$update_data);
+        }
+
+        //---------- update menu order ------------------
+        if($post_data['flag'] == 'menu'){
+            $this->db->where("id",$post_data['id']);
+            $this->db->update("default_menus",$update_data);
         }
     }
 

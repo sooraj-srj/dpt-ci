@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>set1.css">
     
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>bootstrapValidator.min.css">    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -230,6 +231,7 @@
 <script src="<?php echo c('js_path_url'); ?>photo-gallery.js"></script>
 <script src="<?php echo c('js_path_url'); ?>calen.js"></script>
 <script src="<?php echo c('js_path_url'); ?>jssor.slider-22.0.7.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 <script src="<?php echo c('js_path_url'); ?>jssor.custom.js"></script>
 
 <script>

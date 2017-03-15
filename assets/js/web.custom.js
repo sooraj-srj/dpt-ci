@@ -722,7 +722,17 @@ $(document).ready(function() {
 
 
 });
+
 // == Tour form management
+
+$(document).ready(function(){
+        //FANCYBOX
+        //https://github.com/fancyapps/fancyBox
+        $(".fancybox").fancybox({
+            openEffect: "none",
+            closeEffect: "none"
+        });
+    });
 
 //------------ dropzone ---------------
 

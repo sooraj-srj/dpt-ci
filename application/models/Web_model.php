@@ -36,6 +36,7 @@ class Web_model extends CI_Model {
     public function get_categories(){
         $query = $this->db->select("*")
                 ->from("default_tour_categories")
+                ->order_by('display_order')
                 ->get();
         if ($query->num_rows() > 0) {
             $result = $query->result_array();

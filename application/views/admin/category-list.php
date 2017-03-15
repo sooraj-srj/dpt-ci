@@ -34,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <?php include('alert-message.php'); ?>
-                                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                        <table id="sort_order_list" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                             <thead>
                                             <tr role="row">
                                                 <th class="index">#</th>
@@ -46,7 +46,7 @@
                                             <tbody>
                                             <?php foreach ($categories as $index=> $cat) { ?>
                                                 <tr role="row" class="odd">
-                                                    <td class="index" data-id="<?php $cat['cat_id'] ?>"><?php echo $index+1; ?></td>
+                                                    <td class="index" data-id="<?php echo $cat['id']; ?>" data-flag="category"><?php echo $index+1; ?></td>
                                                     <td class="sorting_1"><?php echo $cat['title']; ?></td>
                                                     <td class="sorting_1">
                                                         <?php if(!empty($cat['header_image'])) { ?>

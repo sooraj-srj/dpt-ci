@@ -114,7 +114,7 @@ class Web extends CI_Controller {
     }
     
     //select tours 
-    public function select_tours($category)
+    public function select_tours($category='')
     {     
         $this->load->model('web_model');
         $this->load->model('admin/admin_model');
@@ -122,6 +122,9 @@ class Web extends CI_Controller {
         $this->gen_contents['current'] = $category;  
         $this->gen_contents['emirates'] = $this->admin_model->get_emirates();              
         //p($this->gen_contents['categories']);exit;
+        if($category == 'luxury-tours'){
+            redirect('plan/luxury-tours/select');
+        }
         $this->template->write_view('content', 'list-emirates', $this->gen_contents);
         $this->template->render();
     }
@@ -129,7 +132,7 @@ class Web extends CI_Controller {
     //transfer service
 
     //plan page
-    public function select_plan($category,$emirates)
+    public function select_plan($category='', $emirates='')
     {
         $tour_id = $this->input->get('plan', TRUE);
         $this->load->model('web_model');
@@ -140,7 +143,8 @@ class Web extends CI_Controller {
         }
         $this->gen_contents['tour_details'] = $this->web_model->get_tour_details($tour_id);
         $this->gen_contents['tour_gallery'] = $this->web_model->get_tour_gallery($tour_id);
-        $this->gen_contents['tour_id'] = $tour_id;
+        $this->gen_contents['tour_id']      = $tour_id;
+        $this->gen_contents['emirates']     = $emirates;        
         $this->gen_contents['pickup_location'] = $this->web_model->get_pickup_location();
         $this->gen_contents['flag'] = 'tours';
         $this->gen_contents['isd_code'] = $this->web_model->get_isd_code();
@@ -198,7 +202,7 @@ class Web extends CI_Controller {
         $post_data['hotelPhoneNo']      = $this->input->post('hotelPhoneNo',true);
         $post_data['flightName']        = $this->input->post('flightName',true);
         $post_data['terminalName']      = $this->input->post('terminalName',true);
-        $post_data['flightArrival']     = $this->input->post('flightArrival',true);
+        $post_data['flightArrival']     = $this->input->post('flightArrivalTime',true).' '.$this->input->post('flightArrivalUnit',true);
         $post_data['flightDeparture']   = $this->input->post('flightDeparture',true);
         $post_data['endhotelName']      = $this->input->post('endhotelName',true);
         $post_data['endhotelAddress']   = $this->input->post('endhotelAddress',true);
@@ -234,14 +238,11 @@ class Web extends CI_Controller {
             send_mail($to_email, $from_name, $subject, $body_content, $from_email); // send notification to user
 
             $to_email1      = 'info@dubaiprivatetour.com';
+            $to_email2      = 'dubaiprivatetour@gmail.com';
             $subject1       = "A new booking for ".$tour_name;
             $body_content1  = email_header('Admin', 'New booking notification').$content1.email_footer();    
-            //send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
-
-            $to_email2      = 'dubaiprivatetour@gmail.com';
-            $subject2       = "A new booking for ".$tour_name;
-            $body_content1  = email_header('Admin', 'New booking notification').$content1.email_footer();    
-            //send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
+            send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
+            send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
             
             // ====== Send email notification =========
             $success_message = get_message('booking');
@@ -278,21 +279,21 @@ class Web extends CI_Controller {
         $config['upload_path']          = './assets/files/';  
         $config['allowed_types']        = 'jpg|png|pdf';                
         $config['encrypt_name']         = TRUE;
-        
+        $this->load->library('upload', $config);
         //hotel booking file upload
         $hotel_booking = "";
         if (!empty($_FILES['hotel_booking']['name'])) {                         
-            $this->load->library('upload', $config);
+            
             if ($this->upload->do_upload('hotel_booking')){
                   $upload_detail = $this->upload->data();
                   $post_data['hotel_booking'] = $upload_detail["file_name"];
             }               
         }
 
-        //hotel booking file upload
-        $flight_ticket = "";
-        if (!empty($_FILES['flight_ticket']['name'])) {             
-            $this->load->library('upload', $config);
+        //hotel booking file upload $_FILES['flight_ticket']['name']
+        $flight_ticket = ""; 
+        foreach ($files['name'] as $key => $image) {
+            
             if ($this->upload->do_upload('flight_ticket')){
                   $upload_detail = $this->upload->data();
                   $post_data['flight_ticket'] = $upload_detail["file_name"];
@@ -302,7 +303,7 @@ class Web extends CI_Controller {
         //hotel booking file upload
         $passport_copy = "";
         if (!empty($_FILES['passport_copy']['name'])) {             
-            $this->load->library('upload', $config);
+           
             if ($this->upload->do_upload('passport_copy')){
                   $upload_detail = $this->upload->data();
                   $post_data['passport_copy'] = $upload_detail["file_name"];
@@ -415,15 +416,31 @@ class Web extends CI_Controller {
         $response = $this->web_model->process_contact_appln($post_data);
         if($response == "success"){
             // ====== Send email notification =========
-            $to_email       = 'soorajsolutino@gmail.com';
-            $from_name      = 'Dubai Private Tours';
-            $subject        = 'Contact Message';
-            $body_content   = 'Hi, A new contact message from '.$post_data['name'];
-            $from_email     = 'info@dubaiprivatetour.com';
+                $content        = get_message('enquiry');
+                $to_email       = $post_data['email'];
+                $from_name      = 'Dubai Private Tours';
+                $subject        = 'Greetings and thank you for choosing Dubai Private Tours!'; 
+                $body_content   = email_header($user_name, 'Contact Enquiry').$content.email_footer();            
+                $from_email     = 'info@dubaiprivatetour.com';
+                send_mail($to_email, $from_name, $subject, $body_content, $from_email); // send notification to user
 
-            send_mail($to_email, $from_name, $subject, $body_content, $from_email);
+            $content1       = 'Contact enquiry from '.$post_data['name'].'. Enquiry Details are below - ';
+            $content1 .= '<table width="100%">                
+                    <tr><td>Name: </td> <td>'.$post_data['name'].'</td></tr>
+                    <tr><td>Email: </td> <td>'.$post_data['email'].'</td></tr>
+                    <tr><td>Nationality: </td> <td>'.$post_data['nationality'].'</td></tr>
+                    <tr><td>Phone: </td> <td>'.$post_data['phone_number'].'</td></tr>
+                    <tr><td>Message: </td> <td>'.$post_data['message'].'</td></tr>                
+                    </table>';
+            $to_email1      = 'info@dubaiprivatetour.com';
+            $to_email2      = 'dubaiprivatetour@gmail.com';
+            $subject1       = "Enquiry from ".$post_data['name'];
+            $body_content1  = email_header('Admin', 'Contact Enquiry Notification').$content1.email_footer();    
+            send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
+            send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
+
             // ====== Send email notification =========
-            sf('success_message','Your contact message has been submitted successfully!');
+            sf('success_message',$content);
             redirect('thank-you');
         }
         else{
