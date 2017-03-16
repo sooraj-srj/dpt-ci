@@ -279,36 +279,62 @@ class Web extends CI_Controller {
         $config['upload_path']          = './assets/files/';  
         $config['allowed_types']        = 'jpg|png|pdf';                
         $config['encrypt_name']         = TRUE;
-        $this->load->library('upload', $config);
-        //hotel booking file upload
-        $hotel_booking = "";
-        if (!empty($_FILES['hotel_booking']['name'])) {                         
+        $this->load->library('upload');
+        
+        $files = $_FILES;
+        //============= hotel booking file upload ===========
+        $count = count($_FILES['hotel_booking']['name']);
+        for($i=0; $i<$count; $i++){
+            $_FILES['hotel_booking']['name']     = $files['hotel_booking']['name'][$i];
+            $_FILES['hotel_booking']['type']     = $files['hotel_booking']['type'][$i];
+            $_FILES['hotel_booking']['tmp_name'] = $files['hotel_booking']['tmp_name'][$i];
+            $_FILES['hotel_booking']['error']    = $files['hotel_booking']['error'][$i];
+            $_FILES['hotel_booking']['size']     = $files['hotel_booking']['size'][$i];    
+            $this->upload->initialize($config);
+            if($this->upload->do_upload('hotel_booking')){
+                $upload_detail = $this->upload->data();
+                $hotel_booking[$i] = $upload_detail["file_name"];
+            }
             
-            if ($this->upload->do_upload('hotel_booking')){
-                  $upload_detail = $this->upload->data();
-                  $post_data['hotel_booking'] = $upload_detail["file_name"];
-            }               
         }
+        $post_data['hotel_booking'] = implode(',',$hotel_booking);
+        //============= hotel booking file upload ===========
 
-        //hotel booking file upload $_FILES['flight_ticket']['name']
-        $flight_ticket = ""; 
-        foreach ($files['name'] as $key => $image) {
+        //============= flight_ticket file upload ===========
+        $count = count($_FILES['hotel_booking']['name']);
+        for($i=0; $i<$count; $i++){
+            $_FILES['flight_ticket']['name']     = $files['flight_ticket']['name'][$i];
+            $_FILES['flight_ticket']['type']     = $files['flight_ticket']['type'][$i];
+            $_FILES['flight_ticket']['tmp_name'] = $files['flight_ticket']['tmp_name'][$i];
+            $_FILES['flight_ticket']['error']    = $files['flight_ticket']['error'][$i];
+            $_FILES['flight_ticket']['size']     = $files['flight_ticket']['size'][$i];    
+            $this->upload->initialize($config);
+            if($this->upload->do_upload('flight_ticket')){
+                $upload_detail = $this->upload->data();
+                $flight_ticket[$i] = $upload_detail["file_name"];
+            }
             
-            if ($this->upload->do_upload('flight_ticket')){
-                  $upload_detail = $this->upload->data();
-                  $post_data['flight_ticket'] = $upload_detail["file_name"];
-            }               
         }
+        $post_data['flight_ticket'] = implode(',',$flight_ticket);
+        //============= flight_ticket file upload ===========
 
-        //hotel booking file upload
-        $passport_copy = "";
-        if (!empty($_FILES['passport_copy']['name'])) {             
-           
-            if ($this->upload->do_upload('passport_copy')){
-                  $upload_detail = $this->upload->data();
-                  $post_data['passport_copy'] = $upload_detail["file_name"];
-            }               
+        //============= flight_ticket file upload ===========
+        $count = count($_FILES['passport_copy']['name']);
+        for($i=0; $i<$count; $i++){
+            $_FILES['passport_copy']['name']     = $files['passport_copy']['name'][$i];
+            $_FILES['passport_copy']['type']     = $files['passport_copy']['type'][$i];
+            $_FILES['passport_copy']['tmp_name'] = $files['passport_copy']['tmp_name'][$i];
+            $_FILES['passport_copy']['error']    = $files['passport_copy']['error'][$i];
+            $_FILES['passport_copy']['size']     = $files['passport_copy']['size'][$i];    
+            $this->upload->initialize($config);
+            if($this->upload->do_upload('passport_copy')){
+                $upload_detail = $this->upload->data();
+                $passport_copy[$i] = $upload_detail["file_name"];
+            }
+            
         }
+        $post_data['passport_copy'] = implode(',',$passport_copy);
+        //============= flight_ticket file upload ===========
 
         //process visa data
         $response = $this->web_model->process_visa_application($post_data);
@@ -420,18 +446,21 @@ class Web extends CI_Controller {
                 $to_email       = $post_data['email'];
                 $from_name      = 'Dubai Private Tours';
                 $subject        = 'Greetings and thank you for choosing Dubai Private Tours!'; 
-                $body_content   = email_header($user_name, 'Contact Enquiry').$content.email_footer();            
+                $body_content   = email_header($user_name, 'The message was sent via contact form on with the following details').$content.email_footer();            
                 $from_email     = 'info@dubaiprivatetour.com';
                 send_mail($to_email, $from_name, $subject, $body_content, $from_email); // send notification to user
 
-            $content1       = 'Contact enquiry from '.$post_data['name'].'. Enquiry Details are below - ';
-            $content1 .= '<table width="100%">                
+            $content1       = 'Contact enquiry from '.$post_data['name'].'. Enquiry Details are below:';
+            $content1 .= '<table width="100%" border="1" style="border-collapse:collapse;" cellpadding="7">                
                     <tr><td>Name: </td> <td>'.$post_data['name'].'</td></tr>
                     <tr><td>Email: </td> <td>'.$post_data['email'].'</td></tr>
                     <tr><td>Nationality: </td> <td>'.$post_data['nationality'].'</td></tr>
-                    <tr><td>Phone: </td> <td>'.$post_data['phone_number'].'</td></tr>
+                    <tr><td>How did you discover us: </td> <td>'.$post_data['how_discover_us'].'</td></tr>
+                    <tr><td>Cell No: </td> <td>'.$post_data['phone_number'].'</td></tr>
+                    <tr><td>Address: </td> <td>'.$post_data['address'].'</td></tr>
+                    <tr><td>Subject: </td> <td>'.$post_data['subject'].'</td></tr>
                     <tr><td>Message: </td> <td>'.$post_data['message'].'</td></tr>                
-                    </table>';
+                    </table><br><br>';
             $to_email1      = 'info@dubaiprivatetour.com';
             $to_email2      = 'dubaiprivatetour@gmail.com';
             $subject1       = "Enquiry from ".$post_data['name'];
