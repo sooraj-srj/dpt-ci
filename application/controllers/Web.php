@@ -340,7 +340,7 @@ class Web extends CI_Controller {
         $response = $this->web_model->process_visa_application($post_data);
         if($response == "success"){
             // ====== Send email notification =========
-            $to_email       = 'soorajsolutino@gmail.com';
+            $to_email       = 'info@dubaiprivatetour.com';
             $from_name      = 'Dubai Private Tours';
             $subject        = 'A new tourist visa application';
             $body_content   = 'Hi, A new visa application from '.$post_data['name'];
@@ -463,10 +463,11 @@ class Web extends CI_Controller {
                     </table><br><br>';
             $to_email1      = 'info@dubaiprivatetour.com';
             $to_email2      = 'dubaiprivatetour@gmail.com';
-            $subject1       = "Enquiry from ".$post_data['name'];
+            $subject1       = $post_data['subject'];//"Enquiry from ".$post_data['name'];
+            $from_name2 = $post_data['name'];
             $body_content1  = email_header('Admin', 'Contact Enquiry Notification').$content1.email_footer();    
-            send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
-            send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
+            send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to user
+            send_mail($to_email2, $from_name2, $subject1, $body_content1, $from_email);  //send notification to admin
 
             // ====== Send email notification =========
             sf('success_message',$content);

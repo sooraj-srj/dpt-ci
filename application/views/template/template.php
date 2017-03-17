@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-6">
             <ul class="top-ul-social">
-                <li><a href="https://www.facebook.com/DubaiPrivatTour/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="https://www.facebook.com/Dubaiprivatetour-1200810873344965/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                 <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
                 <li><i class="fa fa-google-plus" aria-hidden="true"></i></li>
                 <li><i class="fa fa-linkedin" aria-hidden="true"></i></li>
@@ -173,8 +173,8 @@
                 </div>
                 <div class="footer-contact-text">
                     <ul class="footer-contact-ul-style">
-                        <?php $contact_no = get_settings('contact_no'); ?>
-                        <li><a href="tel:<?php echo $contact_no; ?>" style="color: #fff;">Tel: <?php echo $contact_no; ?></a></li>
+                        <?php //$contact_no = get_settings('contact_no'); ?>
+                        <li><a href="tel:<?php echo $contact_no; ?>" style="color: #fff;">Tel: +971 55 955 4333<?php //echo $contact_no; ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -196,7 +196,7 @@
                 </div>
                 <div class="footer-contact-text">
                     <ul class="footer-contact-ul-style">
-                        <li><?php echo get_settings('contact_email_addr'); ?></li>
+                        <li>info@dubaiprivatetour.com<br>info@milantoursdubai.com  <?php //echo get_settings('contact_email_addr'); ?></li>
                     </ul>
                 </div>
             </div>
@@ -204,7 +204,7 @@
             <div class="footer-social-icon">
                 <div class="foot-soc-icon-div col-1"><i class="fa fa-twitter" aria-hidden="true"></i></div>
                 <div class="foot-soc-icon-div col-2">
-                    <a href="https://www.facebook.com/DubaiPrivatTour/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/Dubaiprivatetour-1200810873344965/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                 </div>
                 <div class="foot-soc-icon-div col-3"><i class="fa fa-google-plus" aria-hidden="true"></i></div>
                 <div class="foot-soc-icon-div col-4"><i class="fa fa-linkedin" aria-hidden="true"></i></div>

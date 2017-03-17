@@ -38,7 +38,7 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tab1default">
 
-                                        <form name="visaForm" id="visaForm7777" method="post" action="<?php url('visa-appln'); ?>" enctype="multipart/form-data">
+                                        <form name="visaForm" id="visaForm" method="post" action="<?php url('visa-appln'); ?>" enctype="multipart/form-data">
                                             <div class="col-md-12 col-sm-12">
 
                                                 <div class="form-group col-md-6 col-sm-6">

@@ -116,7 +116,7 @@
                 <div class="footer-contact-text">
                     <ul class="footer-contact-ul-style">
                         <?php $contact_no = get_settings('contact_no'); ?>
-                        <li><a href="tel:<?php echo $contact_no; ?>" style="color: #333;">Tel: <?php echo $contact_no; ?></a></li>
+                        <li><a href="tel:<?php echo $contact_no; ?>" style="color: #333;">Tel: +971 55 955 4333 <?php //echo $contact_no; ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="footer-contact-text">
                     <ul class="footer-contact-ul-style">                        
-                        <li><?php echo get_settings('contact_email_addr'); ?></li>
+                        <li>info@dubaiprivatetour.com, info@milantoursdubai.com<?php //echo get_settings('contact_email_addr'); ?></li>
                     </ul>
                 </div>
             </div>
