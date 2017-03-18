@@ -111,37 +111,93 @@
                                                         <td>Pickup Location: </td>
                                                         <td><?php echo $bd['pickup_location']; ?></td>
                                                     </tr>
-                                                    <?php //if() { ?>
-                                                    <tr>
-                                                        <td>Location Details </td>
-                                                        <td>
-                                                            <small>Name:</small> <?php echo $bd['hotelName']; ?><br>
-                                                            <small>Address:</small> <?php echo $bd['hotelAddress']; ?><br>
-                                                            <small>Phone:</small> <?php echo $bd['hotelPhoneNo']; ?><br>
-                                                        </td>
-                                                    </tr> 
-                                                    <?php //} ?>    
-                                                    <tr>
-                                                        <td>Flight Details: </td>
-                                                        <td>
-                                                            <small>Flight Name:</small> <?php echo $bd['flightName']; ?><br>
-                                                            <small>Terminal Name:</small> <?php echo $bd['terminalName']; ?><br>
-                                                            <small>Flight Arrival:</small> <?php echo $bd['flightArrival']; ?><br>
-                                                            <small>Flight Departure:</small> <?php echo $bd['flightDeparture']; ?><br>
-                                                        </td>
-                                                    </tr>                                                  
+                                                    <?php if($bd['pl_id'] == '1') { ?>
+                                                        <tr>
+                                                            <td>Hotel Details </td>
+                                                            <td>
+                                                                <small>Name:</small> <?php echo $bd['hotelName']; ?><br>
+                                                                <small>Address:</small> <?php echo $bd['hotelAddress']; ?><br>
+                                                                <small>Phone:</small> <?php echo $bd['hotelPhoneNo']; ?><br>
+                                                            </td>
+                                                        </tr> 
+                                                    <?php } else if($bd['pl_id'] == '2' || $bd['pl_id'] == '3' || $bd['pl_id'] == '4' || $bd['pl_id'] == '5' || $bd['pl_id'] == '6') { ?>
+                                                        <tr>
+                                                            <td>Flight Details: </td>
+                                                            <td>
+                                                                <small>Flight Name:</small> <?php echo $bd['flightName']; ?><br>
+                                                                <small>Terminal Name:</small> <?php echo $bd['terminalName']; ?><br>
+                                                                <small>Flight Arrival:</small> <?php echo $bd['flightArrival']; ?><br>
+                                                                <small>Flight Departure:</small> <?php echo $bd['flightDeparture']; ?><br>
+                                                            </td>
+                                                        </tr>   
+                                                    <?php } else if($bd['pl_id'] == '7' || $bd['pl_id'] == '8') { ?>    
+                                                        <tr>
+                                                            <td>Ship Details: </td>
+                                                            <td>
+                                                                <small>Ship Name:</small> <?php echo $bd['shipName']; ?><br>
+                                                            </td>
+                                                        </tr>
+                                                 
+                                                    <?php } else if($bd['pl_id'] == '12') { ?>    
+                                                        <tr>
+                                                            <td>Local Residence Details: </td>
+                                                            <td>
+                                                                <small>Address:</small> <?php echo $bd['start_lr_address']; ?><br>
+                                                                <small>Phone:</small> <?php echo $bd['start_lr_phone']; ?><br>
+                                                            </td>
+                                                        </tr>
+                                                   
+                                                    <?php } else if($bd['pl_id'] == '13') { ?>    
+                                                        <tr>
+                                                            <td>Restaurant Details: </td>
+                                                            <td>
+                                                                <small>Name:</small> <?php echo $bd['start_rest_name']; ?><br>
+                                                                <small>Address:</small> <?php echo $bd['start_rest_address']; ?><br>
+                                                                <small>Phone:</small> <?php echo $bd['start_rest_phone']; ?><br>
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                                                                  
                                                     <tr>
                                                         <td>Drop Location: </td>
                                                         <td><?php echo $bd['drop_location']; ?></td>
-                                                    </tr> 
-                                                    <tr>
-                                                        <td>Hotel Details(Drop): </td>
-                                                        <td>
-                                                            <small>Name:</small> <?php echo $bd['endhotelName']; ?><br>
-                                                            <small>Address:</small> <?php echo $bd['endhotelAddress']; ?><br>
-                                                            <small>Phone:</small> <?php echo $bd['endhotelPhoneNo']; ?><br>
-                                                        </td>
-                                                    </tr>                                                    
+                                                    </tr>
+                                                    <?php if($bd['el_id'] == '1') { ?> 
+                                                        <tr>
+                                                            <td>Hotel Details: </td>
+                                                            <td>
+                                                                <small>Name:</small> <?php echo $bd['endhotelName']; ?><br>
+                                                                <small>Address:</small> <?php echo $bd['endhotelAddress']; ?><br>
+                                                                <small>Phone:</small> <?php echo $bd['endhotelPhoneNo']; ?><br>
+                                                            </td>
+                                                        </tr>  
+                                                    <?php } else if($bd['el_id'] == '12') { ?>  
+                                                        <tr>  
+                                                            <td>Residence Details: </td>
+                                                            <td>
+                                                                <small>Address:</small> <?php echo $bd['end_lr_address']; ?><br>
+                                                                <small>Phone:</small> <?php echo $bd['end_lr_phone']; ?><br>
+                                                            </td>
+                                                        </tr>                                                   
+                                                    <?php } else if($bd['el_id'] == '13') { ?>  
+                                                        <tr>
+                                                            <td>Restaurant Details: </td>
+                                                            <td>
+                                                                <small>Name:</small> <?php echo $bd['end_rest_name']; ?><br>
+                                                                <small>Address:</small> <?php echo $bd['end_rest_address']; ?><br>
+                                                                <small>Phone:</small> <?php echo $bd['end_rest_phone']; ?><br>
+                                                            </td>
+                                                        </tr>                                                                                      
+                                                    <?php } else if($bd['el_id'] == '16') { ?>  
+                                                        <tr>
+                                                            <td>Place Details: </td>
+                                                            <td>
+                                                                <small>Name:</small> <?php echo $bd['end_place_name']; ?><br>
+                                                                <small>Address:</small> <?php echo $bd['end_place_address']; ?><br>
+                                                                <small>Phone:</small> <?php echo $bd['end_place_phone']; ?><br>
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>   
                                                     <tr>
                                                         <td>Pref.currency: </td>
                                                         <td><?php echo $bd['currencyCode']; ?></td>
