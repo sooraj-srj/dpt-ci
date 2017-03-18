@@ -72,8 +72,14 @@ fadeInFirstContent();
 //------------- CALENDER ------------
 $(function () {
     //calendar call function
-    $('.datepicker').dcalendar();
-    $('.datepicker').dcalendarpicker();
+    //$('.datepicker').dcalendar();
+    //$('.datepicker').dcalendarpicker();
+    $('.datepicker').datepicker({
+        autoclose: true,
+        startDate: new Date(),
+        format: "dd/mm/yyyy"
+        //format: "yyyy-mm-dd"
+    });
 
     var max_fields = 10; //maximum input boxes allowed
     var x = 1; //initlal text box count
@@ -158,6 +164,10 @@ $(document).ready(function () {
         var url = $(this).data('url');
         window.location = url;
     });
+
+    // $("#confirm_booking").on("click",function(){
+    //     alert("here");
+    // });
 });
 // == bootstrap form validation 
 $(document).ready(function () {
@@ -340,7 +350,7 @@ $(document).ready(function () {
                         message: 'Please enter a valid email address'
                     },
                     emailAddress: {
-                        message: 'The is not a valid email address'
+                        message: 'This is not a valid email address'
                     }
                 }
             },
@@ -351,6 +361,10 @@ $(document).ready(function () {
                     },
                     emailAddress: {
                         message: 'Please enter confirm email address'
+                    },
+                    identical: {
+                        field: 'email',
+                        message: 'Email and confirm email should be same'
                     }
                 }
             },
@@ -402,7 +416,7 @@ $(document).ready(function () {
                         message: 'Please enter a valid email address'
                     },
                     emailAddress: {
-                        message: 'The is not a valid email address'
+                        message: 'This is not a valid email address'
                     }
                 }
             },
@@ -505,7 +519,7 @@ $(document).ready(function () {
                         message: 'Please enter a valid email address'
                     },
                     emailAddress: {
-                        message: 'The is not a valid email address'
+                        message: 'This is not a valid email address'
                     }
                 }
             },
@@ -544,14 +558,14 @@ $(document).ready(function () {
                         message: 'Please enter a valid email address'
                     },
                     emailAddress: {
-                        message: 'The is not a valid email address'
+                        message: 'This is not a valid email address'
                     }
                 }
             },
             rating: {
                 validators: {
                     notEmpty: {
-                        message: 'Please select ypur rating'
+                        message: 'Please select your rating'
                     }
                 }
             },
@@ -590,7 +604,7 @@ $(document).ready(function () {
                         message: 'Please enter a valid email address'
                     },
                     emailAddress: {
-                        message: 'The is not a valid email address'
+                        message: 'This is not a valid email address'
                     }
                 }
             },
@@ -647,52 +661,75 @@ $(document).ready(function () {
 function resetPickupLocationDiv(){
 
 }
+
+function hideDiv(divIds){
+    for ( var i = 0, l = divIds.length; i < l; i++ ) {
+       $(divIds[i]).hide();
+       console.log(divIds[i]);
+    }
+}
+
 // == Tour form management
 $(document).ready(function() {
     $("#pickupLocation").on("change",function(){    //pickup location onchange
         var id = $(this).val();
         if(id != '1'){
-            $("#hotelDetails1").hide();
+           $("#hotelDetails1").hide();
         }
         if(id == '1'){
-            $("#shipDetails").hide();
-            $("#flightDetails1").hide();
-            $("#mallDetails").hide();
-            $("#hotelDetails1").show();
+            var hideDivs = ["#shipDetails","#flightDetails1","#mallDetails","#residenceDetails","#restaurantDetails"];
+            hideDiv(hideDivs);
+            $("#hotelDetails1").show();     // SHOW HOTEL DETAILS
         }
-        else if(id == '2' || id == '3' || id == '4'){
-            $("#hotelDetails1").hide();
-            $("#shipDetails").hide();
-            $("#mallDetails").hide();
-            $("#flightDetails1").show();
+        else if(id == '2' || id == '3' || id == '4' || id == '5' || id == '6'){
+            var hideDivs = ["#hotelDetails1","#shipDetails","#mallDetails","#residenceDetails","#restaurantDetails"];
+            hideDiv(hideDivs);            
+            $("#flightDetails1").show();    // SHOW FLIGHT DETAILS
         }
-        else if(id == '5' || id == '6' || id == '7'){
-            $("#hotelDetails1").hide();
-            $("#flightDetails1").hide();
-            $("#mallDetails").hide();
-            $("#shipDetails").show();
+        else if(id == '7' || id == '8'){
+            var hideDivs = ["#hotelDetails1","#flightDetails1","#mallDetails","#residenceDetails","#restaurantDetails"];
+            hideDiv(hideDivs);                
+            $("#shipDetails").show();       // SHOW SHIP DETAILS
+        }        
+        else if(id == '12'){
+            var hideDivs = ["#hotelDetails1","#flightDetails1","#shipDetails","#mallDetails","#restaurantDetails"];
+            hideDiv(hideDivs);  
+            $("#residenceDetails").show();  // FOR LOCAL RESIDENCE
         }
-        else if(id == '11'){
-            $("#hotelDetails1").hide();
-            $("#flightDetails1").hide();
-            $("#shipDetails").hide();
-            $("#mallDetails").show();
+        else if(id == '13'){
+            var hideDivs = ["#hotelDetails1","#flightDetails1","#shipDetails","#mallDetails","#residenceDetails"];
+            hideDiv(hideDivs);       
+            $("#restaurantDetails").show();  // FOR RESTAURANT
         }
         else{
-            $("#hotelDetails1").hide();
-            $("#flightDetails1").hide();
-            $("#shipDetails").hide();
-            $("#mallDetails").hide();
+            var hideDivs = ["#hotelDetails1","#flightDetails1","#shipDetails","#mallDetails","#residenceDetails","#restaurantDetails"];
+            hideDiv(hideDivs);              
         }
     });
 
     $("#dropLocation").on("change",function(){    //drop location onchange
         var id = $(this).val();
         if(id=='1'){
-             $("#endloc").show();
+            $("#endHotelDetails").show();
+        }
+        else if(id == '12'){
+            var hideDivs = ["#endHotelDetails","#anyPlaceDetails","#endrestaurantDetails"];
+            hideDiv(hideDivs);   
+            $("#endresidenceDetails").show();  // FOR LOCAL RESIDENCE
+        }
+        else if(id == '13'){
+            var hideDivs = ["#endHotelDetails","#anyPlaceDetails","#endresidenceDetails"];
+            hideDiv(hideDivs);   
+            $("#endrestaurantDetails").show();  // FOR LOCAL RESIDENCE
+        }
+        else if(id == '16'){
+            var hideDivs = ["#endHotelDetails","#endresidenceDetails","#endrestaurantDetails"];
+            hideDiv(hideDivs);       
+            $("#anyPlaceDetails").show();  // FOR RESTAURANT
         }
         else{
-            $("#endloc").hide();
+            var hideDivs = ["#endHotelDetails","#endresidenceDetails","#endrestaurantDetails","#anyPlaceDetails"];
+            hideDiv(hideDivs);     
         }
     });
 
@@ -713,11 +750,11 @@ $(document).ready(function() {
     //Disable cut/copy/paste
       $('#contactEmail').bind("cut copy paste",function(e) {
           e.preventDefault();
-          alert("Sory! This option is not available.");
+          alert("Sorry! This option is not available.");
       });
       $('#contactEmailConfirm').bind("cut copy paste",function(e) {
           e.preventDefault();
-          alert("Sory! This option is not available.");
+          alert("Sorry! This option is not available.");
       });
 
 

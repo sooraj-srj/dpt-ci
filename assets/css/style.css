@@ -1279,7 +1279,7 @@ ul.menu-ul-style {
 .calendar #currDay {
     color: #22A7F0;
 }
-.datepicker {
+.datepickerICO {
     background: #ffffff url('https://cdn4.iconfinder.com/data/icons/small-n-flat/24/calendar-128.png') no-repeat right top;
     background-size: 30px 30px;
     ;
@@ -1742,3 +1742,9 @@ ul.flags, .flags li {
         line-height: 1.6 !important;
     }
 /*Thank you message*/
+
+.help-block{
+    color: red !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}

@@ -137,7 +137,7 @@
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <button type="submit" class="btn main-btn-style">Save</button>
+                                                    <button type="submit" class="btn main-btn-style">Apply</button>
                                                     &nbsp;
                                                     <button type="button" class="btn main-btn-style">Clear</button>
                                                 </div>

@@ -146,6 +146,7 @@ class Web extends CI_Controller {
         $this->gen_contents['tour_id']      = $tour_id;
         $this->gen_contents['emirates']     = $emirates;        
         $this->gen_contents['pickup_location'] = $this->web_model->get_pickup_location();
+        $this->gen_contents['end_location'] = $this->web_model->get_end_location();
         $this->gen_contents['flag'] = 'tours';
         $this->gen_contents['isd_code'] = $this->web_model->get_isd_code();
         
@@ -162,6 +163,7 @@ class Web extends CI_Controller {
         $this->gen_contents['tour_id'] = 0;
         
         $this->gen_contents['pickup_location'] = $this->web_model->get_pickup_location();
+        $this->gen_contents['end_location'] = $this->web_model->get_end_location();
         $this->gen_contents['flag'] = 'transfer';
         $this->gen_contents['isd_code'] = $this->web_model->get_isd_code();
         
@@ -207,6 +209,20 @@ class Web extends CI_Controller {
         $post_data['endhotelName']      = $this->input->post('endhotelName',true);
         $post_data['endhotelAddress']   = $this->input->post('endhotelAddress',true);
         $post_data['endhotelPhoneNo']   = $this->input->post('endhotelPhoneNo',true);
+
+        $post_data['start_lr_address']  = $this->input->post('start_lr_address',true);
+        $post_data['start_lr_phone']    = $this->input->post('start_lr_phone',true);
+        $post_data['start_rest_name']   = $this->input->post('start_rest_name',true);
+        $post_data['start_rest_address']   = $this->input->post('start_rest_address',true);
+        $post_data['start_rest_phone']     = $this->input->post('start_rest_phone',true);
+        $post_data['end_lr_address']       = $this->input->post('end_lr_address',true);
+        $post_data['end_lr_phone']         = $this->input->post('end_lr_phone',true);
+        $post_data['end_rest_name']        = $this->input->post('end_rest_name',true);
+        $post_data['end_rest_address']     = $this->input->post('end_rest_address',true);
+        $post_data['end_rest_phone']       = $this->input->post('end_rest_phone',true);
+        $post_data['end_place_name']       = $this->input->post('end_place_name',true);
+        $post_data['end_place_address']    = $this->input->post('end_place_address',true);
+        $post_data['end_place_phone']      = $this->input->post('end_place_phone',true);        
 
         $post_data['tour_id']           = $this->input->post('tour_id',true);
         $post_data['timestamp']         = time();
@@ -446,7 +462,7 @@ class Web extends CI_Controller {
                 $to_email       = $post_data['email'];
                 $from_name      = 'Dubai Private Tours';
                 $subject        = 'Greetings and thank you for choosing Dubai Private Tours!'; 
-                $body_content   = email_header($user_name, 'The message was sent via contact form on with the following details').$content.email_footer();            
+                $body_content   = email_header($post_data['name'], 'The message was sent via contact form on with the following details').$content.email_footer();            
                 $from_email     = 'info@dubaiprivatetour.com';
                 send_mail($to_email, $from_name, $subject, $body_content, $from_email); // send notification to user
 

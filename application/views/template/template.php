@@ -17,6 +17,7 @@
     
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>demo.css">
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>set1.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>datepicker3.css">
     
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>bootstrapValidator.min.css">    
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -230,6 +231,7 @@
 <script src="<?php echo c('js_path_url'); ?>owl.custom.js"></script>
 <script src="<?php echo c('js_path_url'); ?>photo-gallery.js"></script>
 <script src="<?php echo c('js_path_url'); ?>calen.js"></script>
+<script src="<?php echo c('js_path_url'); ?>bootstrap-datepicker.js"></script>
 <script src="<?php echo c('js_path_url'); ?>jssor.slider-22.0.7.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 <script src="<?php echo c('js_path_url'); ?>jssor.custom.js"></script>

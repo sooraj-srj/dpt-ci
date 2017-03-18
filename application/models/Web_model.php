@@ -107,6 +107,15 @@ class Web_model extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
+
+    //get end location 
+    public function get_end_location(){
+        $query = $this->db->select("*")
+                ->from("default_end_location")
+                ->get();
+        $result = $query->result_array();
+        return $result;
+    }
     
     //get nationalities
     public function get_nationalities(){

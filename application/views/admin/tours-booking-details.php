@@ -111,14 +111,16 @@
                                                         <td>Pickup Location: </td>
                                                         <td><?php echo $bd['pickup_location']; ?></td>
                                                     </tr>
+                                                    <?php //if() { ?>
                                                     <tr>
-                                                        <td>Hotel Details(Pickup): </td>
+                                                        <td>Location Details </td>
                                                         <td>
                                                             <small>Name:</small> <?php echo $bd['hotelName']; ?><br>
                                                             <small>Address:</small> <?php echo $bd['hotelAddress']; ?><br>
                                                             <small>Phone:</small> <?php echo $bd['hotelPhoneNo']; ?><br>
                                                         </td>
-                                                    </tr>     
+                                                    </tr> 
+                                                    <?php //} ?>    
                                                     <tr>
                                                         <td>Flight Details: </td>
                                                         <td>
@@ -165,7 +167,7 @@
                                         </div>
                                         <div class="col-md-7">
                                             <form name="confirmForm1" method="post" action="<?php url('admin/booking-appln') ?>" role="form">      
-                                                <div class="form-group">
+                                                <!--<div class="form-group">
                                                     <label>Select Agents</label><div class="clearfix"></div>
                                                     <select name="agent_email" class="form-control">
                                                         <option value="">Select Agent</option>
@@ -177,7 +179,7 @@
                                                         }
                                                         ?>
                                                     </select>
-                                                </div>
+                                                </div>-->
                                                 <div class="form-group">
                                                     <label>Mail Subject</label><div class="clearfix"></div>
                                                     <textarea name="subject" class="form-control"><?php if($tour_type == 'ts') echo 'Your '. $emirates.' transfer service'; else echo $bd['title']; ?>: Booking Confirmed!</textarea>

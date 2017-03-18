@@ -62,11 +62,11 @@
                                             <div class="col-md-12 col-sm-12">
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="arrival">Tour Date<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm datepicker" name="tour_date" id="arrival" placeholder="">
+                                                    <input type="text" class="form-control datepickerICO datepicker" name="tour_date" id="arrival" placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="name">Preferred Pickup Time<span class="red">*</span></label>
-                                                    <select class="form-control input-sm" name="pref_pickup_time" >
+                                                    <select class="form-control" name="pref_pickup_time" >
                                                         <option value="">Select</option>
                                                         <option value="00:00 am">12:00 am</option>
                                                         <option value="00:30 am">12:30 am</option>
@@ -123,7 +123,7 @@
                                                 <div class="col-md-6 col-sm-6"> <!-- ========= PICKUP LOCATION ========== -->
                                                     <div class="form-group">
                                                         <label for="name">Pickup Location<span class="red">*</span></label>
-                                                        <select class="form-control input-sm" id="pickupLocation" name="pickup_location">
+                                                        <select class="form-control" id="pickupLocation" name="pickup_location">
                                                             <option value="">Select</option>
                                                             <?php 
                                                             foreach ($pickup_location as $pl){
@@ -134,96 +134,26 @@
                                                             ?>
                                                         </select>
                                                     </div>
+                                                    <?php $this->load->view('pickup-locations'); ?>
 
-                                                    <!-- hide and show for hotel details -->
-                                                    <div id="hotelDetails1" style="display: none;">
-                                                        <div class="form-group">
-                                                            <label for="Hotel Name">Hotel Name<span class="red">*</span></label>                                 
-                                                            <input type="text" class="form-control input-sm" name="hotelName" id="hotelName" placeholder="Hotel Name" value="">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="hotelAddress">Hotel Address<span class="red">*</span></label>       
-                                                            <input type="text" class="form-control input-sm" name="hotelAddress" id="hotelAddress" placeholder="Hotel Address" value="">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="hotelPhoneNo">Hotel Telephone<span class="red">*</span></label>
-                                                            <input type="text" class="form-control input-sm" name="hotelPhoneNo" id="hotelPhoneNo" placeholder="Hotel Phone No" value="">
-                                                        </div>
-                                                    </div>
-                                                    <!-- hide and show for flight details -->
-                                                    <div id="flightDetails1" style="display: none;">
-                                                        <div class="form-group">
-                                                            <label for="flightName">Flight Name<span class="red">*</span></label>      
-                                                            <input type="text" class="form-control input-sm" name="flightName" id="flightName" placeholder="Flight Name" value="">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="terminalName">Terminal Number<span class="red">*</span></label>      
-                                                            <input type="text" class="form-control input-sm" name="terminalName" id="terminalName" placeholder="Terminal Name" value="">
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="form-group col-md-6 col-sm-6">
-                                                                <label for="flightArrival">Arrival Time<span class="red">*</span></label>       
-                                                                <input type="text" class="form-control input-sm" name="flightArrivalTime" id="flightArrival" placeholder="Flight Arrival" value="">
-                                                            </div>
-                                                            <div class="form-group col-md-6 col-sm-6">
-                                                                <label for="flightArrival">&nbsp;</label>       
-                                                                <select class="form-control input-sm" name="flightArrivalUnit">
-                                                                    <option value="AM">AM</option>
-                                                                    <option value="PM">PM</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="flightDeparture">Departure Time</label>
-                                                            <input type="text" class="form-control input-sm" name="flightDeparture" id="flightDeparture" placeholder="Flight Departure" value="">        
-                                                        </div>
-                                                    </div>
-                                                    <!-- hide and show for ship name -->
-                                                    <div id="shipDetails" style="display: none;">
-                                                        <div class="form-group">
-                                                            <label for="shipName">Ship Name<span class="red">*</span></label>
-                                                            <input type="text" class="form-control input-sm" name="shipName" id="shipName" placeholder="shipName" value=""> 
-                                                        </div>
-                                                    </div>
-                                                    <!-- hide and show for MAll name -->
-                                                    <div id="mallDetails" style="display: none;">
-                                                        <div class="form-group">
-                                                            <label for="shipName">Mall Name<span class="red">*</span></label>
-                                                            <input type="text" class="form-control input-sm" name="mallName" id="mallName" placeholder="Mall Name" value=""> 
-                                                        </div>
-                                                    </div>
                                                 </div>
 
                                                 <div class="col-md-6 col-sm-6"> <!-- ========= END LOCATION ========== -->
                                                     <div class="form-group">
                                                         <label for="name">End Location<span class="red">*</span></label>
-                                                        <select class="form-control input-sm" id="dropLocation" name="dropLocation">
+                                                        <select class="form-control" id="dropLocation" name="dropLocation">
                                                             <option value="">Select</option>
                                                             <?php 
-                                                            foreach ($pickup_location as $pl){
+                                                            foreach ($end_location as $el){
                                                             ?>
-                                                            <option value="<?php echo $pl['id'] ?>"><?php echo $pl['location'] ?></option>
+                                                            <option value="<?php echo $el['id'] ?>"><?php echo $el['location'] ?></option>
                                                             <?php
                                                             } 
                                                             ?>
                                                         </select>
                                                     </div>
 
-                                                    <div id="endloc" style="display: none;">
-                                                        <div class="form-group">
-                                                            <label for="endhotel Name">End Hotel Name<span class="red">*</span></label>
-                                                            <input type="text" class="form-control input-sm" name="endhotelName" id="endhotelName" placeholder="Hotel Name" value="">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="endhotelAddress">End Hotel Address<span class="red">*</span></label>       
-                                                            <input type="text" class="form-control input-sm" name="endhotelAddress" id="endhotelAddress" placeholder="Hotel Address" value="">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="endhotelPhoneNo">End Hotel Telephone<span class="red">*</span></label>
-                                                            <input type="text" class="form-control input-sm" name="endhotelPhoneNo" id="endhotelPhoneNo" placeholder="Hotel Phone No" value="">                                                            
-                                                        </div>
-                                                    </div>
+                                                    <?php $this->load->view('end-locations'); ?>
                                                     
                                                 </div>
 
@@ -235,7 +165,7 @@
                                                                 <div class="form-group col-md-12 col-sm-6">
                                                                 <?php if($flag != "transfer") { ?>
                                                                     <label for="name">Preferred Guide Language<span class="red">*</span></label>
-                                                                    <select class="form-control input-sm" id="months" name="preferedguide">
+                                                                    <select class="form-control" id="months" name="preferedguide">
                                                                         <option value="">Select</option>
                                                                         <option value="English">English</option>
                                                                         <option value="Arabic">Arabic</option>
@@ -257,7 +187,7 @@
                                                             <div class="row">
                                                                 <div class="form-group col-md-6 col-sm-6">
                                                                     <label for="gender">Pref.currency</label>
-                                                                    <select class="form-control input-sm" id="months" name="currencyCode">
+                                                                    <select class="form-control" id="months" name="currencyCode">
                                                                         <option value="">Select</option>                                                                        
                                                                             <option value="USD($)">USD($)</option>
                                                                             <option value="AED">AED</option>
@@ -268,7 +198,7 @@
                                                                 </div>
                                                                 <div class="form-group col-md-6 col-sm-6">
                                                                     <label for="gender">Payment Mode<span class="red">*</span></label>
-                                                                    <select class="form-control input-sm" id="months" name="currencyMode">
+                                                                    <select class="form-control" id="months" name="currencyMode">
                                                                         <option value="">Select</option>
                                                                         <option value="Credit Card">Credit Card</option>
                                                                         <option value="Cash">Cash</option>                                                                        
@@ -278,15 +208,15 @@
                                                         </div>
                                                         <div class="form-group col-md-4 col-sm-4">
                                                             <label for="name">Adults<span class="red">*</span></label>
-                                                            <input type="text" class="form-control input-sm" id="name" name="adultNo" placeholder="No.of Adults" maxlength="2">
+                                                            <input type="text" class="form-control" id="name" name="adultNo" placeholder="No.of Adults" maxlength="2">
                                                         </div>
                                                         <div class="form-group col-md-4 col-sm-4">
                                                             <label for="name">Children</label>
-                                                            <input type="text" class="form-control input-sm" id="name" name="childNo" placeholder="Age 5-12" maxlength="2">
+                                                            <input type="text" class="form-control" id="name" name="childNo" placeholder="Age 5-12" maxlength="2">
                                                         </div>
                                                         <div class="form-group col-md-4 col-sm-4">
                                                             <label for="name">Infants</label>
-                                                            <input type="text" class="form-control input-sm" id="name" name="infantNo" placeholder="Age < 5" maxlength="2">
+                                                            <input type="text" class="form-control" id="name" name="infantNo" placeholder="Age < 5" maxlength="2">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -297,23 +227,23 @@
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="firstName">First Name<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm" id="fname" name="firstName" placeholder="First Name">
+                                                    <input type="text" class="form-control" id="fname" name="firstName" placeholder="First Name">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="lastName">Last Name<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm" id="email" name="lastName" placeholder="Last Name">
+                                                    <input type="text" class="form-control" id="email" name="lastName" placeholder="Last Name">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="email">Email<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm" id="email" name="email" placeholder="Email">
+                                                    <input type="text" class="form-control" id="contactEmail" name="email" placeholder="Email">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="confirm_email">Confirm Email<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm" id="email" name="confirm_email" placeholder="Confirm Email">
+                                                    <input type="text" class="form-control" id="contactEmailConfirm" name="confirm_email" placeholder="Confirm Email">
                                                 </div>
                                                 <div class="form-group col-md-12 col-sm-12">
                                                     <label for="nationality">Nationality<span class="red">*</span></label>
-                                                    <select class="form-control input-sm" name="nationality">
+                                                    <select class="form-control" name="nationality">
                                                         <option value="">Select</option>
                                                         <?php
                                                         foreach ($isd_code as $nation){
@@ -328,7 +258,7 @@
                                                     <div class="row">
                                                         <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">Cell No<span class="red">*</span></label>
-                                                            <select class="form-control input-sm" name="countryCode1">
+                                                            <select class="form-control" name="countryCode1">
                                                                 <option value="">Select</option>
                                                                 <?php
                                                                 foreach ($isd_code as $isd){
@@ -343,7 +273,7 @@
                                                         </div>
                                                         <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">&nbsp;</label>
-                                                            <input type="text" class="form-control input-sm" name="cell_no1" id="city" placeholder="Cell No 1">
+                                                            <input type="text" class="form-control" name="cell_no1" id="city" placeholder="Cell No 1">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -351,7 +281,7 @@
                                                     <div class="row">
                                                         <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">Cell No2</label>
-                                                            <select class="form-control input-sm" name="countryCode2">
+                                                            <select class="form-control" name="countryCode2">
                                                                 <option value="">Select</option>
                                                                 <?php
                                                                 foreach ($isd_code as $isd){
@@ -366,13 +296,13 @@
                                                         </div>
                                                         <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">&nbsp;</label>
-                                                            <input type="text" class="form-control input-sm" name="cell_no2" placeholder="Celle No 2">
+                                                            <input type="text" class="form-control" name="cell_no2" placeholder="Celle No 2">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-12 col-sm-12">
                                                     <label for="email">How Did You Discover Us<span class="red">*</span></label>
-                                                    <select class="form-control input-sm" name="howfind">
+                                                    <select class="form-control" name="howfind">
                                                         <option value="">Select</option>
                                                         <option value="Google Search">Google Search</option>
                                                         <option value="Trip adviser">Trip adviser</option>
@@ -382,11 +312,11 @@
                                                 </div>
                                                 <div class="form-group col-md-12 col-sm-12">
                                                     <label for="address">Special Requests</label>
-                                                    <textarea class="form-control input-sm" id="address" rows="5" name="specialResquest"></textarea>
+                                                    <textarea class="form-control" id="address" rows="5" name="specialResquest"></textarea>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <input type="hidden" name="tour_id" value="<?php echo $tour_id; ?>">
-                                                    <button type="submit" class="btn main-btn-style">Confirm Booking</button>&nbsp;
+                                                    <button type="submit" class="btn main-btn-style" id="confirm_booking">Confirm Booking</button>&nbsp;
                                                     <button type="button" class="btn main-btn-style">Clear</button>
                                                 </div>
                                             </div>
@@ -401,23 +331,23 @@
                                         <form name="askmeForm" id="askmeForm" method="post" action="<?php url('askme-appln') ?>">
                                             <div class="form-group col-md-6 col-sm-6">
                                                 <label for="firstName">First Name<span class="red">*</span></label>
-                                                <input type="text" class="form-control input-sm" id="first_name" name="first_name" placeholder="First Name">
+                                                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
                                             </div>
                                             <div class="form-group col-md-6 col-sm-6">
                                                 <label for="email">Last Name<span class="red">*</span></label>
-                                                <input type="text" class="form-control input-sm" id="last_name" name="last_name" placeholder="Last Name">
+                                                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
                                             </div>
                                             <div class="form-group col-md-6 col-sm-6">
                                                 <label for="email">Email<span class="red">*</span></label>
-                                                <input type="email" class="form-control input-sm" id="email" name="email" placeholder="Email">
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                                             </div>
                                             <div class="form-group col-md-6 col-sm-6">
                                                 <label for="email">Phone Number</label>
-                                                <input type="text" class="form-control input-sm" id="" name="phone_number" placeholder="Phone Number">
+                                                <input type="text" class="form-control" id="" name="phone_number" placeholder="Phone Number">
                                             </div>
                                             <div class="form-group col-md-12 col-sm-12">
                                                 <label for="email">Nationality<span class="red">*</span></label>
-                                                <select class="form-control input-sm" id="" name="nationality">
+                                                <select class="form-control" id="" name="nationality">
                                                     <option value="">Select</option>
                                                     <?php
                                                     foreach ($isd_code as $nation){
@@ -430,7 +360,7 @@
                                             </div>
                                             <div class="form-group col-md-12 col-sm-12">
                                                 <label for="address">Message<span class="red">*</span></label>
-                                                <textarea class="form-control input-sm" id="address" rows="5" name="message"></textarea>
+                                                <textarea class="form-control" id="address" rows="5" name="message"></textarea>
                                             </div>
                                             <div class="col-md-12">
                                                 <input type="hidden" name="tour_id" value="<?php echo $tour_id; ?>">
