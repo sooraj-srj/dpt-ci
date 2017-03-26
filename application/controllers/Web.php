@@ -115,13 +115,25 @@ class Web extends CI_Controller {
     
     //select tours 
     public function select_tours($category='')
-    {     
+    {  
         $this->load->model('web_model');
         $this->load->model('admin/admin_model');
         $this->gen_contents['categories'] = $this->web_model->get_categories();
         $this->gen_contents['current'] = $category;  
-        $this->gen_contents['emirates'] = $this->admin_model->get_emirates();              
+
+        //Check the category has emirates or not
+        $category_id    = $this->web_model->get_categoryID_fromSlug($category);
+        $cat_emi        = $this->web_model->get_category_emirates($category_id);
+        if(!empty($cat_emi)){
+            $this->gen_contents['emirates'] = $cat_emi;
+        }
+        else{
+                    
+        }
+        //p($cat_emi); exit;
+        //$this->gen_contents['emirates'] = $this->admin_model->get_emirates();              
         //p($this->gen_contents['categories']);exit;
+
         if($category == 'luxury-tours'){
             redirect('plan/luxury-tours/select');
         }
@@ -160,12 +172,19 @@ class Web extends CI_Controller {
     {        
         $this->load->model('web_model');
         $this->gen_contents['emirates_id'] = $emirates_id;
-        $this->gen_contents['tour_id'] = 0;
-        
-        $this->gen_contents['pickup_location'] = $this->web_model->get_pickup_location();
-        $this->gen_contents['end_location'] = $this->web_model->get_end_location();
-        $this->gen_contents['flag'] = 'transfer';
-        $this->gen_contents['isd_code'] = $this->web_model->get_isd_code();
+        //$this->gen_contents['tour_id'] = 0;
+        $this->gen_contents['tours'] = $this->web_model->get_tours_from_emirates($emirates_id);
+        $tour_id = $this->input->get('plan', TRUE);
+        if(empty($tour_id)){
+            $tour_id = $this->web_model->get_default_tour_emirates($emirates_id);
+        }
+        //echo $tour_id; exit;
+        $this->gen_contents['tour_id']          = $tour_id;
+        $this->gen_contents['tour_details']     = $this->web_model->get_tour_details($tour_id);
+        $this->gen_contents['pickup_location']  = $this->web_model->get_pickup_location();
+        $this->gen_contents['end_location']     = $this->web_model->get_end_location();
+        $this->gen_contents['flag']             = 'transfer';
+        $this->gen_contents['isd_code']         = $this->web_model->get_isd_code();
         
         //p($this->gen_contents['tour_details']); exit;
         $this->template->write_view('content', 'select-plan', $this->gen_contents);
@@ -175,8 +194,7 @@ class Web extends CI_Controller {
     //plan submission application
     public function plan_appln()
     {
-        $this->load->model('web_model');
-
+        $this->load->model('web_model');        
         $tour_date                      = explode('/',$this->input->post('tour_date',true));
         $post_data['tour_date']         = $tour_date[2].'-'.$tour_date[1].'-'.$tour_date[0];
         $post_data['pref_pickup_time']  = $this->input->post('pref_pickup_time',true);
@@ -195,9 +213,9 @@ class Web extends CI_Controller {
         $post_data['cell_no1']          = $this->input->post('cell_no1',true);
         $post_data['countryCode2']      = $this->input->post('countryCode2',true);
         $post_data['cell_no2']          = $this->input->post('cell_no2',true);
-        //$post_data['howfind']           = $this->input->post('howfind',true);
+        $post_data['howfind']           = $this->input->post('howfind',true);
+        $post_data['preferedguide']     = $this->input->post('preferedguide',true);
         $post_data['specialRequests']   = $this->input->post('specialResquest',true);
-        $post_data['cell_no2']          = $this->input->post('cell_no2',true);
         
         $post_data['hotelName']         = $this->input->post('hotelName',true);
         $post_data['hotelAddress']      = $this->input->post('hotelAddress',true);
@@ -205,7 +223,7 @@ class Web extends CI_Controller {
         $post_data['flightName']        = $this->input->post('flightName',true);
         $post_data['terminalName']      = $this->input->post('terminalName',true);
         $post_data['flightArrival']     = $this->input->post('flightArrivalTime',true).' '.$this->input->post('flightArrivalUnit',true);
-        $post_data['flightDeparture']   = $this->input->post('flightDeparture',true);
+        $post_data['flightDeparture']   = $this->input->post('flightDeparture',true).' '.$this->input->post('flightDepartureUnit',true);
         $post_data['endhotelName']      = $this->input->post('endhotelName',true);
         $post_data['endhotelAddress']   = $this->input->post('endhotelAddress',true);
         $post_data['endhotelPhoneNo']   = $this->input->post('endhotelPhoneNo',true);
@@ -227,6 +245,7 @@ class Web extends CI_Controller {
         $post_data['tour_id']           = $this->input->post('tour_id',true);
         $post_data['timestamp']         = time();
         $tour_name = $this->web_model->get_tourname($post_data['tour_id']);
+        //echo get_admin_tour_template($post_data); exit;
         //p($post_data); exit;
         $response = $this->web_model->process_tour_booking($post_data);
 
@@ -234,18 +253,14 @@ class Web extends CI_Controller {
         $tour_name = $this->web_model->get_tourname($post_data['tour_id']);
         if($response == "success"){
             // ====== Send email notification =========
-            if($post_data['tour_id'] > 0){
-                //$content = "Your booking for the tour, <strong>".$tour_name."</strong> has been submitted successfully. We will contact you soon.";
-                $content1 = "A new booking for the tour, ".$tour_name." has been submitted from the user <strong>".$user_name."</strong>. <br> 
-                Please check the admin panel for more details.";
+            if($post_data['tour_id'] > 0){                
+                $content1 = '<b>Tour Booking Details:</b> <br><br>'.get_admin_tour_template($post_data);
             }
-            else{
-                //$content = "Your booking for transfer service has been submitted successfully. We will contact you soon";
-                $content1 = "A new booking for transfer service has been submitted from the user <strong>".$user_name."</strong>. <br> 
-                Please check the admin panel for more details.";
+            else{                
+                $content1 = '<b>Transfer Service Booking Details:</b> <br><br>'.get_admin_tour_template($post_data);
             }
             $content = get_message('booking');
-
+            //======== EMAIL TO USER ===============
             $to_email       = $post_data['email'];
             $from_name      = 'Dubai Private Tours';
             $subject        = 'Greetings and thank you for choosing Dubai Private Tours!'; 
@@ -253,10 +268,11 @@ class Web extends CI_Controller {
             $from_email     = 'info@dubaiprivatetour.com';
             send_mail($to_email, $from_name, $subject, $body_content, $from_email); // send notification to user
 
+            //======== EMAIL TO ADMIN ===============
             $to_email1      = 'info@dubaiprivatetour.com';
             $to_email2      = 'dubaiprivatetour@gmail.com';
-            $subject1       = "A new booking for ".$tour_name;
-            $body_content1  = email_header('Admin', 'New booking notification').$content1.email_footer();    
+            $subject1       = "Tour booking for ".$tour_name." from ".$user_name;
+            $body_content1  = email_header('Admin', 'New booking for '.$tour_name).$content1.email_footer();    
             send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
             send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
             

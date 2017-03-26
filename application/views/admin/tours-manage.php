@@ -26,8 +26,8 @@
                             <input type="text" value="<?php echo $tourdata['title'] ?>"  class="form-control" name="title" placeholder="Tour name">                        
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label>Category <span class="error">*</span> </label>
+                            <div class="form-group col-md-6">                            
+                                <label>Select Category <span class="error">*</span> </label>
                                 <select name="category_id" class="form-control">
                                     <option value="">Select category</option>
                                     <?php 
@@ -42,13 +42,13 @@
                                 </select>                   
                             </div> 
                             <div class="form-group col-md-6">
-                                <label>Emirates <span class="error">*</span> </label>
-                                <select name="emirates_id" class="form-control">
-                                    <option value="">Select emirates</option>
+                                <label>Select Emirates <span class="error">*</span> <small><i>(To select multiple, press <b>Ctrl</b>)</i></small></label>
+                                <select name="emirates_ids[]" class="form-control" multiple="">
+                                    <!-- <option value="">Select emirates</option> -->
                                     <?php 
                                     foreach ($emirates as $em) {
                                         ?>
-                                        <option value="<?php echo $em['id']; ?>" <?php if($em['id'] == $tourdata['emirates_id']) echo 'selected'; ?>>
+                                        <option value="<?php echo $em['id']; ?>" <?php if(in_array($em['id'], $et)) echo 'selected'; ?>>
                                             <?php echo $em['name']; ?>
                                         </option>
                                         <?php
@@ -66,10 +66,10 @@
                             <label>Tour Details <span class="error">*</span> </label>
                             <textarea name="body" class="form-control ckeditor" placeholder="Tour Details"><?php echo $tourdata['body'] ?></textarea>         
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Mail Body (<small><i>This is the tour content for email template</i></small>) </label>
                             <textarea name="mail_body" class="form-control ckeditor" placeholder="Tour Mail Details"><?php echo $tourdata['mail_body'] ?></textarea>         
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label>Tour Price (AED) <span class="error">*</span> </label>

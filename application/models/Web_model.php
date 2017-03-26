@@ -45,6 +45,33 @@ class Web_model extends CI_Model {
             return '';
         }
     }
+
+    public function get_categoryID_fromSlug($cat_slug=''){
+        $query = $this->db->select("*")
+                ->from("default_tour_categories")
+                ->where('slug',$cat_slug)
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            return $result['id'];
+        } else {
+            return '';
+        }
+    }
+
+    public function get_category_emirates($cat_id){
+        $qry = "SELECT * FROM default_emirate_tours et 
+                LEFT JOIN default_emirates e ON e.id = et.emirates_id
+                WHERE et.category_id = '$cat_id'";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
     
     //function to get tours from category
     public function get_tours($category = "",$limit = 6){
@@ -70,6 +97,22 @@ class Web_model extends CI_Model {
         }
         
     }
+
+    //get tours from emirates id
+    public function get_tours_from_emirates($emirates_id){
+        $qry = "SELECT * FROM default_emirate_tours et 
+                LEFT JOIN default_tour t ON t.id = et.tour_id
+                WHERE et.emirates_id = '$emirates_id'";
+ 
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
     
     //function to get default tour id from category
     public function get_default_tour_id($category){
@@ -86,6 +129,23 @@ class Web_model extends CI_Model {
             return '';
         }
         
+    }
+
+    //function to get default tour id from category
+    public function get_default_tour_emirates($emirates_id){
+        $qry = "SELECT * FROM default_emirate_tours et 
+                LEFT JOIN default_tour t ON t.id = et.tour_id
+                WHERE et.emirates_id = '$emirates_id' 
+                ORDER BY et.id LIMIT 1";
+        //echo $qry;
+        $sel = $this->db->query($qry);
+        $res = $sel->row_array($sel);
+        if(!empty($res)){
+            return $res['tour_id'];
+        }
+        else{
+            return '';
+        }
     }
     
     //function to get tour details
@@ -261,5 +321,26 @@ class Web_model extends CI_Model {
         return $booking_mail;
     }
 
+    //get_pickup_location
+    public function get_pickup_location_name($id='')
+    {
+        $query = $this->db->select("location")
+                ->from("default_pickup_location")
+                ->where('id',$id)
+                ->get();
+        $result = $query->row_array();
+        return $result['location'];
+    }
+
+    //get_pickup_location
+    public function get_end_location_name($id='')
+    {
+        $query = $this->db->select("location")
+                ->from("default_end_location")
+                ->where('id',$id)
+                ->get();
+        $result = $query->row_array();
+        return $result['location'];
+    }
 
 }

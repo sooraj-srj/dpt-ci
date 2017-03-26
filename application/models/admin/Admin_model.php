@@ -142,9 +142,9 @@ class Admin_model extends CI_Model {
     //function to get tours from category
     public function get_tours($tour_id = ""){
         
-        $qry = "SELECT t.*, tc.id, t.id as tour_id, tc.title as category, e.name as emirates FROM `default_tour` t 
+        $qry = "SELECT t.*, tc.id, t.id as tour_id, tc.title as category FROM `default_tour` t 
                 LEFT JOIN default_tour_categories tc ON tc.id = t.category_id 
-                LEFT JOIN default_emirates e ON e.id = t.emirates_id                 
+                -- LEFT JOIN default_emirates e ON e.id = t.emirates_id                 
                 ORDER BY t.ordering_count";
         
         $sel = $this->db->query($qry);
@@ -163,7 +163,8 @@ class Admin_model extends CI_Model {
         
         if($mode == "add"){
             $this->db->insert("default_tour",$post_data);
-            return "added";
+            $insert_id = $this->db->insert_id();
+            return $insert_id;
         }
         if($mode == "edit"){     
             $tid = $post_data['id'];     
@@ -177,6 +178,40 @@ class Admin_model extends CI_Model {
             $this->db->delete("default_tour");
             return "deleted";
         }
+    }
+
+    //process emirates tours
+    public function insert_tour_emirates($tour_id, $et_data){
+        //$data1 = array();
+        $et['category_id'] = $et_data['category_id'];
+        //echo $et['category_id']; exit;
+        foreach ($et_data['emirates'] as $emirates_id) {
+            $et['tour_id'] = $tour_id;
+            $et['emirates_id'] = $emirates_id;
+            $this->db->insert("default_emirate_tours",$et);
+        }
+        return 'added';
+    }
+
+    // Delete emirates tours
+    public function update_tour_emirates($tour_id, $et_data){
+            $this->db->where("tour_id",$tour_id);
+            $this->db->delete("default_emirate_tours");    
+
+        $this->insert_tour_emirates($tour_id, $et_data);
+        return 'updated';
+    }
+
+    //get tour emirates
+    public function get_tour_emirates($tour_id){
+        $qry = "SELECT emirates_id FROM default_emirate_tours WHERE tour_id = '$tour_id'";
+        //echo $qry; exit;
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        foreach ($res as $index => $r) {
+            $et[$index] = $r['emirates_id'];
+        }
+        return $et;
     }
 
     //get tour booking list

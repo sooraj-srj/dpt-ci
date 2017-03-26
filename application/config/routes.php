@@ -70,6 +70,7 @@ $route['terms-and-conditions']  = "web/terms";
 
 $route['tours/(:any)']        	= "web/select_tours/$1"; 
 $route['plan/(:any)/(:any)']  	= "web/select_plan/$1/$2"; 
+$route['plan/(:any)']  	= "web/select_plan/$1"; 
 $route['plan-appln']          	= "web/plan_appln"; 
 //manage transfer service
 $route['transfer/(:any)']       = "web/select_transfer/$1"; 

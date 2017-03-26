@@ -40,6 +40,22 @@
      return $menu;
  }
 
+ //function 
+ function get_pickup_location($id){
+     $CI =& get_instance();
+     $CI->load->model('web_model');
+     $pl = $CI->web_model->get_pickup_location_name($id);
+     return $pl;
+ }
+
+ //function 
+ function get_end_location($id){
+     $CI =& get_instance();
+     $CI->load->model('web_model');
+     $el = $CI->web_model->get_end_location_name($id);
+     return $el;
+ }
+
  //function email header
  function email_header($user_name = "", $message = ""){
      $email_header = '<html>
@@ -171,4 +187,44 @@
                   </tbody>
                 </table>';
       return $tour_details;
+ }
+
+ function get_traveler_details($bd = array()){
+    $tra_details = '<table width="100%" border="0" style="font-size: 14px;">
+                  <tbody>
+                    <tr>
+                      <td>
+                    <p>Date booking made: <u>'.$bd['booking_date'].'</u></p>
+                    <p>Traveler: '.$bd['firstName'].' '.$bd['lastName'].'</p>
+                    <p>Traveler cell phone: '.$bd['countryCode1'].' '.$bd['cell_no1'].'</p>
+                    </td>
+                  </tr>
+                <tbody>
+                </table>';
+      return $tra_details;
+ }
+
+ //get email template for admin when a booking initiated
+ function get_admin_tour_template($td = array()){     
+    $pickup_location = get_pickup_location($td['pickup_location']);
+    $end_location = get_end_location($td['dropLocation']);
+
+    $tour_details = '<table width="100%" border="1" style="font-size: 14px; border-collapse:collapse" cellpadding="7">
+    <tr> <td>Full Name: </td> <td>'.$td['firstName'].' '.$td['lastName'].'</td> </tr>
+    <tr> <td>Email: </td> <td>'.$td['email'].'</td> </tr>
+    <tr> <td>Cell No: 1: </td> <td>'.$td['countryCode1'].' '.$td['cell_no1'].'</td> </tr>
+    <tr> <td>Cell No: 2</td> <td>'.$td['countryCode2'].' '.$td['cell_no2'].'</td> </tr>
+    <tr> <td>Nationality: </td> <td>'.$td['nationality'].'</td> </tr>
+    <tr> <td>Tour Date: </td> <td>'.$td['tour_date'].'</td> </tr>
+    <tr> <td>Pickup location: '.$pickup_location.'</td> <td>End Location: '.$end_location.'</td> </tr>
+    <tr> <td>Preferred Pickup Time: </td> <td>'.$td['pref_pickup_time'].'</td> </tr>
+    <tr> <td>Passenger Details: </td> <td>Adult(s) - '.$td['adultNo'].' Children(s) - '.$td['childNo'].' Infant(s) - '.$td['infantNo'].' </td> </tr>
+    <tr> <td>Preferred Guide language: </td> <td>'.$td['preferedguide'].'</td> </tr>
+    <tr> <td>Currency: </td> <td>'.$td['currencyCode'].'</td> </tr>
+    <tr> <td>Payment Mode: </td> <td>'.$td['currencyMode'].'</td> </tr>
+    <tr> <td>Special Requests: </td> <td>'.$td['specialRequests'].'</td> </tr>
+    <tr> <td>How Did You Discover Us: </td> <td>'.$td['howfind'].'</td> </tr>
+    ';
+
+    return $tour_details;
  }

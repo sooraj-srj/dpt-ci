@@ -273,17 +273,22 @@ class Admin extends CI_Controller {
                 if($this->form_validation->run() == TRUE){
                     $post_data['title']         = $this->input->post("title",true);
                     $post_data['category_id']   = $this->input->post("category_id",true);
-                    $post_data['emirates_id']   = $this->input->post("emirates_id",true);
+                    //$post_data['emirates_id']   = $this->input->post("emirates_id",true);
                     $post_data['intro']         = $this->input->post("intro",true);
                     $post_data['body']          = $this->input->post("body",true);
-                    $post_data['mail_body']     = $this->input->post("mail_body",true);
+                    // $post_data['mail_body']     = $this->input->post("mail_body",true);
                     $post_data['price']         = $this->input->post("price",true);
                     $post_data['usd_price']     = $this->input->post("usd_price",true);
                     $post_data['duration']      = $this->input->post("duration",true);
                     $post_data['status']        = $this->input->post("status",true);
                     $post_data['created']       = date('Y-m-d H:i:s');
                     $post_data['updated']       = date('Y-m-d H:i:s');
+
+                    $et_data['emirates']        = $this->input->post("emirates_ids",true);
+                    $et_data['category_id']     = $post_data['category_id'];
                     // --------- if image not null the upload file -------------
+                    //p($et_data); exit;
+
                     $image_name = "";
                     if (!empty($_FILES['image']['name'])) { 
                         
@@ -298,8 +303,10 @@ class Admin extends CI_Controller {
                     }
                     //----------------------------------------------------------
                     $post_data['image']          = $image_name;
-                    //p($post_data); exit;
-                    $response = $this->admin_model->process_tours("add",$post_data);
+                    
+                    $tour_id    = $this->admin_model->process_tours("add",$post_data);                    
+                    $response   = $this->admin_model->insert_tour_emirates($tour_id,$et_data);
+
                     if($response == "added"){
                         sf('success_message', 'New tours has been added successfully');
                         redirect("admin/tours");
@@ -312,6 +319,8 @@ class Admin extends CI_Controller {
                 $page = 'admin/tours-manage';
 
                 $this->gen_contents['tourdata'] = $this->web_model->get_tour_details($tour_id);
+                $this->gen_contents['et'] = $this->admin_model->get_tour_emirates($tour_id);
+                //p($this->gen_contents['et']); exit;
 
                 $this->load->library('form_validation');
                 $this->form_validation->set_rules('title', 'Tour Name', 'required');
@@ -319,16 +328,19 @@ class Admin extends CI_Controller {
                     $post_data['id']            = $this->input->post("tour_id",true);
                     $post_data['title']         = $this->input->post("title",true);
                     $post_data['category_id']   = $this->input->post("category_id",true);
-                    $post_data['emirates_id']   = $this->input->post("emirates_id",true);
+                    //$post_data['emirates_id']   = $this->input->post("emirates_id",true);
                     $post_data['intro']         = $this->input->post("intro",true);
                     $post_data['body']          = $this->input->post("body",true);
-                    $post_data['mail_body']     = $this->input->post("mail_body",true);
+                    //$post_data['mail_body']     = $this->input->post("mail_body",true);
                     $post_data['price']         = $this->input->post("price",true);
                     $post_data['usd_price']     = $this->input->post("usd_price",true);
                     $post_data['duration']      = $this->input->post("duration",true);
                     $post_data['status']        = $this->input->post("status",true);
                     $post_data['updated']       = date('Y-m-d H:i:s');
-                    //p($post_data); exit;
+
+                    $et_data['emirates']        = $this->input->post("emirates_ids",true);
+                    $et_data['category_id']     = $post_data['category_id'];
+                    //p($et_data); exit;
                     // --------- if image not null then upload file -------------
                     $image_name = "";
                     if (!empty($_FILES['image']['name'])) { 
@@ -348,6 +360,7 @@ class Admin extends CI_Controller {
                     //----------------------------------------------------------
                     $post_data['image']          = $image_name;
                     $response = $this->admin_model->process_tours("edit",$post_data);
+                    $this->admin_model->update_tour_emirates($post_data['id'],$et_data);
                     if($response == "edited"){
                         sf('success_message', 'New tours has been edited successfully');
                         redirect("admin/tours");
@@ -435,9 +448,12 @@ class Admin extends CI_Controller {
             //echo $mail_body; exit;
         }
         else{
-            $tour_details = get_tour_details_table($bd);
+            $tour_details       = get_tour_details_table($bd);    // get tour details 
+            $traveler_details   = get_traveler_details($bd);  // get traveler details
+            //echo $traveler_details; exit;
             $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body);                
             $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
+            $mail_body = str_replace('{{traveler_details}}', $traveler_details, $mail_body);
         }
         
 

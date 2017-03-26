@@ -20,14 +20,18 @@
         <label for="flightName">Flight Name<span class="red">*</span></label>      
         <input type="text" class="form-control" name="flightName" id="flightName" placeholder="Flight Name" value="">
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="terminalName">Terminal Number<span class="red">*</span></label>      
         <input type="text" class="form-control" name="terminalName" id="terminalName" placeholder="Terminal Name" value="">
-    </div>
+    </div> -->
     <div class="row">
         <div class="form-group col-md-6 col-sm-6">
-            <label for="flightArrival">Arrival Time<span class="red">*</span></label>       
-            <input type="text" class="form-control" name="flightArrivalTime" id="flightArrival" placeholder="Flight Arrival" value="">
+            <label for="flightArrival">Arrival Time<span class="red">*</span></label>     
+            <select name="flightArrivalTime" class="form-control" id="flightArrival">  
+                <?php for($i=1; $i<=24; $i++) { ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php } ?>
+            </select>            
         </div>
         <div class="form-group col-md-6 col-sm-6">
             <label for="flightArrival">&nbsp;</label>       
@@ -37,10 +41,23 @@
             </select>
         </div>
     </div>
-    <div class="form-group">
-        <label for="flightDeparture">Departure Time</label>
-        <input type="text" class="form-control" name="flightDeparture" id="flightDeparture" placeholder="Flight Departure" value="">        
-    </div>
+    <div class="row">
+        <div class="form-group col-md-6 col-sm-6">
+            <label for="flightDeparture">Departure Time</label>     
+            <select name="flightDeparture" class="form-control" id="flightDeparture">  
+                <?php for($i=1; $i<=24; $i++) { ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php } ?>
+            </select>            
+        </div>
+        <div class="form-group col-md-6 col-sm-6">
+            <label for="flightDeparture">&nbsp;</label>       
+            <select class="form-control" name="flightDepartureUnit">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+        </div>
+    </div>   
 </div>
 <!-- hide and show for ship name -->
 <div id="shipDetails" style="display: none;">
