@@ -176,6 +176,10 @@ class Admin_model extends CI_Model {
             $tid = $post_data['id'];      
             $this->db->where("id",$tid);
             $this->db->delete("default_tour");
+
+            $this->db->where("tour_id",$tid);
+            $this->db->delete("default_emirate_tours");
+
             return "deleted";
         }
     }
@@ -224,7 +228,7 @@ class Admin_model extends CI_Model {
                 FROM `default_booking` b
                 LEFT JOIN default_tour t ON b.tour_id = t.id
                 LEFT JOIN default_tour_categories tc ON tc.id = t.category_id 
-                LEFT JOIN default_emirates e ON e.id = t.emirates_id
+                LEFT JOIN default_emirates e ON e.id = b.emirates_id
                 WHERE 1 ";
         if(!empty($filters['td'])){
             $qry .= " AND b.tour_date = '$filters[td]'";
@@ -275,7 +279,7 @@ class Admin_model extends CI_Model {
                 FROM `default_booking` b
                 LEFT JOIN default_tour t ON b.tour_id = t.id
                 LEFT JOIN default_tour_categories tc ON tc.id = t.category_id 
-                LEFT JOIN default_emirates e ON e.id = t.emirates_id 
+                LEFT JOIN default_emirates e ON e.id = b.emirates_id 
                 LEFT JOIN default_isd_code ic ON ic.country_id = b.nationality 
                 LEFT JOIN default_pickup_location pl ON pl.id = b.pickup_location 
                 LEFT JOIN default_pickup_location pl1 ON pl1.id = b.dropLocation
@@ -339,17 +343,37 @@ class Admin_model extends CI_Model {
     }
 
     //get gallery list
-    public function get_galleries()
-    {
-        $query = $this->db->select("*")
-                ->from("default_gallery")
-                ->get();
-        if ($query->num_rows() > 0) {
-            $result = $query->result_array();
-            return $result;
-        } else {
+    // public function get_galleries()
+    // {
+    //     $query = $this->db->select("*")
+    //             ->from("default_gallery")
+    //             ->get();
+    //     if ($query->num_rows() > 0) {
+    //         $result = $query->result_array();
+    //         return $result;
+    //     } else {
+    //         return '';
+    //     }
+    // }
+
+    public function get_galleries($cat_id = ''){
+        $qry = "SELECT *
+                FROM default_tour_gallery
+                WHERE category_id = '$cat_id'";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
             return '';
         }
+    }
+
+    public function delete_image($id){        
+        $this->db->where("id",$id);
+        $this->db->delete("default_tour_gallery");
+        return "deleted";
     }
 
     //get gallery data
@@ -413,7 +437,7 @@ class Admin_model extends CI_Model {
     //insert gallery images
     
     public function update_gallery_image($post_data){
-        $this->db->insert("default_gallery_sub_images",$post_data);
+        $this->db->insert("default_tour_gallery",$post_data);
     }
 
     //get menu list

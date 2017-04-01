@@ -77,10 +77,12 @@ class Web extends CI_Controller {
         $this->gen_contents['galleries'] = $this->admin_model->get_galleries();
         $gallery_id = '';
         if($this->input->get('id') != ''){
-            $gallery_id = $this->input->get('id');
+            $cat_id = $this->input->get('id');
         }
-        $this->gen_contents['gallery_images'] = $this->admin_model->get_gallery_images($gallery_id);
-        $this->gen_contents['gallery_data'] = $this->admin_model->get_gallery_data($gallery_id);
+        $this->gen_contents['categories'] = $this->admin_model->get_categories();
+        $this->gen_contents['galleries'] = $this->web_model->get_tour_gallery($cat_id);
+        $this->gen_contents['cat_name'] = $this->web_model->get_category_name($cat_id);
+
         $this->template->write_view('content', 'gallery', $this->gen_contents);
         $this->template->render();
     }
@@ -128,7 +130,7 @@ class Web extends CI_Controller {
             $this->gen_contents['emirates'] = $cat_emi;
         }
         else{
-                    
+            redirect('plan/'.$category);        
         }
         //p($cat_emi); exit;
         //$this->gen_contents['emirates'] = $this->admin_model->get_emirates();              
@@ -153,10 +155,13 @@ class Web extends CI_Controller {
         if(empty($tour_id)){
             $tour_id = $this->web_model->get_default_tour_id($category);
         }
-        $this->gen_contents['tour_details'] = $this->web_model->get_tour_details($tour_id);
-        $this->gen_contents['tour_gallery'] = $this->web_model->get_tour_gallery($tour_id);
+        $tour_details = $this->web_model->get_tour_details($tour_id);
+        $this->gen_contents['tour_details'] = $tour_details;
+        $this->gen_contents['tour_gallery'] = $this->web_model->get_tour_gallery($tour_details['category_id'],$emirates);
+        //p($this->gen_contents['tour_gallery']);
         $this->gen_contents['tour_id']      = $tour_id;
         $this->gen_contents['emirates']     = $emirates;        
+        $this->gen_contents['emirates_id']     = $emirates;        
         $this->gen_contents['pickup_location'] = $this->web_model->get_pickup_location();
         $this->gen_contents['end_location'] = $this->web_model->get_end_location();
         $this->gen_contents['flag'] = 'tours';
@@ -269,13 +274,15 @@ class Web extends CI_Controller {
             send_mail($to_email, $from_name, $subject, $body_content, $from_email); // send notification to user
 
             //======== EMAIL TO ADMIN ===============
+            $from_name      = $post_data['firstName'].' '.$post_data['lastName'];
+            $from_email     = $post_data['email'];
             $to_email1      = 'info@dubaiprivatetour.com';
             $to_email2      = 'dubaiprivatetour@gmail.com';
             $subject1       = "Tour booking for ".$tour_name." from ".$user_name;
             $body_content1  = email_header('Admin', 'New booking for '.$tour_name).$content1.email_footer();    
             send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
             send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
-            
+            //echo $body_content1; exit;
             // ====== Send email notification =========
             $success_message = get_message('booking');
             sf('success_message',$success_message);
@@ -493,12 +500,13 @@ class Web extends CI_Controller {
                     <tr><td>Subject: </td> <td>'.$post_data['subject'].'</td></tr>
                     <tr><td>Message: </td> <td>'.$post_data['message'].'</td></tr>                
                     </table><br><br>';
+            $from_email     = $post_data['email'];
             $to_email1      = 'info@dubaiprivatetour.com';
             $to_email2      = 'dubaiprivatetour@gmail.com';
             $subject1       = $post_data['subject'];//"Enquiry from ".$post_data['name'];
-            $from_name2 = $post_data['name'];
+            $from_name2     = $post_data['name'];
             $body_content1  = email_header('Admin', 'Contact Enquiry Notification').$content1.email_footer();    
-            send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to user
+            send_mail($to_email1, $from_name2, $subject1, $body_content1, $from_email);  //send notification to user
             send_mail($to_email2, $from_name2, $subject1, $body_content1, $from_email);  //send notification to admin
 
             // ====== Send email notification =========

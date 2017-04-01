@@ -450,10 +450,12 @@ class Admin extends CI_Controller {
         else{
             $tour_details       = get_tour_details_table($bd);    // get tour details 
             $traveler_details   = get_traveler_details($bd);  // get traveler details
+            $extra_details      = get_extra_details($bd);
             //echo $traveler_details; exit;
             $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body);                
             $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
             $mail_body = str_replace('{{traveler_details}}', $traveler_details, $mail_body);
+            $mail_body = str_replace('{{extra_details}}', $extra_details, $mail_body);
         }
         
 
@@ -588,7 +590,9 @@ class Admin extends CI_Controller {
             }
             //rendering page
             $this->gen_contents['page_heading'] = 'Gallery';
-            $this->gen_contents['gallery'] = $this->admin_model->get_galleries();
+            //$this->gen_contents['gallery'] = $this->admin_model->get_galleries();
+            $this->gen_contents['categories'] = $this->admin_model->get_categories();
+
             $this->template->set_template('admin');
             $this->template->write_view('content', $page, $this->gen_contents);
             $this->template->render();
@@ -603,6 +607,24 @@ class Admin extends CI_Controller {
         $this->template->set_template('admin');
         $this->template->write_view('content', 'admin/gallery-images', $this->gen_contents);
         $this->template->render();
+    }
+
+    // Gallery images
+    public function upload_gallery_images()
+    {
+        $this->gen_contents['page_heading'] = 'Gallery Images';
+        //$this->gen_contents['gallery_images']   = $this->admin_model->get_gallery_images($id);
+        $this->gen_contents['categories'] = $this->admin_model->get_categories();
+        $this->gen_contents['emirates'] = $this->admin_model->get_emirates();
+        
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/gallery-images', $this->gen_contents);
+        $this->template->render();
+    }
+
+    public function delete_image($id){
+        $response = $this->admin_model->delete_image($id);
+        redirect("admin/gallery");
     }
 
     //manage menu

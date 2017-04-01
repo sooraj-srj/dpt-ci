@@ -113,8 +113,10 @@ $route['admin/email-template']         = "admin/admin/manage_email_template";
 $route['admin/gallery']                  = "admin/admin/gallery";
 $route['admin/gallery/(:any)']           = "admin/admin/gallery/$1";
 $route['admin/gallery/(:any)/(:any)']    = "admin/admin/gallery/$1/$2";
+$route['admin/image-delete/(:any)']  	= "admin/admin/delete_image/$1";
 
 $route['admin/gallery-images/(:any)']    = "admin/admin/gallery_images/$1";
+$route['admin/gallery-images']    		= "admin/admin/upload_gallery_images";
 $route['admin/upload']    				= "admin/dropzone/upload";
 
 $route['admin/menu']                  	= "admin/admin/menu";
@@ -130,7 +132,7 @@ $route['admin/agents/(:any)']           = "admin/admin/agents/$1";
 $route['admin/agents/(:any)/(:any)']    = "admin/admin/agents/$1/$2";
 
 //manage display order
-$route['admin/update_display_order']                  = "admin/admin/update_display_order";
+$route['admin/update_display_order']    = "admin/admin/update_display_order";
 
 
 

@@ -46,10 +46,10 @@
                                             <tr role="row">
                                                 <th class="index">#</th>
                                                 <th>TourName</th>   
-                                                <th>BookingFrom</th>
-                                                <th>BookingDate </th>
-                                                <th>TourDate</th>
                                                 <th>Emirates</th>
+                                                <th>BookedBy</th>
+                                                <th>BookingDate </th>
+                                                <th>TourDate</th>                                                
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -63,13 +63,13 @@
                                                 <tr role="row" class="odd">
                                                     <td class="index" data-id="<?php $tour['id'] ?>"><?php echo $i++; ?></td>
                                                     <td><?php echo $tb['title']; ?></td>
+                                                    <td><?php echo $tb['emirates']; ?></td>
                                                     <td>
                                                         <?php echo $tb['user_name']; ?> <small class="text-primary"><?php echo $tb['email']; ?></small> <br>
                                                         <small class="text-muted"><?php echo $tb['countryCode1'].' '.$tb['cell_no1']; ?></small>
                                                     </td>
                                                     <td><?php echo $tb['booking_date']; ?></td>
-                                                    <td><?php echo $tb['tour_date']; ?></td>
-                                                    <td><?php echo $tb['emirates']; ?></td>
+                                                    <td><?php echo $tb['tour_date']; ?></td>                                                    
                                                     <td>
                                                         <?php if($tb['booking_status'] == 'initiated') { ?>
                                                             <span class="label label-warning">Initiated</span>
@@ -82,14 +82,7 @@
                                                     </td>
                                                     <td>
                                                         <a href="<?php url('admin/tour-booking/'.$tb['booking_id']);  ?>" class="label label-info" data-id="<?php echo $tb['booking_id'] ?>">Review and Confirm</a>
-                                                    </td>
-                                                    <!-- <td>
-                                                        <?php if($tb['booking_status'] == 'initiated') { ?>
-                                                            <a class="label label-warning" title="Please approve this booking">APPROVE/CONFIRM</a>
-                                                        <?php } else if ($tb['booking_status'] == 'approved') { ?>
-                                                            <a class="label label-danger">CANCEL/REJECT</a>
-                                                        <?php } ?>
-                                                    </td> -->
+                                                    </td>                                                    
 
                                                 </tr>
                                             <?php

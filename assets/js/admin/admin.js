@@ -116,6 +116,16 @@ $(document).ready(function () {
         format: "yyyy-mm-dd"
     });
 
+    //Gallery uplaod
+    $("#cidSelect").on("change",function(){
+        $("#CategoryID").val($(this).val());
+    });
+
+    $("#eidSelect").on("change",function(){
+        $("#EmiratesID").val($(this).val());
+    });
+    //Gallery uplaod
+
 });
 //******* END OF DOCUMENT.READY() ***************//
 

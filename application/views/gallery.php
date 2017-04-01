@@ -46,16 +46,16 @@
         <div class="col-md-9 gallery-div-bg-right">
             <div class="gallery-div-bg-style">
 
-                <div class="col-md-9"><h4><?php if($gallery_data['title'] != '') echo $gallery_data['title']; else echo 'All Images'; ?></h4></div>
+                <div class="col-md-9"><h4><?php if($cat_name != '') echo $cat_name; else echo 'All Images'; ?></h4></div>
                 <div class="col-md-3">
                     <div class="dropdown filter-btn-style">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Gallery
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php if($cat_name != '') echo $cat_name; else echo 'Select Gallery'; ?>
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <?php
-                                foreach($galleries as $gal) {
+                                foreach($categories as $cat) {
                                     ?>
-                                    <li><a href="<?php url('gallery?id='.$gal['id']) ?>"><?php echo $gal['title']; ?></a></li>
+                                    <li><a href="<?php url('gallery?id='.$cat['id']) ?>"><?php echo $cat['title']; ?></a></li>
                                     <?php
                                 }
                             ?>                            
@@ -65,17 +65,18 @@
 
             </div>
             <?php
-                if(empty($gallery_images)){
+                if(empty($galleries)){
                     echo '<center>No images in this gallery!</center>';
                 }
+
             ?>
             <div class='list-group gallery'>
                 <?php                     
-                    foreach ($gallery_images as $gi) {
+                    foreach ($galleries as $gi) {
                 ?>
                         <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
-                            <a class="thumbnail fancybox" rel="ligthbox" href="<?php echo_image('images/gallery/'.$gi['file_name']) ?>">
-                                <img class="img-responsive img-resize" alt="" src="<?php echo_image('images/gallery/'.$gi['file_name']) ?>" />
+                            <a class="thumbnail fancybox" rel="ligthbox" href="<?php echo_image('images/gallery/'.$gi['image_file']) ?>">
+                                <img class="img-responsive img-resize" alt="" src="<?php echo_image('images/gallery/'.$gi['image_file']) ?>" />
                                <!--  <div class='text-right'>
                                     <small class='text-muted'>Image Title</small>
                                 </div>  -->

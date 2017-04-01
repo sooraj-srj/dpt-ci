@@ -56,6 +56,14 @@
      return $el;
  }
 
+//function to get menu
+ function get_gallery_images($cat_id){
+     $CI =& get_instance();
+     $CI->load->model('admin/admin_model');
+     $menu = $CI->admin_model->get_galleries($cat_id);
+     return $menu;
+ }
+
  //function email header
  function email_header($user_name = "", $message = ""){
      $email_header = '<html>
@@ -204,6 +212,76 @@
       return $tra_details;
  }
 
+ function get_extra_details($td = array()){
+
+    $pickup_location  = $td['pickup_location'];
+    $end_location     = $td['drop_location'];  
+    //echo $pickup_location; exit;
+    //========= pickup location ================
+    if($td['pickup_location'] == 1){
+      $pickup_location_data = '<small>Name: </small>'.$td['hotelName'].'<br>
+                              <small>Address: </small>'.$td['hotelAddress'].'<br>
+                              <small>Phone: </small>'.$td['hotelPhoneNo'].'<br>';
+    }
+    else if($td['pickup_location'] == '2' || $td['pickup_location'] == '3' || $td['pickup_location'] == '4' || $td['pickup_location'] == '5' || $td['pickup_location'] == '6') {
+      $pickup_location_data = '<small>Flight Name: </small>'.$td['flightName'].'<br>
+                              <small>Terminal Name: </small>'.$td['terminalName'].'<br>
+                              <small>Flight Arrival: </small>'.$td['flightArrival'].'<br>
+                              <small>Flight Departure: </small>'.$td['flightDeparture'].'<br>';
+
+    }
+    else if($td['pickup_location'] == '7' || $td['pickup_location'] == '8') {
+        $pickup_location_data = '<small>Ship Name: </small>'.$td['shipName'].'<br>';
+    }
+    else if($td['pickup_location'] == '12') {
+        $pickup_location_data = '<br><small>Address: </small>'.$td['start_lr_address'].'<br>
+                                 <small>Phone: </small>'.$td['start_lr_phone'].'<br>';
+    }
+    else if($td['pickup_location'] == '13') {
+        $pickup_location_data = '<small>Name: </small>'.$td['start_rest_name'].'<br>
+                                  <small>Address: </small>'.$td['start_rest_address'].'<br>
+                                  <small>Phone: </small>'.$td['start_rest_phone'].'<br>';
+    }
+
+    //========= drop location ================
+    if($td['dropLocation'] == '1') {
+        $drop_location_data = '<small>Name: </small>'.$td['endhotelName'].'<br>
+                                <small>Address: </small>'.$td['endhotelAddress'].'<br>
+                                <small>Phone: </small>'.$td['endhotelPhoneNo'].'<br>';
+    }
+    else if($td['dropLocation'] == '12') { 
+        $drop_location_data = '<br><small>Address: </small>'.$td['end_lr_address'].'<br>
+                              <small>Phone: </small>'.$td['end_lr_phone'].'<br>';     
+    }                                            
+    else if($td['dropLocation'] == '13') {
+        $drop_location_data = '<small>Name: </small>'.$td['end_rest_name'].'<br>
+                            <small>Address: </small>'.$td['end_rest_address'].'<br>
+                            <small>Phone: </small>'.$td['end_rest_phone'].'<br>';
+    } 
+    else if($td['dropLocation'] == '16') { 
+        $drop_location_data = '<small>Name: </small>'.$td['end_place_name'].'<br>
+                              <small>Address: </small>'.$td['end_place_address'].'<br>
+                              <small>Phone: </small>'.$td['end_place_phone'].'<br>';
+    }
+
+    //Price 
+    if($td['currencyCode'] == 'USD($)'){ $price = $td['usd_price'].' USD'; }
+    else if($td['currencyCode'] == 'AED'){ $price = $td['price'].' AED'; }
+    else { $price = $td['price'].' AED'; }
+
+    //number of people count
+    $people = 'Adult(s) - '.$td['adultNo'].', Children(s) - '.$td['childNo'].', Infant(s), - '.$td['infantNo'];
+
+    $extra_details = '<b>Number of people: </b>'.$people.'<br>
+                      <b>Price: Cost of tour: </b>'.$price.'<br>
+                      <b>Amount Guide Must collect </b>from traveler ( VISA / MASTER / IN CASH ) at start of tour:  <b>'.$price.'</b>
+                      <br>
+                      <b>Meeting Location: </b>'.$pickup_location.'<br>'.$pickup_location_data.'
+                      <br>
+                      <b>End location: </b>'.$end_location.'<br>'.$drop_location_data;
+    return $extra_details;
+ }
+
  //get email template for admin when a booking initiated
  function get_admin_tour_template($td = array()){     
     $pickup_location = get_pickup_location($td['pickup_location']);
@@ -215,16 +293,63 @@
     <tr> <td>Cell No: 1: </td> <td>'.$td['countryCode1'].' '.$td['cell_no1'].'</td> </tr>
     <tr> <td>Cell No: 2</td> <td>'.$td['countryCode2'].' '.$td['cell_no2'].'</td> </tr>
     <tr> <td>Nationality: </td> <td>'.$td['nationality'].'</td> </tr>
-    <tr> <td>Tour Date: </td> <td>'.$td['tour_date'].'</td> </tr>
-    <tr> <td>Pickup location: '.$pickup_location.'</td> <td>End Location: '.$end_location.'</td> </tr>
+    <tr> <td>Tour Date: </td> <td>'.$td['tour_date'].'</td> </tr>';
+    //========= pickup location ================
+    if($td['pickup_location'] == 1){
+      $pickup_location_data = '<small>Name: </small>'.$td['hotelName'].'<br>
+                              <small>Address: </small>'.$td['hotelAddress'].'<br>
+                              <small>Phone: </small>'.$td['hotelPhoneNo'].'<br>';
+    }
+    else if($td['pickup_location'] == '2' || $td['pickup_location'] == '3' || $td['pickup_location'] == '4' || $td['pickup_location'] == '5' || $td['pickup_location'] == '6') {
+      $pickup_location_data = '<small>Flight Name: </small>'.$td['flightName'].'<br>
+                              <small>Terminal Name: </small>'.$td['terminalName'].'<br>
+                              <small>Flight Arrival: </small>'.$td['flightArrival'].'<br>
+                              <small>Flight Departure: </small>'.$td['flightDeparture'].'<br>';
+
+    }
+    else if($td['pickup_location'] == '7' || $td['pickup_location'] == '8') {
+        $pickup_location_data = '<small>Ship Name: </small>'.$td['shipName'].'<br>';
+    }
+    else if($td['pickup_location'] == '12') {
+        $pickup_location_data = '<br><small>Address: </small>'.$td['start_lr_address'].'<br>
+                                 <small>Phone: </small>'.$td['start_lr_phone'].'<br>';
+    }
+    else if($td['pickup_location'] == '13') {
+        $pickup_location_data = '<small>Name: </small>'.$td['start_rest_name'].'<br>
+                                  <small>Address: </small>'.$td['start_rest_address'].'<br>
+                                  <small>Phone: </small>'.$td['start_rest_phone'].'<br>';
+    }
+
+    //========= drop location ================
+    if($td['dropLocation'] == '1') {
+        $drop_location_data = '<small>Name: </small>'.$td['endhotelName'].'<br>
+                                <small>Address: </small>'.$td['endhotelAddress'].'<br>
+                                <small>Phone: </small>'.$td['endhotelPhoneNo'].'<br>';
+    }
+    else if($td['dropLocation'] == '12') { 
+        $drop_location_data = '<br><small>Address: </small>'.$td['end_lr_address'].'<br>
+                              <small>Phone: </small>'.$td['end_lr_phone'].'<br>';     
+    }                                            
+    else if($td['dropLocation'] == '13') {
+        $drop_location_data = '<small>Name: </small>'.$td['end_rest_name'].'<br>
+                            <small>Address: </small>'.$td['end_rest_address'].'<br>
+                            <small>Phone: </small>'.$td['end_rest_phone'].'<br>';
+    } 
+    else if($td['dropLocation'] == '16') { 
+        $drop_location_data = '<small>Name: </small>'.$td['end_place_name'].'<br>
+                              <small>Address: </small>'.$td['end_place_address'].'<br>
+                              <small>Phone: </small>'.$td['end_place_phone'].'<br>';
+    }
+
+    $tour_details .='<tr><td><p>Pickup location: '.$pickup_location.'</p>'.$pickup_location_data.'</td> 
+    <td><p>End Location: '.$end_location.'</p>'.$drop_location_data.'</td> </tr>
     <tr> <td>Preferred Pickup Time: </td> <td>'.$td['pref_pickup_time'].'</td> </tr>
-    <tr> <td>Passenger Details: </td> <td>Adult(s) - '.$td['adultNo'].' Children(s) - '.$td['childNo'].' Infant(s) - '.$td['infantNo'].' </td> </tr>
+    <tr> <td>Passenger Details: </td> <td>Adult(s) - '.$td['adultNo'].', Children(s) - '.$td['childNo'].', Infant(s), - '.$td['infantNo'].' </td> </tr>
     <tr> <td>Preferred Guide language: </td> <td>'.$td['preferedguide'].'</td> </tr>
     <tr> <td>Currency: </td> <td>'.$td['currencyCode'].'</td> </tr>
     <tr> <td>Payment Mode: </td> <td>'.$td['currencyMode'].'</td> </tr>
     <tr> <td>Special Requests: </td> <td>'.$td['specialRequests'].'</td> </tr>
-    <tr> <td>How Did You Discover Us: </td> <td>'.$td['howfind'].'</td> </tr>
-    ';
+    <tr> <td>How Did You Discover Us: </td> <td>'.$td['howfind'].'</td> </tr></table><br><br>';
 
     return $tour_details;
  }

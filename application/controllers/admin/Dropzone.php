@@ -30,8 +30,9 @@ class Dropzone extends CI_Controller {
                   $image_name = $upload_detail["file_name"];
             }  
 
-            $post_data['resource_id'] = $this->input->post("gallery_id",true);
-            $post_data['file_name'] = $image_name;
+            $post_data['category_id']   = $this->input->post("category_id",true);
+            $post_data['emirates_id']   = $this->input->post("emirates_id",true);
+            $post_data['image_file']    = $image_name;
             $this->load->model('admin/admin_model');
             $this->admin_model->update_gallery_image($post_data);
 

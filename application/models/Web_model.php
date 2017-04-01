@@ -62,7 +62,8 @@ class Web_model extends CI_Model {
     public function get_category_emirates($cat_id){
         $qry = "SELECT * FROM default_emirate_tours et 
                 LEFT JOIN default_emirates e ON e.id = et.emirates_id
-                WHERE et.category_id = '$cat_id'";
+                WHERE et.category_id = '$cat_id'
+                GROUP BY et.emirates_id";
         $sel = $this->db->query($qry);
         $res = $sel->result_array($sel);
         if(!empty($res)){
@@ -102,7 +103,7 @@ class Web_model extends CI_Model {
     public function get_tours_from_emirates($emirates_id){
         $qry = "SELECT * FROM default_emirate_tours et 
                 LEFT JOIN default_tour t ON t.id = et.tour_id
-                WHERE et.emirates_id = '$emirates_id'";
+                WHERE et.emirates_id = '$emirates_id' AND t.category_id = '3'";
  
         $sel = $this->db->query($qry);
         $res = $sel->result_array($sel);
@@ -135,7 +136,7 @@ class Web_model extends CI_Model {
     public function get_default_tour_emirates($emirates_id){
         $qry = "SELECT * FROM default_emirate_tours et 
                 LEFT JOIN default_tour t ON t.id = et.tour_id
-                WHERE et.emirates_id = '$emirates_id' 
+                WHERE et.emirates_id = '$emirates_id' AND t.category_id = '3' 
                 ORDER BY et.id LIMIT 1";
         //echo $qry;
         $sel = $this->db->query($qry);
@@ -238,11 +239,17 @@ class Web_model extends CI_Model {
     }
 
     //function to get tour gallery
-    public function get_tour_gallery($tour_id='')
+    public function get_tour_gallery($cat_id='', $emirates_id='')
     {
         $query = $this->db->select("*")
-                ->from("default_tour_gallery")
-                ->get();
+                ->from("default_tour_gallery");
+        if($cat_id != ''){
+            $query = $query->where('category_id',$cat_id);
+        }
+        if($emirates_id != ''){
+            $query = $query->where('emirates_id', $emirates_id);
+        }
+        $query = $query->get();
         $result = $query->result_array();
         return $result;
     }
@@ -341,6 +348,15 @@ class Web_model extends CI_Model {
                 ->get();
         $result = $query->row_array();
         return $result['location'];
+    }
+
+    public function get_category_name($cat_id = ''){
+        $query = $this->db->select("title")
+                    ->from("default_tour_categories")
+                    ->where('id',$cat_id)
+                    ->get();
+        $result = $query->row_array();
+        return $result['title'];
     }
 
 }

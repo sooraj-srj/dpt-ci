@@ -70,15 +70,18 @@ fadeInFirstContent();
 //------------- TAB NAVIGATION ---------------
 
 //------------- CALENDER ------------
-$(function () {
+$(document).ready(function () {
     //calendar call function
     //$('.datepicker').dcalendar();
     //$('.datepicker').dcalendarpicker();
+
     $('.datepicker').datepicker({
         autoclose: true,
         startDate: new Date(),
         format: "dd/mm/yyyy"
         //format: "yyyy-mm-dd"
+    }).on('changeDate',function(e){
+        $('#selectPlanForm').bootstrapValidator('revalidateField', 'tour_date');
     });
 
     var max_fields = 10; //maximum input boxes allowed
@@ -165,9 +168,6 @@ $(document).ready(function () {
         window.location = url;
     });
 
-    // $("#confirm_booking").on("click",function(){
-    //     alert("here");
-    // });
 });
 // == bootstrap form validation 
 $(document).ready(function () {
@@ -178,8 +178,8 @@ $(document).ready(function () {
             tour_date: {
                 validators: {
                     notEmpty: {
-                        message: 'The select tour-date'
-                    }
+                            message: 'The date is required'
+                        }
                 }
             },            
             pref_pickup_time: {

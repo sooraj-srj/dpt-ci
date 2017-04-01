@@ -31,7 +31,7 @@
     <section class="content">
         <div class="box box-warning">
             <div class="box-header with-border">      
-            <h3 class="box-title">Add/Remove gallery for <b><?php echo $gallery_data['title']; ?></b></h3>          
+            <h3 class="box-title">Upload gallery</b></h3>          
                 <div class="form-group">
                     <?php include('alert-message.php'); ?>
                 </div>
@@ -40,15 +40,55 @@
             <div class="box-body">
                 <div class="col-md-12">
                     <?php //p($gallery_images) ?>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">                            
+                                    <label>Select Category <span class="error">*</span> </label>
+                                    <select name="category_id" class="form-control" id="cidSelect">
+                                        <option value="">Select category</option>
+                                        <?php 
+                                        foreach ($categories as $cat) {
+                                            ?>
+                                            <option value="<?php echo $cat['id']; ?>" <?php if($cat['id'] == $tourdata['category_id']) echo 'selected'; ?>>
+                                                <?php echo $cat['title']; ?>
+                                            </option>
+                                            <?php
+                                        } 
+                                        ?>
+                                    </select>                   
+                                </div> 
+                                <div class="form-group">
+                                    <label>Select Emirates <span class="error">*</span></label>
+                                    <select name="emirates_id" class="form-control" id="eidSelect">
+                                        <option value="">Select emirates</option>
+                                        <?php 
+                                        foreach ($emirates as $em) {
+                                            ?>
+                                            <option value="<?php echo $em['id']; ?>" <?php if(in_array($em['id'], $et)) echo 'selected'; ?>>
+                                                <?php echo $em['name']; ?>
+                                            </option>
+                                            <?php
+                                        } 
+                                        ?>
+                                    </select>                      
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
                     <form action="<?php url('admin/upload'); ?>" class="dropzone">
+                        <input type="hidden" id="CategoryID" name="category_id" value="">
+                        <input type="hidden" id="EmiratesID" name="emirates_id" value="">
                         <input type="hidden" name="gallery_id" value="<?php echo $gallery_data['id']; ?>">
                     </form>
                     <br>
+                    <a href="<?php url('admin/gallery'); ?>" class="btn btn-info">Upload</a>
                     <?php 
-                    if(empty($gallery_images)){
-                        echo '<div class="alert alert-warning">No images for '.$gallery_data['title'].'</div>';
-                    }
-                    foreach ($gallery_images as $images) {
+                    // if(empty($gallery_images)){
+                    //     echo '<div class="alert alert-warning">No images for '.$gallery_data['title'].'</div>';
+                    // }
+                    /*foreach ($gallery_images as $images) {
                         ?>
                         <div class="col-md-3">
                             <div class="item-resize">
@@ -56,7 +96,7 @@
                             </div>
                         </div>
                         <?php
-                    }
+                    }*/
                     ?>
                 </div>
             </div>

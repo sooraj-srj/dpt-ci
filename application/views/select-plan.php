@@ -62,7 +62,7 @@
                                             <div class="col-md-12 col-sm-12">
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="arrival">Tour Date<span class="red">*</span></label>
-                                                    <input type="text" class="form-control datepickerICO datepicker" name="tour_date" id="arrival" placeholder="">
+                                                    <input type="text" class="form-control datepickerICO datepicker" name="tour_date" id="TourDate" placeholder="">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="name">Preferred Pickup Time<span class="red">*</span></label>
@@ -316,6 +316,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <input type="hidden" name="tour_id" value="<?php echo $tour_id; ?>">
+                                                    <input type="hidden" name="emirates_id" value="<?php echo $emirates_id; ?>">
                                                     <button type="submit" class="btn main-btn-style" id="confirm_booking">Confirm Booking</button>&nbsp;
                                                     <button type="button" class="btn main-btn-style">Clear</button>
                                                 </div>
@@ -386,8 +387,8 @@
                                                         foreach($tour_gallery as $tg){
                                                 ?>
                                                             <div data-p="144.50">
-                                                                <img data-u="image" src="<?php echo_image('images/tours/'.$tg['image_file']); ?>"/>
-                                                                <img data-u="thumb" src="<?php echo_image('images/tours/'.$tg['image_file']);?>"/>
+                                                                <img data-u="image" src="<?php echo_image('images/gallery/'.$tg['image_file']); ?>"/>
+                                                                <img data-u="thumb" src="<?php echo_image('images/gallery/'.$tg['image_file']);?>"/>
                                                             </div>
                                                 <?php
                                                         $i++;
@@ -395,8 +396,7 @@
                                                     }
                                                     
                                                 ?>
-                                                
-                                                
+                   
                                             </div>
                                             <!-- Thumbnail Navigator -->
                                             <div data-u="thumbnavigator" class="jssort01"
