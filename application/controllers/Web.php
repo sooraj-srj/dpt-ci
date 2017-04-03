@@ -100,8 +100,11 @@ class Web extends CI_Controller {
     //ourguide page
     public function our_guide()
     {
+        $this->load->model('admin/admin_model');
+        
         $this->gen_contents = array();
-        $this->gen_contents['isd_code'] = $this->web_model->get_isd_code();
+        $this->gen_contents['isd_code']    = $this->web_model->get_isd_code();
+        $this->gen_contents['contents']    = $this->admin_model->get_dpt_contents();
         $this->template->write_view('content', 'our-guide', $this->gen_contents);
         $this->template->render();
     }
@@ -109,8 +112,10 @@ class Web extends CI_Controller {
     //tourist-visa page
     public function tourist_visa()
     {
+        $this->load->model('admin/admin_model');
         $this->gen_contents['nationalities']  = $this->web_model->get_nationalities();
         $this->gen_contents['isd_code']     = $this->web_model->get_isd_code();
+        $this->gen_contents['contents']    = $this->admin_model->get_dpt_contents();
         $this->template->write_view('content', 'tourist-visa', $this->gen_contents);
         $this->template->render();
     }
@@ -491,15 +496,15 @@ class Web extends CI_Controller {
 
             $content1       = 'Contact enquiry from '.$post_data['name'].'. Enquiry Details are below:';
             $content1 .= '<table width="100%" border="1" style="border-collapse:collapse;" cellpadding="7">                
-                    <tr><td>Name: </td> <td>'.$post_data['name'].'</td></tr>
-                    <tr><td>Email: </td> <td>'.$post_data['email'].'</td></tr>
-                    <tr><td>Nationality: </td> <td>'.$post_data['nationality'].'</td></tr>
-                    <tr><td>How did you discover us: </td> <td>'.$post_data['how_discover_us'].'</td></tr>
-                    <tr><td>Cell No: </td> <td>'.$post_data['phone_number'].'</td></tr>
-                    <tr><td>Address: </td> <td>'.$post_data['address'].'</td></tr>
-                    <tr><td>Subject: </td> <td>'.$post_data['subject'].'</td></tr>
-                    <tr><td>Message: </td> <td>'.$post_data['message'].'</td></tr>                
-                    </table><br><br>';
+                            <tr><td>Name: </td> <td>'.$post_data['name'].'</td></tr>
+                            <tr><td>Email: </td> <td>'.$post_data['email'].'</td></tr>
+                            <tr><td>Nationality: </td> <td>'.$post_data['nationality'].'</td></tr>
+                            <tr><td>How did you discover us: </td> <td>'.$post_data['how_discover_us'].'</td></tr>
+                            <tr><td>Cell No: </td> <td>'.$post_data['phone_number'].'</td></tr>
+                            <tr><td>Address: </td> <td>'.$post_data['address'].'</td></tr>
+                            <tr><td>Subject: </td> <td>'.$post_data['subject'].'</td></tr>
+                            <tr><td>Message: </td> <td>'.$post_data['message'].'</td></tr>                
+                            </table><br><br>';
             $from_email     = $post_data['email'];
             $to_email1      = 'info@dubaiprivatetour.com';
             $to_email2      = 'dubaiprivatetour@gmail.com';

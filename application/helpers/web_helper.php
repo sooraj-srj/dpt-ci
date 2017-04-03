@@ -134,7 +134,7 @@
                      <table border="0" cellpadding="1" cellspacing="1">
                        <tbody>
                          <tr>
-                           <td width="389"><a href="http://www.milantoursdubai.com/"><img alt="" src="http://www.dubaiprivatetour.com/beta/assets/images/milan.jpg"></a> <a href="https://www.tripadvisor.in/Attraction_Review-g295424-d2510773-Reviews-Dubai_Private_Tour-Dubai_Emirate_of_Dubai.html"><img alt="" src="http://www.dubaiprivatetour.com/beta/assets/images/ta-dpt.jpg"></a> <a href="https://www.facebook.com/DubaiPrivatTour?fref=ts"><img alt="" src="http://www.dubaiprivatetour.com/beta/assets/images/fb-follow.jpg"></a></td>
+                           <td width="389"><a href="http://www.milantoursdubai.com/"><img alt="" src="http://www.dubaiprivatetour.com/beta/assets/images/milan.jpg"></a> <a href="https://www.tripadvisor.in/Attraction_Review-g295424-d2510773-Reviews-Dubai_Private_Tour-Dubai_Emirate_of_Dubai.html"><img alt="" src="http://www.dubaiprivatetour.com/beta/assets/images/ta-dpt.jpg"></a> <a href="https://www.facebook.com/Dubaiprivatetour-1200810873344965/"><img alt="" src="http://www.dubaiprivatetour.com/beta/assets/images/fb-follow.jpg"></a></td>
                          </tr>
                        </tbody>
                      </table>
@@ -272,7 +272,7 @@
     //number of people count
     $people = 'Adult(s) - '.$td['adultNo'].', Children(s) - '.$td['childNo'].', Infant(s), - '.$td['infantNo'];
 
-    $extra_details = '<b>Number of people: </b>'.$people.'<br>
+    $extra_details = '<br><b>Number of people: </b>'.$people.'<br>
                       <b>Price: Cost of tour: </b>'.$price.'<br>
                       <b>Amount Guide Must collect </b>from traveler ( VISA / MASTER / IN CASH ) at start of tour:  <b>'.$price.'</b>
                       <br>

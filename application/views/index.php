@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="item">
                                 <div class="col-md-12">
                                     <div class="item-main-div1">
-                                    <img src="<?php echo_image('images/tours/tour1.jpg'); ?>" class="img-responsive item-1-img">
+                                    <img src="<?php echo_image('images/tours/'.$pt['image']); ?>" class="img-responsive item-1-img" style="width:360px; height:229px;">
                                         <div class="price-first-position">
                                             <div class="price-div-bg-text">
                                                 <center>

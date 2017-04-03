@@ -113,9 +113,9 @@ $route['admin/email-template']         = "admin/admin/manage_email_template";
 $route['admin/gallery']                  = "admin/admin/gallery";
 $route['admin/gallery/(:any)']           = "admin/admin/gallery/$1";
 $route['admin/gallery/(:any)/(:any)']    = "admin/admin/gallery/$1/$2";
-$route['admin/image-delete/(:any)']  	= "admin/admin/delete_image/$1";
+$route['admin/image-delete/(:any)']  	 = "admin/admin/delete_image/$1";
 
-$route['admin/gallery-images/(:any)']    = "admin/admin/gallery_images/$1";
+$route['admin/gallery-images/(:any)']   = "admin/admin/gallery_images/$1";
 $route['admin/gallery-images']    		= "admin/admin/upload_gallery_images";
 $route['admin/upload']    				= "admin/dropzone/upload";
 
@@ -127,9 +127,13 @@ $route['admin/reviews']                  	= "admin/admin/list_reviews";
 $route['admin/reviews/(:any)/(:any)']       = "admin/admin/list_reviews/$1/$2";
 $route['admin/questions']                  	= "admin/admin/list_questions";
 
-$route['admin/agents']                  = "admin/admin/agents";
-$route['admin/agents/(:any)']           = "admin/admin/agents/$1";
-$route['admin/agents/(:any)/(:any)']    = "admin/admin/agents/$1/$2";
+$route['admin/agents']                  	= "admin/admin/agents";
+$route['admin/agents/(:any)']           	= "admin/admin/agents/$1";
+$route['admin/agents/(:any)/(:any)']    	= "admin/admin/agents/$1/$2";
+
+$route['admin/contents/(:any)']             = "admin/admin/contents/$1";
+$route['admin/content-appln']            	= "admin/admin/content_appln";
+
 
 //manage display order
 $route['admin/update_display_order']    = "admin/admin/update_display_order";

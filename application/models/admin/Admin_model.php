@@ -600,5 +600,25 @@ class Admin_model extends CI_Model {
         }
     }
 
+    //get contents
+    public function get_dpt_contents($value=''){
+        $query = $this->db->select("*")
+                ->from("default_dpt_contents")
+                ->get();
+        if ($query->num_rows() > 0) {
+            $result = $query->row_array();
+            return $result;
+        } else {
+            return '';
+        }
+    }
+
+    public function update_contents($post_data=array())
+    {
+        $this->db->where("id",1);
+        $this->db->update("default_dpt_contents",$post_data);
+        return "updated";
+    }
+
 
 }

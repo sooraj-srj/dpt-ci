@@ -759,4 +759,37 @@ class Admin extends CI_Controller {
     }
 
 
+    //contents and edit
+    public function contents($flag=''){
+
+        $this->gen_contents['flag']     = $flag;
+        $contents     = $this->admin_model->get_dpt_contents();
+        //p($contents); exit;
+        if($flag == 'ourguide'){
+
+            $this->gen_contents['content']      = $contents['our_guide'];
+            $this->gen_contents['content_name'] = 'Our guide';
+        }
+        //p($this->gen_contents['reviews']); exit;
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/manage-contents', $this->gen_contents);
+        $this->template->render();
+    }
+
+    //content application post
+    public function content_appln()
+    {
+        $flag = $this->input->post('flag',true);
+        if($flag == 'ourguide'){
+            $post_data['our_guide'] = $this->input->post('content',true);
+        }
+        $this->load->model('admin/admin_model');
+        $response = $this->admin_model->update_contents($post_data);
+
+        if($response == "updated"){
+            sf('success_message', 'Content has been updated successfully');
+            redirect("admin/contents/".$flag);
+        }
+    }
+
 }

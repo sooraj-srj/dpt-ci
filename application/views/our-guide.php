@@ -45,23 +45,7 @@
                                                 <h3 class="title__primary">OUR GUIDES</h3>
                                             </div>
                                             <div class="clearfix"></div>
-                                            <p>Our professional guides speak impeccable English and are committed to
-                                                responsible travel. They are available from dawn until bedtime and treat
-                                                everyone alike. Our guides are multi-lingual and speak most European and
-                                                Asian languages with utmost fluency. Please request our special rates
-                                                for different languages. All our guides possess the best insights of the
-                                                UAE. With immense first-hand knowledge of the region, its geography,
-                                                history, interesting facts and stories; there is no stone left unturned.
-                                                Their charisma and humour have enhanced many trips and tours. Our guides
-                                                are very popular with every member, even of a very disparate group. They
-                                                are efficient, even-tempered and always smiling. Dubai Private Tour /
-                                                Milan Tours & Tour Guide Services LLC guides instinctively know how to
-                                                deal with tourists, in times of worry and stress. Be it a Safari or a
-                                                sight-seeing tour, you will appreciate the beauty and splendor of the
-                                                UAE like you have never ever done before. Please note that the following
-                                                price of USD $165 is applicable for the services of a Tour Guide for up
-                                                to 4 hours. If you should need the services of a Tour Guide for any time
-                                                between 4 hours to 8 hours, you shall be charged a fee of USD $330</p>
+                                            <?php echo $contents['our_guide']; ?>
                                             <div class="clearfix"></div>
                                             <br>
                                             <ul class="flags">

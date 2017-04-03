@@ -7,7 +7,7 @@
 ?>
     <div class="col-md-4">
         <div class="item-main-div1">
-            <img src="<?php echo assets_url(); ?>images/carous1/fit (1).jpg" class="img-responsive item-1-img">
+            <img src="<?php echo_image('images/tours/'.$pt['image']); ?>" class="img-responsive item-1-img" style="height: 169px;">
             <div class="price-first-position">
                 <div class="price-div-bg-text">
                     <center>
