@@ -479,7 +479,10 @@ class Admin extends CI_Controller {
         $action = $this->input->post("btn-booking",true);
         if($action == 'confirm'){
             $response = $this->admin_model->update_booking_status($booking_id,'approved');
-            
+            $booking_data = array(
+                    "price" => $this->input->post("price",true)
+                );
+            $this->admin_model->update_booking_data($booking_id,$booking_data);
             if($response == "success"){
                 // ====== Send email notification =========
                      
@@ -513,6 +516,79 @@ class Admin extends CI_Controller {
             sf('success_message','Booking has been cancelled successfully');
             redirect('admin/tour-booking/'.$booking_id);
         }
+    }
+
+    // send to agent - similer to details send
+    public function agent_email_details($booking_id='')
+    {
+
+        $this->load->model('admin/admin_model');
+
+        $this->gen_contents['page_heading'] = 'Tour Booking Details';
+        $tour_type = $this->gen_contents['tour_type'] = $this->input->get('type');
+        $this->gen_contents['agents'] = $this->admin_model->get_agents();
+
+        $this->gen_contents['booking_details'] = $this->admin_model->get_tour_booking_details($booking_id);
+        $booking_details = $this->gen_contents['booking_details'];
+        //p($booking_details); exit;
+        foreach ($booking_details as $bd) { }
+
+        if($tour_type == 'ts'){
+            $emirates_data = $this->admin_model->get_emairates_from_booking($booking_id);   // for TS
+        }
+
+        $this->gen_contents['emirates'] = $emirates_data['emirates'];
+        //$mail_body = $this->admin_model->get_email_template('booking-mail'); //old
+        $tour_template = $this->admin_model->get_tour_template($bd['category_id']);
+        $mail_body = $tour_template['template'];
+        
+        if($tour_type == 'ts'){
+            $tour_details  = "You are selected <b>"  .$emirates_data['emirates']. '</b> transfer service.';
+            $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body);
+            $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
+            //echo $mail_body; exit;
+        }
+        else{
+            $tour_details       = get_tour_details_table($bd);    // get tour details 
+            $traveler_details   = get_traveler_details($bd);  // get traveler details
+            $extra_details      = get_extra_details($bd);
+            //echo $traveler_details; exit;
+            $mail_body = str_replace('{{user_name}}', $bd['user_name'], $mail_body);                
+            $mail_body = str_replace('{{tour_details}}', $tour_details, $mail_body);
+            $mail_body = str_replace('{{traveler_details}}', $traveler_details, $mail_body);
+            $mail_body = str_replace('{{extra_details}}', $extra_details, $mail_body);
+        }
+        
+
+        $this->gen_contents['mail_content'] = $mail_body;
+       
+
+        //p($this->gen_contents['booking_details']); exit;
+        //rendering page        
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/agent-email-details', $this->gen_contents);
+        $this->template->render();
+    }
+
+    
+    // send email appln to agents
+    public function agent_email_appln()
+    {
+        $this->load->model('admin/admin_model');
+        $booking_id = $this->input->post("booking_id",true);
+
+        $booking_details = $this->admin_model->get_tour_booking_details($booking_id);
+        foreach ($booking_details as $bd) { }
+        $mail_body  = $this->input->post("mail_body",true);
+        $subject    = $this->input->post("subject",true);
+
+        $agent_email  = $this->input->post("agent_email",true);  //agent email id
+        if(!empty($agent_email)){
+            send_mail($agent_email, $from_name, "New Booking Confirmation- Ref: ".$subject, $body_content, $from_email); //send to agent
+        }                
+        // ====== Send email notification =========
+        sf('success_message','Email has been sent to agent successfully!');
+        redirect('admin/tour-booking');
     }
 
     //update email template -Booking email
@@ -770,6 +846,16 @@ class Admin extends CI_Controller {
             $this->gen_contents['content']      = $contents['our_guide'];
             $this->gen_contents['content_name'] = 'Our guide';
         }
+        if($flag == 'touristvisa'){
+
+            $this->gen_contents['content']      = $contents['tourist_visa'];
+            $this->gen_contents['content_name'] = 'About UAE Tourist Visa';
+        }
+        if($flag == 'residencevisa'){
+
+            $this->gen_contents['content']      = $contents['uae_residence_visa'];
+            $this->gen_contents['content_name'] = 'About UAE Residence Visa';
+        }
         //p($this->gen_contents['reviews']); exit;
         $this->template->set_template('admin');
         $this->template->write_view('content', 'admin/manage-contents', $this->gen_contents);
@@ -783,6 +869,13 @@ class Admin extends CI_Controller {
         if($flag == 'ourguide'){
             $post_data['our_guide'] = $this->input->post('content',true);
         }
+        if($flag == 'touristvisa'){
+            $post_data['tourist_visa'] = $this->input->post('content',true);
+        }
+        if($flag == 'residencevisa'){
+            $post_data['uae_residence_visa'] = $this->input->post('content',true);
+        }
+
         $this->load->model('admin/admin_model');
         $response = $this->admin_model->update_contents($post_data);
 

@@ -313,6 +313,10 @@
                             <ul class="treeview-menu">
                                 <li><a href="<?php echo admin_url() . 'contents/ourguide'; ?>"><i class="fa fa-list"></i> Our Guide</a>
                                 </li> 
+                                <li><a href="<?php echo admin_url() . 'contents/touristvisa'; ?>"><i class="fa fa-list"></i> UAE Tourist Visa</a>
+                                </li> 
+                                <li><a href="<?php echo admin_url() . 'contents/residencevisa'; ?>"><i class="fa fa-list"></i> UAE Residence Visa</a>
+                                </li> 
                             </ul>
                         </li>
 

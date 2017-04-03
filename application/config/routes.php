@@ -134,9 +134,12 @@ $route['admin/agents/(:any)/(:any)']    	= "admin/admin/agents/$1/$2";
 $route['admin/contents/(:any)']             = "admin/admin/contents/$1";
 $route['admin/content-appln']            	= "admin/admin/content_appln";
 
+$route['admin/agent-email/(:any)']          = "admin/admin/agent_email_details/$1";
+$route['admin/agent-email-appln']    	   	= "admin/admin/agent_email_appln";
+
 
 //manage display order
-$route['admin/update_display_order']    = "admin/admin/update_display_order";
+$route['admin/update_display_order']    	= "admin/admin/update_display_order";
 
 
 

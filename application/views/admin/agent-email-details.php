@@ -14,7 +14,7 @@
     }
 </style>
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="min-height: 946px; !important;" id="chumma">
+    <div class="content-wrapper" style="min-height: 946px; !important;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Manage Tour Bookings </h1>
@@ -223,8 +223,8 @@
                                         <!-- /.box -->
                                         </div>
                                         <div class="col-md-7">
-                                            <form name="confirmForm1" method="post" action="<?php url('admin/booking-appln') ?>" role="form">      
-                                                <!--<div class="form-group">
+                                            <form name="confirmForm1" method="post" action="<?php url('admin/agent-email-appln') ?>" role="form">      
+                                                <div class="form-group">
                                                     <label>Select Agents</label><div class="clearfix"></div>
                                                     <select name="agent_email" class="form-control">
                                                         <option value="">Select Agent</option>
@@ -236,7 +236,7 @@
                                                         }
                                                         ?>
                                                     </select>
-                                                </div>-->
+                                                </div>
                                                 <div class="form-group">
                                                     <label>Mail Subject</label><div class="clearfix"></div>
                                                     <textarea name="subject" class="form-control"><?php if($tour_type == 'ts') echo 'Your '. $emirates.' transfer service'; else echo $bd['title']; ?>: Booking Confirmed!</textarea>
@@ -246,21 +246,13 @@
                                                     <textarea name="mail_body" class="form-control textarea" placeholder="Template Body">
                                                     <?php echo $mail_content; ?></textarea>    
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Price in AED <small>(This is for tracking pupose)</small></label>
-                                                    <input type="text" name="price" class="form-control" value="<?php echo $bd['price'] ?>"> 
-                                                </div>
-                                                
+                                                                                                
                                                 <div class="form-group pull-right">
                                                     <input type="hidden" name="booking_id" value="<?php echo $bd['booking_id']; ?>">
                                                     <br>
-                                                    <button type="button" name="print" class="btn btn-default" onclick="PrintElem('chumma');">Print</button>
-                                                    <?php if($bd['booking_status'] != 'approved'){  ?>                                                
-                                                        <button type="submit" class="btn btn-danger" name="btn-booking" onclick="return confirm('Are you sure you want to cancel this booking?')" value="cancel">Cancel Booking</button>    
-                                                        <button type="submit" value="confirm" name="btn-booking" onclick="return confirm('Are you sure you want to confirm this booking?')" class="btn btn-success">Confirm Booking</button>                                             
-                                                    <?php } else { ?>
-                                                        <h3 class="text-success" style="color: #30ca32;"><b>Approved!</b></h3>
-                                                    <?php } ?>
+                                                    
+                                                        <button type="submit" value="confirm" name="btn-booking" onclick="return confirm('Are you sure you want to send email to this agent?')" class="btn btn-success">Send Email</button>                                             
+                                                    
                                                 </div>
                                             </form>  
                                         </div>                          

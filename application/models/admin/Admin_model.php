@@ -321,6 +321,13 @@ class Admin_model extends CI_Model {
         return "success";
     }
 
+    public function update_booking_data($booking_id='', $data=array())
+    {        
+        $this->db->where("id",$booking_id);
+        $this->db->update("default_booking",$data);
+        return "success";
+    }
+
     //get email template data
     public function get_email_template($template='')
     {

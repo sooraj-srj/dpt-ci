@@ -81,7 +81,8 @@
                                                         
                                                     </td>
                                                     <td>
-                                                        <a href="<?php url('admin/tour-booking/'.$tb['booking_id']);  ?>" class="label label-info" data-id="<?php echo $tb['booking_id'] ?>">Review and Confirm</a>
+                                                        <a href="<?php url('admin/tour-booking/'.$tb['booking_id']);  ?>" class="label label-info" data-id="<?php echo $tb['booking_id'] ?>">Review and Confirm</a><br><br>
+                                                        <a href="<?php url('admin/agent-email/'.$tb['booking_id']); ?>"><small>Send to Guide</small></a>
                                                     </td>                                                    
 
                                                 </tr>
