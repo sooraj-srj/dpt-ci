@@ -41,7 +41,8 @@
                                                 <th>Date</th>      
                                                 <th>User Details</th>                                                   
                                                 <th>Rating</th>                                                   
-                                                <th>Comments</th>                                                   
+                                                <th>Comments</th>  
+                                                <th>Status</th>                                             
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -59,7 +60,17 @@
                                                     <td><?php echo $review['rating'] ?></td>
                                                     <td><?php echo $review['comments'] ?></td>
                                                     <td>
-                                                        <a href="<?php url('admin/reviews/delete/'.$review['id']) ?>" class="text-primary" onclick="return confirm('Are you sure you want to delete this review?');">Delete</a>  
+                                                        <?php if($review['status'] == 'live') { ?>
+                                                        <span class="label label-success">Live</span>
+                                                        <?php } else { ?>
+                                                        <span class="label label-warning">Pending</span>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if($review['status'] == 'pending') { ?>
+                                                        <a href="<?php url("admin/review-app/".$review['id']); ?>" class="text-info" onclick="return confirm('Are you sure you want to approve this review ?')">Approve</a>
+                                                        <?php } ?>
+                                                        <a href="<?php url('admin/reviews/delete/'.$review['id']) ?>" class="text-danger" onclick="return confirm('Are you sure you want to delete this review?');">Delete</a>  
                                                     </td>
                                                 </tr>
                                             <?php

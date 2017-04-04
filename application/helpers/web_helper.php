@@ -64,6 +64,13 @@
      return $menu;
  }
 
+ function get_nationality($id){
+    $CI =& get_instance();
+    $CI->load->model('web_model');
+    $nationality = $CI->web_model->get_nationality($id);
+    return $nationality;
+ }
+
  //function email header
  function email_header($user_name = "", $message = ""){
      $email_header = '<html>
@@ -284,16 +291,19 @@
 
  //get email template for admin when a booking initiated
  function get_admin_tour_template($td = array()){     
-    $pickup_location = get_pickup_location($td['pickup_location']);
-    $end_location = get_end_location($td['dropLocation']);
+    $pickup_location  = get_pickup_location($td['pickup_location']);
+    $end_location     = get_end_location($td['dropLocation']);
+    $nationality      = get_nationality($td['nationality']);
+    $tour_date = explode('-',$td['tour_date']);
+    $tour_date = $tour_date[2].'/'.$tour_date[1].'/'.$tour_date[0];
 
     $tour_details = '<table width="100%" border="1" style="font-size: 14px; border-collapse:collapse" cellpadding="7">
     <tr> <td>Full Name: </td> <td>'.$td['firstName'].' '.$td['lastName'].'</td> </tr>
     <tr> <td>Email: </td> <td>'.$td['email'].'</td> </tr>
     <tr> <td>Cell No: 1: </td> <td>'.$td['countryCode1'].' '.$td['cell_no1'].'</td> </tr>
     <tr> <td>Cell No: 2</td> <td>'.$td['countryCode2'].' '.$td['cell_no2'].'</td> </tr>
-    <tr> <td>Nationality: </td> <td>'.$td['nationality'].'</td> </tr>
-    <tr> <td>Tour Date: </td> <td>'.$td['tour_date'].'</td> </tr>';
+    <tr> <td>Nationality: </td> <td>'.$nationality.'</td> </tr>
+    <tr> <td>Tour Date: </td> <td>'.$tour_date.'</td> </tr>';
     //========= pickup location ================
     if($td['pickup_location'] == 1){
       $pickup_location_data = '<small>Name: </small>'.$td['hotelName'].'<br>
@@ -344,7 +354,7 @@
     $tour_details .='<tr><td><p>Pickup location: '.$pickup_location.'</p>'.$pickup_location_data.'</td> 
     <td><p>End Location: '.$end_location.'</p>'.$drop_location_data.'</td> </tr>
     <tr> <td>Preferred Pickup Time: </td> <td>'.$td['pref_pickup_time'].'</td> </tr>
-    <tr> <td>Passenger Details: </td> <td>Adult(s) - '.$td['adultNo'].', Children(s) - '.$td['childNo'].', Infant(s), - '.$td['infantNo'].' </td> </tr>
+    <tr> <td>Passenger Details: </td> <td>Adult(s) - '.$td['adultNo'].', Children(s) - '.$td['childNo'].', Infant(s) - '.$td['infantNo'].' </td> </tr>
     <tr> <td>Preferred Guide language: </td> <td>'.$td['preferedguide'].'</td> </tr>
     <tr> <td>Currency: </td> <td>'.$td['currencyCode'].'</td> </tr>
     <tr> <td>Payment Mode: </td> <td>'.$td['currencyMode'].'</td> </tr>

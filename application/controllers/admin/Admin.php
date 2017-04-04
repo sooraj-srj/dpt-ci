@@ -885,4 +885,15 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function review_apps($id='')
+    {
+        //echo $id;
+        $this->load->model('admin/admin_model');
+        $response = $this->admin_model->update_review_status($id);
+        if($response == "updated"){
+            sf('success_message', 'Review has been successfully approved!');
+            redirect("admin/reviews");
+        }
+    }
+
 }

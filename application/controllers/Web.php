@@ -268,7 +268,7 @@ class Web extends CI_Controller {
             }
             else{                
                 $content1 = '<b>Transfer Service Booking Details:</b> <br><br>'.get_admin_tour_template($post_data);
-            }
+            }            
             $content = get_message('booking');
             //======== EMAIL TO USER ===============
             $to_email       = $post_data['email'];
@@ -457,7 +457,25 @@ class Web extends CI_Controller {
         //p($post_data); exit;
         $response = $this->web_model->process_review_appln($post_data);
         if($response == "success"){
-            // ====== Send email notification =========            
+            // ====== Send email notification: EMAIL TO ADMIN=========   
+            $from_name      = $post_data['firstName'].' '.$post_data['lastName'];
+            $from_email     = $post_data['email'];
+            $to_email1      = 'info@dubaiprivatetour.com';
+            $to_email2      = 'dubaiprivatetour@gmail.com';
+            $subject1       = "Rewview submission from ".$user_name;
+            $content1  = '<table width="100%" border="1" style="font-size: 14px; border-collapse:collapse" cellpadding="7">
+                    <tr><td>Name: </td> <td>'.$post_data['name'].'</td></tr>
+                    <tr><td>Email: </td> <td>'.$post_data['email'].'</td></tr>
+                    <tr><td>Country: </td> <td>'.$post_data['country'].'</td></tr>
+                    <tr><td>Comments: </td> <td>'.$post_data['comments'].'</td></tr>
+                    </table>';
+                
+            </table>';
+            $body_content1  = email_header('Admin', 'Review from '.$post_data['name']).$content1.email_footer();    
+            send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
+            send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
+
+
             sf('success_message','Your review has been submitted successfully. Thank you for yoour valuable review.');
             redirect('thank-you');
         }

@@ -168,7 +168,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="title title--big title--center title--underline title--decoration-bottom-center">
                     <h3 class="title__primary">WHY US</h3>
                 </div>
-                <p>Dubai Private Tour / Milan Tours & Tour Guide Services LLC we believe that it’s the small things that make the difference between a good day out and a perfect one. We always do that little bit extra to ensure your tour is special.   - See more at: http://www.dubaiprivatetour.com/#sthash.66kbLrHV.dpuf</p>
+                <p style="word-wrap:break-word;">Dubai Private Tour / Milan Tours & Tour Guide Services LLC we believe that it’s the small things that make the difference between a good day out and a perfect one. We always do that little bit extra to ensure your tour is special.   - See more at: http://www.dubaiprivatetour.com/#sthash.66kbLrHV.dpuf</p>
                 <div class="col-md-6 position-div-4-allign">
                     <div class="position-4-div">
                         <div class="round-div-2"><i class="fa fa-globe" aria-hidden="true"></i></div>

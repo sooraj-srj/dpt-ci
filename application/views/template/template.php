@@ -21,6 +21,12 @@
     
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>bootstrapValidator.min.css">    
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    
+    
+     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>bannerscollection_zoominout.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>media.css">
+    
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -54,9 +60,9 @@
     <div class="container">
         <div class="col-md-12">
             <nav id='cssmenu'>
-                <div class="logo"><a href="<?php echo url(); ?>"><img src="<?php echo assets_url(); ?>images/logo.png" class="img-responsive"></a></div>
+                <div class="logo mob-logo"><a href="<?php echo url(); ?>"><img src="<?php echo assets_url(); ?>images/logo.png" class="img-responsive"></a></div>
                 <div id="head-mobile"></div>
-                <div class="button"></div>
+                <div class="button mob-btn"></div>
                 <ul class="menu-ul-style">
                 <?php 
                     $menus = get_menu(); 
@@ -228,6 +234,82 @@
 <script src="<?php echo c('js_path_url'); ?>bootstrapValidator.min.js"></script>
 <script src="<?php echo c('js_path_url'); ?>menumaker.js"></script>
 <script src="<?php echo c('js_path_url'); ?>owl.carousel.min.js"></script>
+<script>
+
+    $(document).ready(function($) {
+      $("#owl-example").owlCarousel({
+		  //Autoplay
+    items : 3,
+	itemsMobile : [479,1],
+	itemsTablet: [768,3],
+    autoPlay : false,
+    stopOnHover : false,
+	  // Navigation
+navigation : true,
+ navigationText : ["<",">"],
+    rewindNav : true,
+    scrollPerPage : false,
+		      pagination : false,
+    paginationNumbers: false,
+		  //Basic Speeds
+    slideSpeed : 200,
+    paginationSpeed : 800,
+    rewindSpeed : 1000,
+ 
+ 
+		  });
+   });
+   
+    $(document).ready(function($) {
+      $("#owl-example2").owlCarousel({
+		  //Autoplay
+    items : 4,
+	itemsMobile : [479,1],
+	itemsTablet: [768,3],
+    autoPlay : false,
+    stopOnHover : false,
+	  // Navigation
+   navigation : true,
+navigationText : ["<",">"],
+    rewindNav : true,
+    scrollPerPage : false,
+		      pagination : false,
+    paginationNumbers: false,
+		  //Basic Speeds
+    slideSpeed : 200,
+    paginationSpeed : 800,
+    rewindSpeed : 1000,
+ 
+ 
+		  });
+   });
+    $(document).ready(function($) {
+      $("#owl-example3").owlCarousel({
+		  //Autoplay
+    items : 5,
+	itemsMobile : [479,1],
+	itemsTablet: [768,3],
+    autoPlay : false,
+    stopOnHover : false,
+	  // Navigation
+   navigation : true,
+navigationText : ["<",">"],
+    rewindNav : true,
+    scrollPerPage : false,
+		      pagination : false,
+    paginationNumbers: false,
+		  //Basic Speeds
+    slideSpeed : 200,
+    paginationSpeed : 800,
+    rewindSpeed : 1000,
+ 
+ 
+		  });
+   });
+
+    $("body").data("page", "frontpage");
+
+    </script> 
 <script src="<?php echo c('js_path_url'); ?>owl.custom.js"></script>
 <script src="<?php echo c('js_path_url'); ?>photo-gallery.js"></script>
 <script src="<?php echo c('js_path_url'); ?>calen.js"></script>
@@ -240,6 +322,29 @@
     $("body").data("page", "frontpage");
 </script>
 <script src="<?php echo c('js_path_url'); ?>web.custom.js"></script>
+
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> -->
+<script src="<?php echo c('js_path_url'); ?>bannerscollection_zoominout.js"></script>
+<script src="<?php echo c('js_path_url'); ?>jquery.ui.touch-punch.min.js.js"></script>
+<script>
+		jQuery(function() {
+
+			jQuery('#bannerscollection_zoominout_generous').bannerscollection_zoominout({
+				skin: 'generous',
+				responsive:true,
+				width: 1920,
+				height: 600,
+				width100Proc:true,
+				fadeSlides:true,
+				thumbsOnMarginTop:14,
+				thumbsWrapperMarginTop: -110,
+				autoHideBottomNav:true
+			});		
+			
+			
+		});
+	</script>
+
 </body>
 </html>
 <?php  $this->load->view("common/modals"); 

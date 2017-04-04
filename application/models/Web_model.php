@@ -258,7 +258,7 @@ class Web_model extends CI_Model {
     public function get_reviews($limit = '')
     {
         $qry = "SELECT *,DATE_FORMAT(FROM_UNIXTIME(timestamp), '%M %e, %Y') AS 'review_date' 
-                FROM `default_reviews` WHERE 1 ";
+                FROM `default_reviews` WHERE 1 AND status = 'live'";
         $qry .= "ORDER BY timestamp DESC";
         if($limit != ''){
             $qry .= " LIMIT $limit";
@@ -357,6 +357,16 @@ class Web_model extends CI_Model {
                     ->get();
         $result = $query->row_array();
         return $result['title'];
+    }
+
+    public function get_nationality($id='')
+    {
+        $query = $this->db->select("country_name")
+                    ->from("default_isd_code")
+                    ->where('country_id',$id)
+                    ->get();
+        $result = $query->row_array();
+        return $result['country_name'];
     }
 
 }

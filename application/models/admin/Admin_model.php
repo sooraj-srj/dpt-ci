@@ -627,5 +627,15 @@ class Admin_model extends CI_Model {
         return "updated";
     }
 
+    public function update_review_status($id='')
+    {   
+        $data = array(
+                'status' => "live"
+            );
+        $this->db->where("id",$id);
+        $this->db->update("default_reviews",$data);
+        return "updated";
+    }
+
 
 }
