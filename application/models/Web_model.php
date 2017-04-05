@@ -99,16 +99,39 @@ class Web_model extends CI_Model {
         
     }
 
+    public function get_cat_id($slug='')
+    {
+        $qry = "SELECT id FROM default_tour_categories WHERE slug = '$slug'";
+        $sel = $this->db->query($qry);
+        $res = $sel->row_array($sel);
+        return $res['id'];
+    }
+
     //get tours from emirates id
-    public function get_tours_from_emirates($emirates_id){
+    public function get_tours_from_emirates($emirates_id,$cat_id){
         $qry = "SELECT * FROM default_emirate_tours et 
                 LEFT JOIN default_tour t ON t.id = et.tour_id
-                WHERE et.emirates_id = '$emirates_id' AND t.category_id = '3'";
+                WHERE et.emirates_id = '$emirates_id' AND t.category_id = '$cat_id'";
  
         $sel = $this->db->query($qry);
         $res = $sel->result_array($sel);
         if(!empty($res)){
             return $res;
+        }
+        else{
+            return '';
+        }
+    }
+    public function get_default_tour_idE($emirates_id,$cat_id){
+        $qry = "SELECT * FROM default_emirate_tours et 
+                LEFT JOIN default_tour t ON t.id = et.tour_id
+                WHERE et.emirates_id = '$emirates_id' AND t.category_id = '$cat_id'
+                ORDER BY t.ordering_count LIMIT 1";
+ 
+        $sel = $this->db->query($qry);
+        $res = $sel->row_array($sel);
+        if(!empty($res)){
+            return $res['id'];
         }
         else{
             return '';

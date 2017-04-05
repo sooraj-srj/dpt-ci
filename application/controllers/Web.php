@@ -153,13 +153,25 @@ class Web extends CI_Controller {
     //plan page
     public function select_plan($category='', $emirates='')
     {
-        $tour_id = $this->input->get('plan', TRUE);
         $this->load->model('web_model');
+        $tour_id    = $this->input->get('plan', TRUE);        
+        $cat_id     = $this->web_model->get_cat_id($category);
         $this->gen_contents['current'] = $category;
-        $this->gen_contents['tours'] = $this->web_model->get_tours($category);
+
+        if(!empty($emirates)){
+            $this->gen_contents['tours'] = $this->web_model->get_tours_from_emirates($emirates,$cat_id);
+        }
+        else{
+            $this->gen_contents['tours'] = $this->web_model->get_tours($category);
+        }
+        
         if(empty($tour_id)){
             $tour_id = $this->web_model->get_default_tour_id($category);
         }
+        if(!empty($emirates) && empty($tour_id)){
+            $tour_id = $this->web_model->get_default_tour_idE($emirates,$cat_id); // get default tours from emirates and cat_id
+        }
+        
         $tour_details = $this->web_model->get_tour_details($tour_id);
         $this->gen_contents['tour_details'] = $tour_details;
         $this->gen_contents['tour_gallery'] = $this->web_model->get_tour_gallery($tour_details['category_id'],$emirates);
@@ -183,7 +195,7 @@ class Web extends CI_Controller {
         $this->load->model('web_model');
         $this->gen_contents['emirates_id'] = $emirates_id;
         //$this->gen_contents['tour_id'] = 0;
-        $this->gen_contents['tours'] = $this->web_model->get_tours_from_emirates($emirates_id);
+        $this->gen_contents['tours'] = $this->web_model->get_tours_from_emirates($emirates_id,3); // here 3 is the cat id of airport transfers
         $tour_id = $this->input->get('plan', TRUE);
         if(empty($tour_id)){
             $tour_id = $this->web_model->get_default_tour_emirates($emirates_id);
@@ -458,19 +470,18 @@ class Web extends CI_Controller {
         $response = $this->web_model->process_review_appln($post_data);
         if($response == "success"){
             // ====== Send email notification: EMAIL TO ADMIN=========   
-            $from_name      = $post_data['firstName'].' '.$post_data['lastName'];
+            $from_name      = $post_data['name'];
             $from_email     = $post_data['email'];
             $to_email1      = 'info@dubaiprivatetour.com';
             $to_email2      = 'dubaiprivatetour@gmail.com';
-            $subject1       = "Rewview submission from ".$user_name;
+            $subject1       = "Review submission from ".$post_data['name'];
             $content1  = '<table width="100%" border="1" style="font-size: 14px; border-collapse:collapse" cellpadding="7">
                     <tr><td>Name: </td> <td>'.$post_data['name'].'</td></tr>
                     <tr><td>Email: </td> <td>'.$post_data['email'].'</td></tr>
                     <tr><td>Country: </td> <td>'.$post_data['country'].'</td></tr>
                     <tr><td>Comments: </td> <td>'.$post_data['comments'].'</td></tr>
                     </table>';
-                
-            </table>';
+
             $body_content1  = email_header('Admin', 'Review from '.$post_data['name']).$content1.email_footer();    
             send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
             send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin

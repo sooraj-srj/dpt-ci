@@ -41,7 +41,7 @@
                                                 <th>Tour Name</th>   
                                                 <th>Category</th>
                                                 <th>Emirates</th>
-                                                <th>Intro</th>
+                                                <!-- <th>Intro</th> -->
                                                 <th>Details</th>
                                                 <th>Price(AED)</th>
                                                 <th>Price(USD)</th>
@@ -57,8 +57,17 @@
                                                     <td class="index" data-id="<?php $tour['id'] ?>"><?php echo $index+1; ?></td>
                                                     <td><?php echo $tour['title']; ?></td>
                                                     <td><?php echo $tour['category']; ?></td>
-                                                    <td><?php echo $tour['emirates']; ?></td>
-                                                    <td><?php echo $tour['intro']; ?></td>
+                                                    <td>
+                                                        <small>
+                                                            <?php 
+                                                                $emirates = get_emirates_tours($tour['tour_id']);
+                                                                foreach ($emirates as $em) {
+                                                                    echo $em['name'].', ';
+                                                                }
+                                                            ?>
+                                                        </small>
+                                                     </td>
+                                                    <!-- <td><?php echo $tour['intro']; ?></td> -->
                                                     <td><a href="javascrpt:;" class="label label-primary"><i class="fa fa-eye"></i> View</a></td>
                                                     <td><?php echo $tour['price']; ?></td>
                                                     <td><?php echo $tour['usd_price']; ?></td>

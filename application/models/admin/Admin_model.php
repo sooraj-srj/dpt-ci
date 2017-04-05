@@ -637,5 +637,20 @@ class Admin_model extends CI_Model {
         return "updated";
     }
 
+    public function get_emirates_tours($tour_id='')
+    {
+        $qry = "SELECT * FROM default_emirate_tours et
+                LEFT JOIN default_emirates e ON e.id = et.emirates_id
+                WHERE tour_id = '$tour_id'";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+
 
 }

@@ -71,6 +71,14 @@
     return $nationality;
  }
 
+ function get_emirates_tours($tour_id = '')
+ {
+    $CI =& get_instance();
+    $CI->load->model('admin/admin_model');
+    $emirates = $CI->admin_model->get_emirates_tours($tour_id);
+    return $emirates;
+ }
+
  //function email header
  function email_header($user_name = "", $message = ""){
      $email_header = '<html>
