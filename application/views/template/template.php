@@ -22,9 +22,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>bootstrapValidator.min.css">    
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     
-    
-     <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>bannerscollection_zoominout.css">
-      <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>media.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>media.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo c('css_path_url'); ?>bannerscollection_zoominout.css">
+      
     
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -234,6 +234,28 @@
 <script src="<?php echo c('js_path_url'); ?>bootstrapValidator.min.js"></script>
 <script src="<?php echo c('js_path_url'); ?>menumaker.js"></script>
 <script src="<?php echo c('js_path_url'); ?>owl.carousel.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script src="<?php echo c('js_path_url'); ?>bannerscollection_zoominout.js"></script> 
+<script src="<?php echo c('js_path_url'); ?>jquery.ui.touch-punch.min.js"></script> 
+    <script>
+        jQuery(function() {
+
+            jQuery('#bannerscollection_zoominout_generous').bannerscollection_zoominout({
+                skin: 'generous',
+                responsive:true,
+                width: 1920,
+                height: 600,
+                width100Proc:true,
+                fadeSlides:true,
+                thumbsOnMarginTop:14,
+                thumbsWrapperMarginTop: -110,
+                autoHideBottomNav:true
+            });     
+            
+            
+        });
+    </script>
 <script>
 
     $(document).ready(function($) {
@@ -322,28 +344,6 @@ navigationText : ["<",">"],
     $("body").data("page", "frontpage");
 </script>
 <script src="<?php echo c('js_path_url'); ?>web.custom.js"></script>
-
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script> -->
-<script src="<?php echo c('js_path_url'); ?>bannerscollection_zoominout.js"></script>
-<script src="<?php echo c('js_path_url'); ?>jquery.ui.touch-punch.min.js.js"></script>
-<script>
-		jQuery(function() {
-
-			jQuery('#bannerscollection_zoominout_generous').bannerscollection_zoominout({
-				skin: 'generous',
-				responsive:true,
-				width: 1920,
-				height: 600,
-				width100Proc:true,
-				fadeSlides:true,
-				thumbsOnMarginTop:14,
-				thumbsWrapperMarginTop: -110,
-				autoHideBottomNav:true
-			});		
-			
-			
-		});
-	</script>
 
 </body>
 </html>

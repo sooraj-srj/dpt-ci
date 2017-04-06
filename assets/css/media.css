@@ -1,0 +1,178 @@
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+.mobile-package-select {
+	display: none;
+}
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+.mobile-package-select {
+	display: none;
+}
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+.mobile-package-select {
+	display: none;
+}
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+.mob-logo img {
+	width: 30%;
+}
+.carousel-caption {
+	display: none;
+}
+.mob-btn {
+	background-color: #40add6;
+}
+.button:after {
+	height: 8px;
+}
+.top-ul-num li {
+	padding-right: 9px;
+}
+.top-ul-social {
+	float: none;
+	text-align: center;
+	padding: inherit;
+}
+.logo {
+	padding: 0px;
+}
+.price-first-position {
+	top: 44%;
+}
+.owl-theme .owl-controls .owl-buttons div {
+	z-index: 9999;
+	margin: 15px;
+}
+.plan-round-div {
+	float: none;
+	margin: 0 auto;
+}
+.round-div-2:before {
+	left: 49%;
+}
+.position-5-div {
+	padding: 0 0 0 10px;
+}
+.position-div-5 {
+	padding: 0px;
+}
+.about-text-div-main {
+	position: relative !important;
+	bottom: 38px;
+}
+.main-btn-style {
+	padding: 10px 21px;
+}
+.fb-mob {
+	display: none;
+}
+.footer-div-style {
+	padding: 0px;
+	margin-top: 0px;
+}
+#cssmenu ul li:hover {
+	background-color: transparent;
+}
+#cssmenu li:hover > ul {
+	left: 0px;
+	padding: 0px;
+}
+#cssmenu ul ul li {
+	background-color: transparent !important;
+}
+#cssmenu ul ul li a {
+	color: #333;
+	background: none;
+	padding-left: 10px;
+}
+.mob-list-div {
+	display: none;
+}
+.left-package-list {
+	display: none;
+}
+.mob-add {
+	display: none;
+}
+.price-decoration2 {
+	margin-top: 0px !important;
+	margin-bottom: 0px;
+	text-align: center;
+	color: #fff;
+	position: relative;
+	font-size: 10px;
+	width: 100%;
+	z-index: 100;
+	float: left;
+	right: 0;
+	top: 0px;
+}
+.booking-inn-div .nav-tabs>li {
+	width: 100%;
+}
+.price-decoration__value .amount {
+	display: block;
+	margin-left: 0;
+	text-align: center;
+}
+.price-decoration__value i {
+	display: none;
+}
+.details-div-last .price-first-position {
+	top: 144px;
+}
+.slider-text-div {
+	display: none;
+}
+.logo-menu-div .container {
+	padding: 0px;
+}
+.logo-menu-div .col-md-12 {
+	padding: 0px;
+}
+.mobile-btn-drop {
+	width: 100%;
+	border-radius: 0px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+.mobile-package-select .dropdown-menu {
+	width: 100%;
+	border-radius: 0px;
+}
+
+.atgrid__item__title{font-size:15px;}
+
+}
+
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) {
+	.price-first-position {
+    top: 44%;
+}
+	
+	}
+	
+	
+@media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : portrait) { .price-first-position {
+    top: 44%;
+} }	

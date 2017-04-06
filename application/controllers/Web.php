@@ -284,7 +284,7 @@ class Web extends CI_Controller {
             $content = get_message('booking');
             //======== EMAIL TO USER ===============
             $to_email       = $post_data['email'];
-            $from_name      = 'Dubai Private Tours';
+            $from_name      = 'Dubai Private Tour';
             $subject        = 'Greetings and thank you for choosing Dubai Private Tours!'; 
             $body_content   = email_header($user_name, 'Successfully submitted your booking').$content.email_footer();            
             $from_email     = 'info@dubaiprivatetour.com';
@@ -438,7 +438,7 @@ class Web extends CI_Controller {
         if($response == "success"){
             // ====== Send email notification =========
             $to_email       = 'soorajsolutino@gmail.com';
-            $from_name      = 'Dubai Private Tours';
+            $from_name      = 'Dubai Private Tour';
             $subject        = 'Question from a user';
             $body_content   = 'Hi, A new question from '.$post_data['first_name'];
             $from_email     = 'info@dubaiprivatetour.com';
@@ -483,6 +483,7 @@ class Web extends CI_Controller {
                     </table>';
 
             $body_content1  = email_header('Admin', 'Review from '.$post_data['name']).$content1.email_footer();    
+            //echo $body_content1; exit;
             send_mail($to_email1, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
             send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
 
@@ -517,7 +518,7 @@ class Web extends CI_Controller {
             // ====== Send email notification =========
                 $content        = get_message('enquiry');
                 $to_email       = $post_data['email'];
-                $from_name      = 'Dubai Private Tours';
+                $from_name      = 'Dubai Private Tour';
                 $subject        = 'Greetings and thank you for choosing Dubai Private Tours!'; 
                 $body_content   = email_header($post_data['name'], 'The message was sent via contact form on with the following details').$content.email_footer();            
                 $from_email     = 'info@dubaiprivatetour.com';

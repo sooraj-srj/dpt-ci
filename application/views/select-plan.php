@@ -259,7 +259,7 @@
                                                         <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">Cell No<span class="red">*</span></label>
                                                             <select class="form-control" name="countryCode1">
-                                                                <option value="">Select</option>
+                                                                <option value="">Select Code</option>
                                                                 <?php
                                                                 foreach ($isd_code as $isd){
                                                                 ?>
@@ -282,7 +282,7 @@
                                                         <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">Cell No2</label>
                                                             <select class="form-control" name="countryCode2">
-                                                                <option value="">Select</option>
+                                                                <option value="">Select Code</option>
                                                                 <?php
                                                                 foreach ($isd_code as $isd){
                                                                 ?>

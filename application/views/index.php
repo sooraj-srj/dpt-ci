@@ -3,42 +3,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <div class="slider-div">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="item active"><img src="<?php echo assets_url(); ?>images/1920.jpg" style="width:100%" alt="First slide">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3><b>Discover Dubai with Dubaiprivatetour.com</b></h3>
-                        <p>​Dubai private tour is an exclusive touring provided for all as our exquisites.
-                            Unforgettable experience which is going to make this beautiful city one of your
-                            favourite destination all year round. The historical cultural and modernisation of Dubai
-                            revealed with its full glory. Come have the Dubai tour of your life with us.</p>
-                        <p><a class="btn main-btn-style" href="<?php url('contact'); ?>" role="button">Quick Contact</a></p>
-                    </div>
+    <div class="slider-div">
+        <div id="bannerscollection_zoominout_generous">
+            <div class="myloader"></div>
+                <!-- CONTENT -->
+            <ul class="bannerscollection_zoominout_list">
+               <li data-text-id="#bannerscollection_zoominout_photoText3" data-bottom-thumb="<?php echo assets_url() ?>images/1920.jpg" data-horizontalPosition="left" data-verticalPosition="top" data-initialZoom="1" data-finalZoom="0.77">
+               <img src="<?php echo assets_url() ?>images/1920.jpg" alt="" width="2500" height="1000" />
+               </li>
+               <li data-text-id="#bannerscollection_zoominout_photoText3" data-bottom-thumb="<?php echo assets_url() ?>images/1920.jpg" data-horizontalPosition="left" data-verticalPosition="top" data-initialZoom="1" data-finalZoom="0.77">
+               <img src="<?php echo assets_url() ?>images/1920.jpg" alt="" width="2500" height="1000" />
+               </li>
+            </ul>    
+            <div id="bannerscollection_zoominout_photoText3" class="bannerscollection_zoominout_texts">
+                <div class="bannerscollection_zoominout_text_line textElement32_generousFullWidth slider-text-div" data-initial-left="10" data-initial-top="175" data-final-left="100" data-final-top="175" data-duration="0.5" data-fade-start="0" data-delay="0">
+                <h3>Discover Dubai with Dubaiprivatetour.com</h3><br>
+                ​Dubai private tour is an exclusive touring provided for all as our exquisites. Unforgettable experience which is going to make this beautiful city one of your favourite destination all year round. The historical cultural and modernisation of Dubai revealed with its full glory. Come have the Dubai tour of your life with us.<br>
+                <p><a class="btn main-btn-style" href="<?php url('contact'); ?>" role="button">Quick Contact</a></p>
                 </div>
             </div>
-            <div class="item"><img src="<?php echo assets_url(); ?>images/1920.jpg" style="width:100%" data-src="" alt="Second    slide">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3><b>Discover Dubai with Dubaiprivatetour.com</b></h3>
-                        <p>​Dubai private tour is an exclusive touring provided for all as our exquisites.
-                            Unforgettable experience which is going to make this beautiful city one of your
-                            favourite destination all year round. The historical cultural and modernisation of Dubai
-                            revealed with its full glory. Come have the Dubai tour of your life with us.</p>
-                        <p><a class="btn main-btn-style" href="<?php url('contact'); ?>" role="button">Quick Contact</a></p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a> -->
+      </div>  
     </div>
 </div>
 
@@ -308,3 +292,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 </div>
+

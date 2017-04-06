@@ -26,12 +26,13 @@
     </div> -->
     <div class="row">
         <div class="form-group col-md-6 col-sm-6">
-            <label for="flightArrival">Arrival Time<span class="red">*</span></label>     
-            <select name="flightArrivalTime" class="form-control" id="flightArrival">  
+            <label for="flightArrival">Arrival Time<span class="red">*</span></label> 
+            <input type="text" class="form-control" name="flightArrivalTime" placeholder="Arrival Time">
+            <!--<select name="flightArrivalTime" class="form-control" id="flightArrival">  
                 <?php for($i=1; $i<=24; $i++) { ?>
                     <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                 <?php } ?>
-            </select>            
+            </select>-->            
         </div>
         <div class="form-group col-md-6 col-sm-6">
             <label for="flightArrival">&nbsp;</label>       
@@ -44,11 +45,12 @@
     <div class="row">
         <div class="form-group col-md-6 col-sm-6">
             <label for="flightDeparture">Departure Time</label>     
-            <select name="flightDeparture" class="form-control" id="flightDeparture">  
+            <input type="text" class="form-control" name="flightDeparture" placeholder="Departure Time">
+            <!--<select name="flightDeparture" class="form-control" id="flightDeparture">  
                 <?php for($i=1; $i<=24; $i++) { ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                 <?php } ?>
-            </select>            
+            </select>-->            
         </div>
         <div class="form-group col-md-6 col-sm-6">
             <label for="flightDeparture">&nbsp;</label>       

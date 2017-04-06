@@ -136,9 +136,10 @@
                              <tbody>
                                <tr>
                                  <td width="100%"><p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;"><strongThanks</strong></p>
-                                   <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;"><strong>Dubai Private Tours</strong></p> <br>              
+                                   <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;"><strong>Dubai Private Tours</strong></p> <br>    
+                                   <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;">Visit us @ <a href="http://www.dubaiprivatetour.com/" target="_blank">www.dubaiprivatetour.com</a></p>          
                                    <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;">Visit us @ <a href="http://www.milantoursdubai.com/" target="_blank">www.milantoursdubai.com</a></p>
-                                   <p style="padding:0px; margin:0px;font-family: Roboto, sans-serif;">Visit us @ <a href="http://www.dubaiprivatetour.com/" target="_blank">www.dubaiprivatetour.com</a></p></td>
+                                   </td>
                                </tr>
                              </tbody>
                            </table></td>

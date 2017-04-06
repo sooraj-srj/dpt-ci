@@ -491,7 +491,7 @@ class Admin extends CI_Controller {
                 //echo $mail_body; exit;
                 //$to_email       = 'soorajsolutino@gmail.com';
                 $to_email       = $bd['email'];
-                $from_name      = 'Dubai Private Tours';
+                $from_name      = 'Dubai Private Tour';
                 //$subject        = 
                 $body_content   = $mail_body;
                 //echo $body_content; exit;
@@ -582,9 +582,13 @@ class Admin extends CI_Controller {
         $mail_body  = $this->input->post("mail_body",true);
         $subject    = $this->input->post("subject",true);
 
-        $agent_email  = $this->input->post("agent_email",true);  //agent email id
+        $agent_email = $this->input->post("agent_email",true);  //agent email id
+        $mail_body   = $this->input->post("mail_body",true);
+        $from_name   = "Dubai Private Tour";
+        $from_email  = "admin@dubaiprivatetour.com";
+        
         if(!empty($agent_email)){
-            send_mail($agent_email, $from_name, "New Booking Confirmation- Ref: ".$subject, $body_content, $from_email); //send to agent
+            send_mail($agent_email, $from_name, "New Booking Confirmation- Ref: ".$subject, $mail_body, $from_email); //send to agent
         }                
         // ====== Send email notification =========
         sf('success_message','Email has been sent to agent successfully!');
