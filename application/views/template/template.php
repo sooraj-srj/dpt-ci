@@ -224,7 +224,7 @@
     </div>
 </div>
 <div class="copy-div-style">
-    <p>© Dubai Private Tour, 2016.</p>
+    <p>© Dubai Private Tour, <?php date('Y'); ?>.</p>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -240,7 +240,6 @@
 <script src="<?php echo c('js_path_url'); ?>jquery.ui.touch-punch.min.js"></script> 
     <script>
         jQuery(function() {
-
             jQuery('#bannerscollection_zoominout_generous').bannerscollection_zoominout({
                 skin: 'generous',
                 responsive:true,
@@ -252,8 +251,6 @@
                 thumbsWrapperMarginTop: -110,
                 autoHideBottomNav:true
             });     
-            
-            
         });
     </script>
 <script>

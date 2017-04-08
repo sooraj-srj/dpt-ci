@@ -31,7 +31,7 @@
                         <div class="panel with-nav-tabs panel-default">
                             <div class="panel-heading">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#tab1default" data-toggle="tab">OUR GUIDES</a></li>
+                                    <li class="active"><a href="#tab1default" data-toggle="tab">Our Guides</a></li>
 
                                     <li><a href="#tab12default" data-toggle="tab">Ask Questions</a></li>
 
@@ -100,46 +100,7 @@
                                     </div>
 
                                     <div class="tab-pane fade" id="tab12default">
-                                        <form name="askmeForm" id="askmeForm" method="post" action="<?php url('askme-appln') ?>">
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="firstName">First Name<span class="red">*</span></label>
-                                                <input type="text" class="form-control input-sm" id="first_name" name="first_name" placeholder="First Name">
-                                            </div>
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Last Name<span class="red">*</span></label>
-                                                <input type="text" class="form-control input-sm" id="last_name" name="last_name" placeholder="Last Name">
-                                            </div>
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Email<span class="red">*</span></label>
-                                                <input type="email" class="form-control input-sm" id="email" name="email" placeholder="Email">
-                                            </div>
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Phone Number</label>
-                                                <input type="text" class="form-control input-sm" id="" name="phone_number" placeholder="Phone Number">
-                                            </div>
-                                            <div class="form-group col-md-12 col-sm-12">
-                                                <label for="email">Nationality<span class="red">*</span></label>
-                                                <select class="form-control input-sm" id="" name="nationality">
-                                                    <option value="">Select</option>
-                                                    <?php
-                                                    foreach ($isd_code as $nation){
-                                                    ?>
-                                                    <option value="<?php echo $nation['country_name'] ?>"><?php echo $nation['country_name'] ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-12 col-sm-12">
-                                                <label for="address">Message<span class="red">*</span></label>
-                                                <textarea class="form-control input-sm" id="address" rows="5" name="message"></textarea>
-                                            </div>
-                                            <div class="col-md-12">
-                                                
-                                                <input type="hidden" name="qn_for" value="guide">
-                                                <button type="submit" class="btn main-btn-style">Send</button>
-                                            </div>
-                                        </form>
+                                        <?php $this->load->view('contact-form'); ?>
                                     </div>
 
                                 </div>

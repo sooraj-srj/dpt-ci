@@ -183,6 +183,10 @@
       $text2 = "tour booking";
       $message .= "<p><h5>Greetings and thank you for choosing Dubai Private Tour !!!! </h5></p><br>";
     }
+    if($flag == 'visa'){
+      $text1 = "visa application";
+      $text2 = "reply";
+    }
 
     $message .= '<p><h4><b>We are in receipt of your '.$text1.' and you shall receive our '.$text2.' confirmation within the next 24 hours.</b></h4> <small>(Kindly do check your SPAM Folder in case the reply isn’t delivered in Inbox)</small></p>
       <p>In case of any urgent matter, kindly Call / Text / Whatsapp us in either of the below numbers 

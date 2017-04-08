@@ -329,46 +329,7 @@
                                     </div>
 
                                     <div class="tab-pane fade" id="tab3default">
-                                        <form name="askmeForm" id="askmeForm" method="post" action="<?php url('askme-appln') ?>">
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="firstName">First Name<span class="red">*</span></label>
-                                                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
-                                            </div>
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Last Name<span class="red">*</span></label>
-                                                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
-                                            </div>
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Email<span class="red">*</span></label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                                            </div>
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Phone Number</label>
-                                                <input type="text" class="form-control" id="" name="phone_number" placeholder="Phone Number">
-                                            </div>
-                                            <div class="form-group col-md-12 col-sm-12">
-                                                <label for="email">Nationality<span class="red">*</span></label>
-                                                <select class="form-control" id="" name="nationality">
-                                                    <option value="">Select</option>
-                                                    <?php
-                                                    foreach ($isd_code as $nation){
-                                                    ?>
-                                                    <option value="<?php echo $nation['country_name'] ?>"><?php echo $nation['country_name'] ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-12 col-sm-12">
-                                                <label for="address">Message<span class="red">*</span></label>
-                                                <textarea class="form-control" id="address" rows="5" name="message"></textarea>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <input type="hidden" name="tour_id" value="<?php echo $tour_id; ?>">
-                                                <input type="hidden" name="qn_for" value="tour">
-                                                <button type="submit" class="btn main-btn-style">Send</button>
-                                            </div>
-                                        </form>
+                                        <?php $this->load->view('contact-form'); ?>
                                     </div>
                                     <div class="tab-pane fade" id="tab4default">
                                     <?php if(empty($tour_gallery)) { echo '<h3 class="text-muted" align="center">No gallery images available!</h3>'; } ?>

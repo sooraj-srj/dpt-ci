@@ -321,10 +321,12 @@ class Web extends CI_Controller {
         $post_data['contact_no']        = $this->input->post('isd_code',true).' '.$this->input->post('contact_no',true);
         $post_data['nationality']       = $this->input->post('nationality',true);
 
-        $arrival_date                   = explode('/',$this->input->post('arrival_date',true));
+        $ad = $this->input->post('arrival_date',true);
+        $arrival_date                   = explode('/',$ad);
         $post_data['arrival_date']      = $arrival_date[2].'-'.$arrival_date[1].'-'.$arrival_date[0];
 
-        $departure_date                 = explode('/',$this->input->post('departure_date',true));
+        $dd = $this->input->post('departure_date',true);
+        $departure_date                 = explode('/',$dd);
         $post_data['departure_date']    = $departure_date[2].'-'.$departure_date[1].'-'.$departure_date[0];
 
         $post_data['people']            = $this->input->post('people',true);
@@ -357,7 +359,7 @@ class Web extends CI_Controller {
         //============= hotel booking file upload ===========
 
         //============= flight_ticket file upload ===========
-        $count = count($_FILES['hotel_booking']['name']);
+        $count = count($_FILES['flight_ticket']['name']);
         for($i=0; $i<$count; $i++){
             $_FILES['flight_ticket']['name']     = $files['flight_ticket']['name'][$i];
             $_FILES['flight_ticket']['type']     = $files['flight_ticket']['type'][$i];
@@ -396,14 +398,34 @@ class Web extends CI_Controller {
         $response = $this->web_model->process_visa_application($post_data);
         if($response == "success"){
             // ====== Send email notification =========
-            $to_email       = 'info@dubaiprivatetour.com';
-            $from_name      = 'Dubai Private Tours';
-            $subject        = 'A new tourist visa application';
-            $body_content   = 'Hi, A new visa application from '.$post_data['name'];
-            $from_email     = 'info@dubaiprivatetour.com';
+                $content        = get_message('visa');
+                $to_email       = $post_data['email'];
+                $from_name      = 'Dubai Private Tour';
+                $subject        = 'Greetings and thank you for choosing Dubai Private Tours!'; 
+                $body_content   = email_header($post_data['name'], 'The message was sent via tourist visa application form on with the following details').$content.email_footer();            
+                $from_email     = 'info@dubaiprivatetour.com';
+                send_mail($to_email, $from_name, $subject, $body_content, $from_email); // send notification to user
 
-            send_mail($to_email, $from_name, $subject, $body_content, $from_email);
-            // ====== Send email notification =========
+            $content1       = 'Tourist visa application from '.$post_data['name'].'. Details are below:';
+            $content1 .= '<table width="100%" border="1" style="border-collapse:collapse;" cellpadding="7">                
+                            <tr><td>Name: </td> <td>'.$post_data['name'].'</td></tr>
+                            <tr><td>Email: </td> <td>'.$post_data['email'].'</td></tr>
+                            <tr><td>Nationality: </td> <td>'.$post_data['nationality'].'</td></tr>                            
+                            <tr><td>Contact No: </td> <td>'.$post_data['contact_no'].'</td></tr>
+                            <tr><td>Arrival Date: </td> <td>'.$ad.'</td></tr>
+                            <tr><td>Departure Date: </td> <td>'.$dd.'</td></tr>
+                            <tr><td>No. of people: </td> <td>'.$post_data['people'].'</td></tr>
+                            <tr><td>How did you discover us: </td> <td>'.$post_data['how_discover_us'].'</td></tr>
+                            </table><br><br>';
+            $from_email     = $post_data['email'];
+            $to_email1      = 'info@dubaiprivatetour.com';
+            $to_email2      = 'dubaiprivatetour@gmail.com';
+            $subject1       = $post_data['subject'];//"Enquiry from ".$post_data['name'];
+            $from_name2     = $post_data['name'];
+            $body_content1  = email_header('Admin', 'Tourist Visa Application Notification').$content1.email_footer();    
+            send_mail($to_email1, $from_name2, $subject1, $body_content1, $from_email);  //send notification to user
+            send_mail($to_email2, $from_name2, $subject1, $body_content1, $from_email);  //send notification to admin
+
             sf('success_message','Your application has been submitted successfully!');
             redirect('thank-you');
         }
@@ -488,7 +510,7 @@ class Web extends CI_Controller {
             send_mail($to_email2, $from_name, $subject1, $body_content1, $from_email);  //send notification to admin
 
 
-            sf('success_message','Your review has been submitted successfully. Thank you for yoour valuable review.');
+            sf('success_message','Your review has been submitted successfully. Thank you for your valuable review.');
             redirect('thank-you');
         }
         else{

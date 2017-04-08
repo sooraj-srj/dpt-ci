@@ -115,6 +115,10 @@ $(document).ready(function () {
         autoclose: true,
         format: "yyyy-mm-dd"
     });
+    $('#tour_date').datepicker({
+        autoclose: true,
+        format: "yyyy-mm-dd"
+    });
 
     //Gallery uplaod
     $("#cidSelect").on("change",function(){
@@ -146,10 +150,10 @@ $(function () {
 function PrintElem(elem)
 {
     var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-
-    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    var title = document.getElementById('subject').value;
+    mywindow.document.write('<html><head><title>' + title  + '</title>');
     mywindow.document.write('</head><body >');
-    mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write('<h1>' + title  + '</h1>');
     mywindow.document.write(document.getElementById(elem).innerHTML);
     mywindow.document.write('</body></html>');
 
@@ -160,6 +164,22 @@ function PrintElem(elem)
     mywindow.close();
 
     return true;
+}
+function printDiv() 
+{
+
+  var divToPrint=document.getElementById('DivIdToPrint');
+
+  var newWin=window.open('','Print-Window');
+
+  newWin.document.open();
+
+  newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+  newWin.document.close();
+
+  setTimeout(function(){newWin.close();},10);
+
 }
 
 

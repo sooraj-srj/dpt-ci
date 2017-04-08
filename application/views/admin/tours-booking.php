@@ -27,11 +27,27 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <form class="form-inline">
+                                      <!-- <div class="form-group">
+                                        <label for="email"><small>Booking Date</small></label><br>
+                                        <input type="text" class="form-control" id="booking_date" name="bd">
+                                      </div>   -->  
                                       <div class="form-group">
-                                        <label for="email">Booking Date</label>
-                                        <input type="text" class="form-control" id="booking_date" name="td">
-                                      </div>                                      
-                                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
+                                        <label for="email"><small>Tour Date</small></label><br>
+                                        <input type="text" class="form-control" id="tour_date" name="td" value="<?php echo $filters['td']; ?>">
+                                      </div>  
+                                      <div class="form-group">
+                                        <label for="email"><small>Name</small></label><br>
+                                        <input type="text" class="form-control" name="name" value="<?php echo $filters['name']; ?>">
+                                      </div>  
+                                      <div class="form-group">
+                                        <label for="email"><small>Email</small></label><br>
+                                        <input type="text" class="form-control" name="email" value="<?php echo $filters['email']; ?>">
+                                      </div>     
+                                      <div class="form-group">
+                                        <label for="email">&nbsp;</label><br>
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
+                                      </div>                               
+                                      
                                     </form>
                                 </div>
                             </div>

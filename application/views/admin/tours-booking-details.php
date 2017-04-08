@@ -14,7 +14,7 @@
     }
 </style>
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="min-height: 946px; !important;" id="chumma">
+    <div class="content-wrapper" style="min-height: 946px; !important;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>Manage Tour Bookings </h1>
@@ -239,7 +239,7 @@
                                                 </div>-->
                                                 <div class="form-group">
                                                     <label>Mail Subject</label><div class="clearfix"></div>
-                                                    <textarea name="subject" class="form-control"><?php if($tour_type == 'ts') echo 'Your '. $emirates.' transfer service'; else echo $bd['title']; ?>: Booking Confirmed!</textarea>
+                                                    <textarea name="subject" id="subject" class="form-control"><?php if($tour_type == 'ts') echo 'Your '. $emirates.' transfer service'; else echo $bd['title']; ?>: Booking Confirmed!</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email content to the user</label>
@@ -254,10 +254,10 @@
                                                 <div class="form-group pull-right">
                                                     <input type="hidden" name="booking_id" value="<?php echo $bd['booking_id']; ?>">
                                                     <br>
-                                                    <button type="button" name="print" class="btn btn-default" onclick="PrintElem('chumma');">Print</button>
+                                                    <button type="button" name="print" class="btn btn-default" onclick="PrintElem('PrintDiv');"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                                                     <?php if($bd['booking_status'] != 'approved'){  ?>                                                
-                                                        <button type="submit" class="btn btn-danger" name="btn-booking" onclick="return confirm('Are you sure you want to cancel this booking?')" value="cancel">Cancel Booking</button>    
-                                                        <button type="submit" value="confirm" name="btn-booking" onclick="return confirm('Are you sure you want to confirm this booking?')" class="btn btn-success">Confirm Booking</button>                                             
+                                                        <button type="submit" class="btn btn-danger" name="btn-booking" onclick="return confirm('Are you sure you want to cancel this booking?')" value="cancel"><i class="fa fa-close" aria-hidden="true"></i> Cancel Booking</button>    
+                                                        <button type="submit" value="confirm" name="btn-booking" onclick="return confirm('Are you sure you want to confirm this booking?')" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i> Confirm Booking</button>                                             
                                                     <?php } else { ?>
                                                         <h3 class="text-success" style="color: #30ca32;"><b>Approved!</b></h3>
                                                     <?php } ?>
@@ -280,4 +280,6 @@
     </div>
     <!-- /.content-wrapper -->
 
-   
+   <div id="PrintDiv" style="display: none;">
+    <?php echo $mail_content; ?>
+   </div>

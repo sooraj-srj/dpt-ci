@@ -43,12 +43,12 @@
 
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="name">Name<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm" id="name" name="name" placeholder="Name">
+                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                                                 </div>
 
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="email">Email<span class="red">*</span></label>
-                                                    <input type="email" class="form-control input-sm" id="email" name="email" placeholder="Email">
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                                                 </div>
 
 
@@ -56,7 +56,7 @@
                                                     <div class="row">
                                                         <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">Cell No<span class="red">*</span></label>
-                                                            <select class="form-control input-sm" name="isd_code">
+                                                            <select class="form-control" name="isd_code">
                                                                 <option value="">Select ISD Code</option>
                                                                 <?php
                                                                 foreach ($isd_code as $isd){
@@ -71,13 +71,13 @@
                                                         </div>
                                                         <div class="form-group col-md-6 col-sm-6">
                                                             <label for="city">&nbsp;</label>
-                                                            <input type="text" class="form-control input-sm" name="contact_no" placeholder="Contact Number">
+                                                            <input type="text" class="form-control" name="contact_no" placeholder="Contact Number">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-12">
                                                     <label for="nat">Nationality<span class="red">*</span></label>
-                                                    <select class="form-control input-sm" name="nationality" id="nat">
+                                                    <select class="form-control" name="nationality" id="nat">
                                                         <option value="">Select</option>
                                                         <?php
                                                         foreach ($isd_code as $nation){
@@ -90,20 +90,20 @@
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="arrival">Arrival Date<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm datepicker" id="arrival" name="arrival_date" placeholder="Arrival Date">
+                                                    <input type="text" class="form-control datepicker" id="arrival" name="arrival_date" placeholder="Arrival Date">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="departure">Departure Date<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm datepicker" id="departure" name="departure_date" placeholder="Departure Date">
+                                                    <input type="text" class="form-control datepicker" id="departure" name="departure_date" placeholder="Departure Date">
                                                 </div>
 
                                                 <div class="form-group col-md-6 col-sm-6">
                                                     <label for="">No of People<span class="red">*</span></label>
-                                                    <input type="text" class="form-control input-sm" id="" name="people" placeholder="No. of people">
+                                                    <input type="text" class="form-control" id="" name="people" placeholder="No. of people">
                                                 </div>
                                                 <div class="form-group col-md-6 col-sm-12">
                                                     <label for="hdu">How Did You Discover Us<span class="red">*</span></label>
-                                                    <select class="form-control input-sm" id="hdu" name="how_discover_us">
+                                                    <select class="form-control" id="hdu" name="how_discover_us">
                                                         <option value="">Select</option>
                                                         <option value="Google Search">Google Search</option>
                                                         <option value="Trip adviser">Trip adviser</option>
@@ -115,7 +115,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6 col-sm-12">
                                                             <label for="email">Upload Hotel Booking<span class="red">*</span> <small><i>(You can choose multiple files here)</i></small></label>
-                                                            <input type="file" name="hotel_booking[]" class="form-control input-sm" multiple="">
+                                                            <input type="file" name="hotel_booking[]" class="form-control" multiple="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,7 +123,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6 col-sm-12">
                                                             <label for="email">Upload Your Flight Ticket<span class="red">*</span> <small><i>(You can choose multiple files here)</i></small></label>
-                                                            <input type="file" name="flight_ticket[]" class="form-control input-sm" multiple="">
+                                                            <input type="file" name="flight_ticket[]" class="form-control" multiple="">
                                                         </div>     
                                                     </div>                                               
                                                 </div>
@@ -131,7 +131,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group col-md-6 col-sm-12">
                                                             <label for="email">Upload Passport Copy<span class="red">*</span> <small><i>(You can choose multiple files here)</i></small></label>
-                                                            <input type="file" name="passport_copy[]" class="form-control input-sm" multiple="">
+                                                            <input type="file" name="passport_copy[]" class="form-control" multiple="">
                                                         </div>     
                                                     </div>                                               
                                                 </div>
@@ -164,87 +164,7 @@
                                     </div>
 
                                     <div class="tab-pane fade" id="tab3default">
-                                        <form name="contactForm" id="contactForm" method="post" action="<?php url('contact-appln') ?>">
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="name">Name<span class="red">*</span></label>
-                                                <input type="text" class="form-control input-sm" id="name" name="name" placeholder="Your Name">
-                                            </div>
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Email<span class="red">*</span></label>
-                                                <input type="email" class="form-control input-sm" id="contactEmail" name="email" placeholder="Your Email">
-                                            </div>
-
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="email">Confirm Email<span class="red">*</span></label>
-                                                <input type="email" class="form-control input-sm" id="contactEmailConfirm" name="confirm_email" placeholder="Confirm Email">
-                                            </div>
-                                            <div class="form-group col-md-6 col-sm-6">
-                                                <label for="name">Nationality</label>
-                                                <select class="form-control input-sm" id="months" name="nationality">
-                                                    <option value="">Select</option>
-                                                    <?php
-                                                    foreach ($isd_code as $nation){
-                                                    ?>
-                                                    <option value="<?php echo $nation['country_name'] ?>"><?php echo $nation['country_name'] ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-md-12 col-sm-12">
-                                                <label for="email">How Did You Discover Us<span class="red">*</span></label>
-                                                <select class="form-control input-sm" id="years" name="how_discover_us">
-                                                    <option value="">Select</option>
-                                                    <option value="Google Search">Google Search</option>
-                                                    <option value="Trip adviser">Trip adviser</option>
-                                                    <option value="Recommended by friend/relatives">Recommended by friend/relatives</option>
-                                                    <option value="Other">Other</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-12 col-sm-6">
-                                                <div class="row">
-                                                    <div class="form-group col-md-6 col-sm-6">
-                                                        <label for="city">Country Code<span class="red">*</span></label>
-                                                        <select class="form-control input-sm" id="years" name="isd_code">
-                                                            <option value="">Select</option>
-                                                            <?php
-                                                            foreach ($isd_code as $isd){
-                                                            ?>
-                                                            <option value="<?php echo '+'.$isd['country_isd']; ?>">
-                                                                <?php echo $isd['country_name'].' (+'.$isd['country_isd'].')'; ?>
-                                                            </option>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-6 col-sm-6">
-                                                        <label for="city">Cell No<span class="red">*</span></label>
-                                                        <input type="text" class="form-control input-sm" id="city" name="phone_number" placeholder="Cell Nummber">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-12 col-sm-12">
-                                                <label for="address">Address</label>
-                                                <textarea class="form-control input-sm" id="address" rows="5" name="address"></textarea>
-                                            </div>
-
-                                            <div class="form-group col-md-12 col-sm-6">
-                                                <label for="email">Subject</label>
-                                                <input type="text" class="form-control input-sm" id="email" name="subject" placeholder="Subject">
-                                            </div>
-                                            <div class="form-group col-md-12 col-sm-12">
-                                                <label for="address">Message</label>
-                                                <textarea class="form-control input-sm" id="address" rows="5" name="message"></textarea>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <button type="submit" class="btn main-btn-style">Send</button>
-                                            </div>
-
-                                        </form>
+                                        <?php $this->load->view('contact-form'); ?>
                                     </div>
 
                                 </div>

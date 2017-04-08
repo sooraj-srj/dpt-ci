@@ -256,8 +256,8 @@
                                 </li> 
                                 <li><a href="<?php echo admin_url() . 'transfer-service-booking'; ?>"><i class="fa fa-list"></i> Transfer Service Bookings</a>
                                 </li> 
-                                <!--<li><a href="<?php echo admin_url() . 'email-template'; ?>"><i class="fa fa-list"></i> Edit email template</a>
-                                </li>-->                                
+                                <li><a href="<?php echo admin_url() . 'visa-applications'; ?>"><i class="fa fa-list"></i> Visa Applications</a>
+                                </li>                                
                             </ul>
                         </li>
                         <li class="treeview">
@@ -289,8 +289,8 @@
                             <ul class="treeview-menu">
                                 <li><a href="<?php echo admin_url() . 'reviews'; ?>"><i class="fa fa-list"></i> Reviews</a>
                                 </li> 
-                                <li><a href="<?php echo admin_url() . 'questions'; ?>"><i class="fa fa-list"></i> Ask Questions</a>
-                                </li>                    
+                                <!--<li><a href="<?php echo admin_url() . 'questions'; ?>"><i class="fa fa-list"></i> Ask Questions</a>
+                                </li>-->                  
                             </ul>
                         </li>
 

@@ -390,10 +390,14 @@ class Admin extends CI_Controller {
     //list tour bookings
     public function tour_bookings($params='')
     {
-        $filters['td'] = $this->input->get('td');
+        $filters['td']      = $this->input->get('td');
+        $filters['bd']      = $this->input->get('bd');
+        $filters['name']    = $this->input->get('name');
+        $filters['email']   = $this->input->get('email');
         $this->load->model('admin/admin_model');
         $this->gen_contents['page_heading'] = 'Tour Bookings';
         $this->gen_contents['tour_bookings'] = $this->admin_model->get_tour_bookings($filters);
+        $this->gen_contents['filters'] = $filters;
         //p($this->gen_contents['tour_bookings']); exit;
         //rendering page        
         $this->template->set_template('admin');
@@ -411,6 +415,17 @@ class Admin extends CI_Controller {
         //rendering page        
         $this->template->set_template('admin');
         $this->template->write_view('content', 'admin/transfer-service-booking', $this->gen_contents);
+        $this->template->render();
+    }
+
+    //Visa applications
+    public function visa_applications($params='')
+    {
+        $this->load->model('admin/admin_model');
+        $this->gen_contents['page_heading'] = 'Visa applications list';
+        $this->gen_contents['visa_list'] = $this->admin_model->get_visa_applications();   
+        $this->template->set_template('admin');
+        $this->template->write_view('content', 'admin/visa-list', $this->gen_contents);
         $this->template->render();
     }
 

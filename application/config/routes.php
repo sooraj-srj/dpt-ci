@@ -127,6 +127,8 @@ $route['admin/reviews']                  	= "admin/admin/list_reviews";
 $route['admin/reviews/(:any)/(:any)']       = "admin/admin/list_reviews/$1/$2";
 $route['admin/questions']                  	= "admin/admin/list_questions";
 
+$route['admin/visa-applications']           = "admin/admin/visa_applications";
+
 $route['admin/agents']                  	= "admin/admin/agents";
 $route['admin/agents/(:any)']           	= "admin/admin/agents/$1";
 $route['admin/agents/(:any)/(:any)']    	= "admin/admin/agents/$1/$2";

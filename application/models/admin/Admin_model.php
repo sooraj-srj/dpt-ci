@@ -233,6 +233,12 @@ class Admin_model extends CI_Model {
         if(!empty($filters['td'])){
             $qry .= " AND b.tour_date = '$filters[td]'";
         }
+        if(!empty($filters['name'])){
+            $qry .= " AND (b.firstName LIKE '%$filters[name]%' OR b.lastName LIKE '%$filters[name]%')";
+        }
+        if(!empty($filters['email'])){
+            $qry .= " AND b.email LIKE '%$filters[email]%'";
+        }
 
             $qry .= " ORDER BY b.`id`  DESC";
         
@@ -651,6 +657,25 @@ class Admin_model extends CI_Model {
             return '';
         }
     }
+
+    public function get_visa_applications($value='')
+    {
+        $qry = "SELECT *,DATE_FORMAT(FROM_UNIXTIME(vb.timestamp), '%d/%b/%Y') visa_date,  
+                        DATE_FORMAT(FROM_UNIXTIME(vb.arrival_date), '%d/%b/%Y') arrival_date,
+                        DATE_FORMAT(FROM_UNIXTIME(vb.departure_date), '%d/%b/%Y') departure_date
+                FROM default_visa_booking vb                
+                ORDER BY vb.id desc";
+        $sel = $this->db->query($qry);
+        $res = $sel->result_array($sel);
+        if(!empty($res)){
+            return $res;
+        }
+        else{
+            return '';
+        }
+    }
+
+
 
 
 }
