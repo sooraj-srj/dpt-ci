@@ -43,7 +43,8 @@ class Admin_model extends CI_Model {
         $cdata = array(
             "title" => $catname,
             "slug"  => $catdata['slug'],
-            "header_image" => $catdata['header_image']
+            "header_image" => $catdata['header_image'],
+            "template" => $catdata['template']
         );
         
         if($mode == "add"){
@@ -277,7 +278,7 @@ class Admin_model extends CI_Model {
     // get tour booking details
     public function get_tour_booking_details($booking_id='')
     {
-        $qry = "SELECT b.*,t.*,tc.title as category,e.name as emirates, b.status as booking_status, b.id as booking_id, ic.country_name, 
+        $qry = "SELECT b.*,t.*,tc.title as category,tc.template,e.name as emirates, b.status as booking_status, b.id as booking_id, ic.country_name, 
                 pl.location as pickup_location, pl1.location as drop_location, b.pickup_location as pl_id, b.dropLocation as el_id,
                 DATE_FORMAT(FROM_UNIXTIME(b.timestamp), '%d/%b/%Y') booking_date, 
                 DATE_FORMAT(b.tour_date, '%d/%b/%Y') tour_date,

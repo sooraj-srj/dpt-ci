@@ -9,6 +9,25 @@
                     <!--<div class="price-decoration__value"> <i class="fa fa-tag"></i> <span class="amount"><small>AED </small>580</span> <span class="amount"><small>USD </small>159</span> </div>-->
                     <div class="price-decoration__label"><h4>Select Your Tours</h4></div>
                 </div>
+                <!-- for mobile  -->
+                <div class="mobile-package-select">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle mobile-btn-drop" type="button" data-toggle="dropdown">Select Tour
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <?php
+                            $i = 1;
+                            foreach ($tours as $tour) {
+                                ?>                                
+                                <li><a href="<?php echo current_url() . '?plan=' . $tour['tour_id']; ?>"><?php echo $tour['title'] ?></a></li>
+                                <?php
+                                $i++;
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <!-- for mobile  -->
                 <div class="clearfix"></div>
                 <div class="left-package-list">
                     <ul id="mainNav" class="list-product-ul">

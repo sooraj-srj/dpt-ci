@@ -86,6 +86,7 @@ class Admin extends CI_Controller {
                     $catdata = array(
                         "title" => $title,
                         'slug'  => url_title($title, 'dash', true),
+                        'template'  => $this->input->post("template",true),
                         'header_image' => $image_name
                     );
                     $response = $this->admin_model->process_category("add",$catdata);
@@ -130,6 +131,7 @@ class Admin extends CI_Controller {
                         "title"     => $title,
                         "catid"     => $this->input->post("id",true),
                         "slug"      => url_title($title, 'dash', true),
+                        'template'  => $this->input->post("template",true),
                         "header_image"  => $image_name
                     );
                     $response = $this->admin_model->process_category("edit",$catdata);
@@ -453,8 +455,8 @@ class Admin extends CI_Controller {
 
         $this->gen_contents['emirates'] = $emirates_data['emirates'];
         //$mail_body = $this->admin_model->get_email_template('booking-mail'); //old
-        $tour_template = $this->admin_model->get_tour_template($bd['category_id']);
-        $mail_body = $tour_template['template'];
+        $tour_template = $bd['template'];//$this->admin_model->get_tour_template($bd['category_id']);
+        $mail_body = $tour_template;//['template'];
         
         if($tour_type == 'ts'){
             $tour_details  = "You are selected <b>"  .$emirates_data['emirates']. '</b> transfer service.';
@@ -554,8 +556,8 @@ class Admin extends CI_Controller {
 
         $this->gen_contents['emirates'] = $emirates_data['emirates'];
         //$mail_body = $this->admin_model->get_email_template('booking-mail'); //old
-        $tour_template = $this->admin_model->get_tour_template($bd['category_id']);
-        $mail_body = $tour_template['template'];
+        $tour_template = $bd['template'];//$this->admin_model->get_tour_template($bd['category_id']);
+        $mail_body = $tour_template;//['template'];
         
         if($tour_type == 'ts'){
             $tour_details  = "You are selected <b>"  .$emirates_data['emirates']. '</b> transfer service.';

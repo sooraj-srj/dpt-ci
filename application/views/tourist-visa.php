@@ -82,7 +82,7 @@
                                                         <?php
                                                         foreach ($isd_code as $nation){
                                                         ?>
-                                                        <option value="<?php echo $nation['country_id'] ?>"><?php echo $nation['country_name'] ?></option>
+                                                        <option value="<?php echo $nation['country_name'] ?>"><?php echo $nation['country_name'] ?></option>
                                                         <?php
                                                         }
                                                         ?>

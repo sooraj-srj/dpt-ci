@@ -1,4 +1,11 @@
-
+<style type="text/css">
+    #cke_1_template{
+        height: 700px !important;
+    }
+    #template_ifr{
+        height: 628px !important;
+    }
+</style>
 <div class="content-wrapper" style="min-height: 946px !important;">
     <section class="content-header">
         <h1> <?php if(!empty($catdata)){ echo 'Edit Category';}  else { echo 'Add Category';} ?></h1>
@@ -18,12 +25,16 @@
             </div>
 
             <div class="box-body">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-8 col-md-offset-2">
                     <form role="form" method="POST" action="<?php if(!empty($catdata)) {$mode = 'edit';} else {$mode = 'add';} url('admin/categories/'.$mode); ?>" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <label>Category Name <span class="error">*</span>: </label>
                             <input type="text" value="<?php echo $catdata['title'] ?>"  class="form-control" name="title" placeholder="Category name">                                            
+                        </div>
+                        <div class="form-group">
+                            <label>Mail Template <span style="color: red;">(Please do not change {{user_name}} these flags)</span></label>
+                            <textarea class="form-control textarea" name="template" placeholder=""><?php echo $catdata['template']; ?></textarea>                                            
                         </div>
                         
                         <div class="form-group">
